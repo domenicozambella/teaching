@@ -1,2 +1,2 @@
-# teaching
-Teaching material for students
+# Teaching
+Miscellaneous material for students
