@@ -1,4 +1,5 @@
 \documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
 \usepackage[a4paper,height=24cm,width=14cm]{geometry}
 \usepackage[italian]{babel}
 \usepackage{amssymb}
@@ -103,7 +104,21 @@ Let $M$ be a structure in the signature of graphs (but not necessarily a graph).
 
 \begin{exercise}
 Let $M\preceq N$ and let $\phi(x,y)\in L$. Suppose there are finitely many sets of the form $\phi(a,N)$ for some $a\in N^{|x|}$. Prove that all these sets are definable over $M$.
+
+Soluzione:
+
+Supponiamo che gli insiemi della forma $\phi(a,N)$ siano $n$ e definiamo
+
+
+\hfil$\displaystyle\psi(x_1,\dots,x_n)\quad =\quad\bigwedge_{i\neq j}\neg\A y\big[\phi(x_i,y)\iff\phi(x_j,y)\big]$
+
+Quindi $ \psi(x_1,\dots,x_n)$ dice che gli insiemi definiti dalle formule $\phi(x_i,y)$ sono tra loro distinti. Per ipotesi $N\models\E x_1,\dots,x_n\,\psi(x_1,\dots,x_n)$ e per elementarità esistono $a_1,\dots,a_n\in M^{|x|}$ tali che $M\models\psi(a_1,\dots,a_n)$. Di nuovo per elementarità $N\models \neg\A y\big[\phi(a_i,y)\iff\phi(a_j,y)\big]$ per ogni $i\neq j$. Quindi gli insiemi $\phi(a_i,N)$ non possono che essere gli $n$ insiemi di cui sopra.
+
+
+
+
 \end{exercise}
+
 
 
 \end{document}

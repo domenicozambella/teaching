@@ -84,24 +84,12 @@
 \rhead{}\setcounter{ex}{0}
 
 
+
 \begin{exercise}
-Prove that if $T$ has exactly $2$ maximal consistent extension $T_1$ and $T_2$ then there is a sentence $\phi$ such that $T,\phi\vdash T_1$ and $T,\neg\phi\vdash T_2$.
-\end{exercise} 
+Let $\Phi\subseteq L$ be a set of sentences and suppose that $\proves\psi\iff\bigvee\Phi$ for some sentence $\psi$. Prove that there is a finite $\Phi_0\subseteq\Phi$ such that  $\proves\psi\iff\bigvee\Phi_0$.
 
-\begin{exercise}\label{ex_LS}
-Assume $L$ is countable and let $M\subseteq N$ and $A\subseteq N$ be both countable. Prove that there is a countable model $K$ such that $A\subseteq K\preceq N$ and $K\cap M\preceq N$ (in particular, $K\cap M$ is a model).  
-
-Hint 1: adapt the construction used to prove the downward L\"owenheim-Skolem.
-
-Hint 2 (alternative construction): construct two countable chains of countable models such that $K_i\cap M\subseteq M_i\preceq M$ and $A\cup M_i\subseteq K_{i+1}\preceq M$. The required model is $K=\bigcup_{i\in\omega}K_i$ as $K\cap M=\bigcup_{i\in\omega}M_i$.
-
+Nota. Anche se $\bigvee\Phi$ non è una formula del prim'ordine la semantica è quella naturale $M\models\bigvee\Phi$ se qualche formula in $\Phi$ \è vera in $M$.
 \end{exercise}
-
-
-\begin{exercise}\label{VaughtEsempio3modelli}
-Let $L$ be the language of strict orders augmented with countably many constants $\big\{c_i: i\in\omega\big\}$. Let $T$ be the theory that extends $T_{\rm dlo}$ with the axioms $c_i<c_{i+1}$ for all $i$. Exhibit $3$ non isomorphic countable models of $T$, say $N_i$ for $i=1,2,3$. (One could prove that $T$ is complete and up to isomorphism has exactly $3$ countable models.) Say for which model $N_i$ an extension lemma similar to 5.1 holds with $N=N_i$ and $M\models T$.
-\end{exercise}
-
 
 \end{document}
 
