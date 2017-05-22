@@ -14,7 +14,7 @@
 */elaborati/
 */esami/
 p
-*.directory
+.directory
 
 ## Intermediate documents:
 *.dvi
