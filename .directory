@@ -3,9 +3,6 @@ Icon=folder-red
 
 [Dolphin]
 HeaderColumnWidths=567,72,103
-Timestamp=2017,5,22,12,43,6
+Timestamp=2017,6,10,9,22,45
 Version=3
 ViewMode=1
-
-[Settings]
-HiddenFilesShown=true
