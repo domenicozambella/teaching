@@ -1,0 +1,162 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=24cm,width=13cm]{geometry}
+\usepackage[italian]{babel}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{fourier}
+\usepackage{euscript}
+\usepackage{amsmath,amssymb, amsthm}
+
+\def\lh{\textrm{lh}}
+\def\phi{\varphi}
+\def\P{\EuScript P}
+\def\M{\EuScript M}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\S{\EuScript S}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\PP{\mathds P}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\eq{{\rm eq}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+\def\swedge{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\wedge$}}}
+\def\svee{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\vee$}}}
+
+\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+   \end{list}}
+%\def\ssf#1{\textsf{\small #1}}
+\newcounter{ex}
+\newenvironment{exercise}{\par\bigskip\addtocounter{ex}{1}\textbf{Exercise \theex.\quad}}{}
+\newenvironment{hint}{\par\smallskip\color{blue}\textbf{Hint.\quad}}{}
+\newenvironment{remark}{\par\smallskip\color{blue}\textbf{Remark.\quad}}{}
+\pagestyle{empty}
+\parindent0ex
+\parskip1ex
+\raggedbottom
+\def\nsR{{}^*\!\RR}
+\def\ssf#1{\textsf{#1}}
+\renewcommand{\baselinestretch}{1.2}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Self-diagnostic test to access the prerequisites for Model Theory 2018/19}
+\rhead{}
+\cfoot{}
+%\rfoot{\rput(1.5,-0.5){\small\thepage}}
+
+\begin{document}
+
+\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\hfill }\setcounter{ex}{0}
+
+{\color{blue}
+\textbf{Prerequisites}
+\begin{itemize}
+\item Syntax and semantics of first-order languages.
+\item Elementary equivalence and elementary substructures.
+\item Isomorphisms and embeddings between structures.
+\end{itemize}}
+
+
+\begin{exercise}
+Let $M$ be an $L$-structure and let $\psi(x), \phi(x,y)\in L$. For each of the following conditions, write a sentence true in $M$ exactly when the condition holds: 
+\begin{itemize}
+\item[a.] $\psi(M)\ \in\ \big\{\phi(a,M): a\in M\big\}$;
+\item[b.] $\big\{\phi(a,M): a\in M\big\}$ contains at least two elements;
+\item[c.] $\big\{\phi(a,M): a\in M\big\}$ contains only sets that are pairwise disjoint.
+\end{itemize}
+\begin{remark}
+Recall that $\phi(a,M)=\big\{b\ :\ M\models\phi(a,b)\big\}$. Do not confuse definable subsets of $M$ with \textit{sets\/} of definable subsets of $M$. Beware that the relation between parameters and the sets they define is not one-to-one.
+\end{remark}
+\end{exercise}
+
+\begin{exercise}
+Let $M$ be a structure in a signature with only a binary relation symbol $r$. Write a sentence $\phi$ such that, for every structure $M$,
+\begin{itemize}
+\item[a.] $M\models\phi$ if and only if there is an $A\subseteq M$ such that $r^M\ \subseteq\ A\times\neg A$.
+\end{itemize}
+\begin{remark}
+Note that $\phi$ asserts that $r^M$ is a bipartite directed graph. As motivation, it is interesting to note that \ssf{a} is an asymmetric version of 
+\begin{itemize}
+\item[b.] $M\models\psi$ if and only if there is an $A\subseteq M$ such that $r^M\ \subseteq\ (A\times \neg A)\;\cup\;(\neg A\times A)$.
+\end{itemize}
+The sentence $\psi$ says that the (undirected) graph naturally associated to $r^M$ is a \textit{bipartite graph}, or equivalently that its \textit{chromatic number is \ $2$} (its vertices are colorable with $2$ colors so that any two adjacent vertices have different colors). The compactness theorem can be used to prove that there is no such sentence $\psi$ (not required).
+\end{remark}
+\end{exercise}
+
+\begin{exercise}\label{ex_finite_nature}
+Prove that $M\equiv_AN$ if and only if $M\equiv_BN$ for every finite $B\subseteq A$.
+\begin{remark}
+This is called the finite nature (or character) of elementary equivalence.
+\end{remark}
+\end{exercise}
+
+
+\begin{exercise}
+Prove that in the language of orders $(0,1)\not\preceq(0,2]$ and $(0,1)\preceq(0,2)$.
+\begin{remark}
+Assume the intervals above are all rational, or all real. Give a short proof without assuming elimination of quantifiers. Exercise~3 above may be useful.
+\end{remark}
+\end{exercise}
+
+\begin{exercise}
+Let $M\preceq N$ and let $\phi(x,z)\in L$. Suppose there are finitely many sets of the form $\phi(a,N)$ for some $a\in N^{|x|}$. Prove that all these sets are definable over $M$.
+\begin{hint}
+Exercise~1 above may be useful.
+\end{hint}
+\end{exercise}
+
+\begin{exercise}
+Prove that if $A_1,\dots,A_n\subseteq\big\{1,\dots,m\big\}$ are distinct sets such that $A_i\cap A_j\neq\0$ for all $i, j$, then $n\le 2^{m-1}$.
+\begin{hint}
+The proof is two lines.
+\end{hint}
+\begin{remark}
+This exercise is not directly related to model theory. However, basic combinatorial principles are pivotal in model theory, as they are used to distinguish first-order structures according to their complexity.
+
+(P\'eter Frankl credits this exercise to Katona who used it to advertise his combinatorics seminar by saying: ``if you can solve this exercise, come to the seminar''.)
+\end{remark}
+\end{exercise}
+
+\end{document}
+
+
