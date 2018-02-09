@@ -15,7 +15,7 @@
 */esami/
 */esame/
 p
-.directory
+*.directory
 
 ## Intermediate documents:
 *.dvi
