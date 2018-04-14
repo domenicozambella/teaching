@@ -10,10 +10,13 @@
 *.fot
 *.cb
 *.cb2
-*/aux/
-*/elaborati/
-*/esami/
-*/esame/
+*.pytxcode
+*.synctex.gz
+*aux/
+*elaborati/
+*esami/
+*esame/
+*pythontex-*/
 p
 *.directory
 
