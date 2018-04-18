@@ -24,8 +24,6 @@
 \parindent0ex
 \parskip2ex
 \def\Pr{{\rm Pr\,}}
-\def\Ex{{\rm E\,}}
-\def\Var{{\rm Var\,}}
 \newcounter{quesito}
 \newenvironment{question}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
 \newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
@@ -45,6 +43,7 @@ random.seed(25874445)
 
 
 \begin{question}
+\def\Pr{{\rm Pr\,}}
 \begin{pycode}
 f_a = random.choice([40,50,60])
 f = random.choice([10,15,20,25])
@@ -70,6 +69,7 @@ $\Pr(A|F)=\dfrac{\Pr(F|A)\cdot \Pr(A)}{\Pr(F)}$ {\color{blue}$=\py{a_f}\%$\hfill
 
 
 \begin{question}
+\def\Pr{{\rm Pr\,}}
 \begin{pycode}
 f_a = random.choice([40,50,60])
 f = random.choice([10,15,20,25])
@@ -94,7 +94,9 @@ $\Pr(A|\neg F)=\dfrac{\Pr(\neg F|A)\cdot \Pr(A)}{\Pr(\neg F)}$  {\color{blue}$=\
 \end{answer}
 \end{question}
 
+\clearpage
 \begin{question}
+\def\Pr{{\rm Pr\,}}
 \begin{pycode}
 sens = random.choice([96, 97])
 spec = random.choice([98,99])
@@ -144,6 +146,7 @@ $\displaystyle\Pr(A ~|~T_+)\ =\ \frac{\Pr(T_+|~A)\Pr(A)}{\Pr(T_+)}$ {\color{blue
 
 
 \begin{question}
+\def\Pr{{\rm Pr\,}}
 \begin{pycode}
 sens = random.choice([96, 97])
 spec = random.choice([98,99])
@@ -185,6 +188,7 @@ $\displaystyle\Pr(A ~|~T_+)\ =\ \frac{\Pr(T_+|~A)\Pr(A)}{\Pr(T_+)}$ {\color{blue
 
 
 \begin{question}
+\def\Pr{{\rm Pr\,}}
 \begin{pycode}
 rain_days = random.choice([5,6,7,8])
 prev = rain_days * 100 / 365
@@ -219,6 +223,7 @@ $\displaystyle \Pr(R\,| T_+)\ =\ \frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr(T_+)\vphantom
 \end{question}
 
 \begin{question}
+\def\Pr{{\rm Pr\,}}
 \begin{pycode}
 from numpy import arange
 from scipy.stats import binom
@@ -242,14 +247,16 @@ spec = sum( binom.pmf(arange(0,k), n_sample, 0.5) )
 
 pos =  sens * prev + (1-spec) * (1-prev)
 ppv =  prev * sens  / pos
+pfn =  (1-spec) * (1-prev) 
 
 sens = round(sens, 3)
 spec = round(spec, 3)
 prev = round(prev, 3)
 ppv = round(ppv, 3)
 pos = round(pos, 3)
+pfn = round(pfn, 3)
 \end{pycode}
-Abbiamo $\py{n_eq+n_di}$ monete di cui $\py{n_eq}$ sono equilibrate, le altre sono difettose e hanno probabilità $\py{p}$ di dare come risultato {\tt Testa}. Scegliamo a caso una di queste $\py{n_eq+n_di}$ monete. Lanciandola $\py{n_sample}$ volte otteniamo $\py{k}$ volte {\tt Testa\/}. Qual è la probabilità che si tratti di una moneta non equilibrata? Dei seguenti dati si usino quelli pertinenti
+Abbiamo $\py{n_eq+n_di}$ monete di cui $\py{n_eq}$ sono equilibrate, le altre sono difettose e hanno probabilità $\py{p}$ di dare come risultato {\tt Testa}. Scegliamo a caso una di queste $\py{n_eq+n_di}$ monete. Per decidere se è equilibrata o no, la lanciamo $\py{n_sample}$ volte. Se otteniamo $\ge\py{k}$ volte {\tt Testa\/} diremo che è èquilibrata. Qual è la probabilità di dichiarare equilibrata una moneta che non lo è? Dei seguenti dati si usino quelli pertinenti
 
 
 $\Pr(X\ge \py{k})\ =\ \py{1-spec}$\hfill se $X\sim B(\py{n_sample},0.5)$\kern50ex
@@ -277,7 +284,7 @@ $\Pr(T_{\ge\py{k}}| D)=\py{sens}$
 
 $\Pr(T_{\ge\py{k}})=\Pr(T_{\ge\py{k}}|D)\ \Pr(D) + \Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)$ {\color{blue} $=\py{pos}$}
 
-$\displaystyle\Pr(D ~|~T_{\ge\py{k}})\ =\ \frac{\Pr(T_{\ge\py{k}}|D)\ \Pr(D)}{\Pr(T_{\ge\py{k}})}$ {\color{blue} $=\py{ppv}$\hfill Risposta}
+$\displaystyle\Pr(\neg D ~|~T_{\ge\py{k}})\ =\ \frac{\Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)}{\Pr(T_{\ge\py{k}})}$ {\color{blue} $=\py{ppv}$\hfill Risposta}
 
 \end{answer}
 \end{question}
