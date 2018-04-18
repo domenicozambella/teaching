@@ -1,0 +1,456 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=25mm, right=25mm]{geometry}
+\usepackage{amsmath}
+\usepackage{calc} 
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip2ex
+\def\Pr{{\rm Pr\,}}
+\def\Ex{{\rm E\,}}
+\def\Var{{\rm Var\,}}
+\newcounter{quesito}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\begin{document}
+Domande per verificare la comprensione del significato di probabilità condizionata; dei termini che descrivono l'attendibilità dei test diagnostici; della regola di Bayes.
+
+\bigskip\bigskip
+
+\begin{pycode}
+import random
+random.seed(25874445)
+\end{pycode}
+
+
+\begin{question}
+\begin{pycode}
+f_a = random.choice([40,50,60])
+f = random.choice([10,15,20,25])
+a = random.choice([2,3,4,5])
+a_f = round ( f_a * a / f, 1)
+\end{pycode}
+Tra le persone di cui A è causa del decesso il $\py{f_a}\%$ è fumatore. La percentuale dei fumatori in tutta la popolazione è del $\py{f}\%$ e quella dei decessi dovuti ad A è del $\py{a}\%$. Calcolare la probabilità che un fumatore ha di morire per A.
+\begin{answer}
+
+$F$\hfill insieme dei fumatori\kern22ex
+
+$A$\hfill insieme persone decedute per $A$\kern22ex
+
+$\Pr(A)=\py{a}\%$\hfill prevalenza di $A$ nella popolazione\kern22ex
+
+$\Pr(F)=\py{f}\%$\hfill frazione di fumatori nella popolazione\kern22ex
+
+$\Pr(F|A)=\py{f_a}\%$\hfill prevalenza di $A$ tra i fumatori\kern22ex
+
+$\Pr(A|F)=\dfrac{\Pr(F|A)\cdot \Pr(A)}{\Pr(F)}$ {\color{blue}$=\py{a_f}\%$\hfill Risposta}
+\end{answer}
+\end{question}
+
+
+\begin{question}
+\begin{pycode}
+f_a = random.choice([40,50,60])
+f = random.choice([10,15,20,25])
+a = random.choice([5, 10])
+a_n = round ( ((100-f_a) * a) / ((100-f) * 100), 2)
+\end{pycode}
+Tra le persone di cui A è causa del decesso il $\py{f_a}\%$ è fumatore.  La percentuale dei fumatori in tutta la popolazione è del $\py{f}\%$ e quella dei decessi dovuti ad A è del $\py{a}\%$. Calcolare la probabilità che un \textit{non\/} fumatore ha di morire per A.
+\begin{answer}
+
+$F$\hfill insieme dei fumatori\kern22ex
+
+$A$\hfill insieme persone decedute per $A$\kern22ex
+
+$\Pr(A)=\py{a}\%$\hfill prevalenza di $A$ nella popolazione\kern22ex
+
+$\Pr(\neg F)=100\% - \Pr(F) =\py{100-f}\%$\hfill frazione di fumatori nella popolazione\kern22ex
+
+$\Pr(\neg F|A)=100\%-\Pr(F|A)  =\py{100-f_a}\%$\hfill prevalenza di $A$ tra i fumatori\kern22ex
+
+$\Pr(A|\neg F)=\dfrac{\Pr(\neg F|A)\cdot \Pr(A)}{\Pr(\neg F)}$  {\color{blue}$=\py{a_n}\%$\hfill Risposta}
+
+\end{answer}
+\end{question}
+
+\begin{question}
+\begin{pycode}
+sens = random.choice([96, 97])
+spec = random.choice([98,99])
+prev = random.choice([5,6])
+pos =  sens * prev + (100-spec) * (100-prev)
+pos = pos / 100
+ppv =  prev * sens  / pos
+prev = round(prev, 1)
+ppv = round(ppv, 1)
+pos = round(pos, 1)
+\end{pycode}
+A common blood test indicates the presence of a disease $\py{sens}\%$ of the time when the disease is actually present in an individual and $\py{100-spec}\%$ of the time when the disease is not present. The prevalence of the disease is $\py{prev}\%$.
+\begin{itemize}
+\item[1.] What is the sensitivity of the test?
+\item[2.] What is the specificity of the test?
+\item[3.] What is the positive predictive value of the test?
+\end{itemize}
+\begin{answer}
+
+
+$A$\hfill insieme delle persone affette\kern22ex
+
+$T_+$\hfill insieme delle persone positive al test\kern22ex
+
+$T_-$\hfill insieme delle persone negative al test\kern22ex
+
+$\Pr(A)=\py{prev}\%$\hfill prevalenza\kern22ex
+
+$\Pr(\neg A)=1-\Pr(A)=\py{100-prev}\%$
+
+$\Pr(T_+|~ A)$ {\color{blue}$=\py{sens}\%$}\hfill sensitività\kern22ex \llap{\color{blue} Risposta 1}
+
+$\Pr(T_+|\neg A)=\py{100-spec}\%$\hfill probabilità falsi positivi\kern22ex
+
+$\Pr(T_-|\neg A)=1-P(T_+|\neg A)$ {\color{blue}$=\py{spec}\%$}\hfill specificità\kern22ex \llap{\color{blue} Risposta 2}
+
+$\Pr(T_+)=\Pr(T_+|~A)\ \Pr(A) + \Pr(T_+|\neg A)\ \Pr(\neg A)=\py{pos}\%$
+
+
+
+$\displaystyle\Pr(A ~|~T_+)\ =\ \frac{\Pr(T_+|~A)\Pr(A)}{\Pr(T_+)}$ {\color{blue}$=\py{ppv}\%$}\hfill valore predittivo positivo\kern22ex \llap{\color{blue} Risposta 3} 
+
+
+
+\end{answer}
+\end{question}
+
+
+\begin{question}
+\begin{pycode}
+sens = random.choice([96, 97])
+spec = random.choice([98,99])
+prev = random.choice([5,6])
+pos =  sens * prev + (100-spec) * (100-prev)
+pos = pos / 100
+ppv =  prev * sens  / pos
+prev = round(prev, 1)
+ppv = round(ppv, 1)
+pos = round(pos, 1)
+\end{pycode}
+A common blood test indicates the presence of a disease $\py{sens}\%$ of the time when the disease is actually present in an individual and $\py{100-spec}\%$ of the time when the disease is not present. The prevalence of the disease is $\py{prev}\%$.
+\begin{itemize}
+\item[1.] What is the probability that a person that is chosen at random from the general population is positive to the test?
+\item[2.] What is the positive predictive value of the test? 
+\end{itemize}
+\begin{answer}
+
+$A$\hfill insieme delle persone affette\kern22ex
+
+$T_+$\hfill insieme delle persone positive al test\kern22ex
+
+$\Pr(A)=\py{prev}\%$\hfill prevalenza\kern22ex
+
+$\Pr(\neg A)=1-\Pr(A)=\py{100-prev}\%$
+
+$\Pr(T_+|~ A)=\py{sens}\%$\hfill sensitività\kern22ex
+
+$\Pr(T_+|\neg A)=\py{100-spec}\%$
+
+$\Pr(T_+)=\Pr(T_+|~A)\ \Pr(A) + \Pr(T_+|\neg A)\ \Pr(\neg A)$ {\color{blue} $=\py{pos}\%$\hfill Risposta 1}
+
+$\displaystyle\Pr(A ~|~T_+)\ =\ \frac{\Pr(T_+|~A)\Pr(A)}{\Pr(T_+)}$ {\color{blue} $=\py{ppv}\%$\hfill Risposta 2}
+
+\end{answer}
+\end{question}
+
+
+
+
+\begin{question}
+\begin{pycode}
+rain_days = random.choice([5,6,7,8])
+prev = rain_days * 100 / 365
+sens =  random.choice([85, 90,95])
+spec = random.choice([85, 90,95])
+pos =  sens * prev + (100-spec) * (100-prev)
+pos = pos / 100
+ppv =  prev * sens  / pos
+prev = round(prev, 1)
+ppv = round(ppv, 1)
+pos = round(pos, 1)
+\end{pycode}
+Marie is getting married tomorrow at an outdoor ceremony in the desert. In recent years it has rained only $\py{rain_days}$ days each year. But the weatherman has predicted rain for tomorrow. When it actually rains, the weatherman correctly forecasts rain $\py{sens}\%$ of the time. When it doesn’t rain, he incorrectly forecasts rain $\py{100-spec}\%$ of the times. What is the probability that it will rain on the day of Marie’s wedding?
+
+\begin{answer}
+
+$R$\hfill event: it rains on Marie’s wedding\kern22ex
+
+$T_+$\hfill event: the weatherman predicts rain\kern22ex
+
+$\Pr(R) =\py{rain_days}/365 = \py{prev}\%$\hfill it rains $\py{rain_days}$ days out of $365$\kern22ex
+
+$\Pr(T_+|R) = \py{sens}\%$\hfill when it rains, rain is predicted\kern22ex
+
+$\Pr(T_+|\neg R) = \py{100-spec}\%$\hfill when it does not rain,  rain is predicted\kern22ex
+
+$\Pr(T_+) = \Pr(T_+|R)\cdot \Pr(R)+ \Pr(T_+|\neg R)\cdot \Pr(\neg R) = \py{pos}\%$ 
+
+$\displaystyle \Pr(R\,| T_+)\ =\ \frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr(T_+)\vphantom{\Big[}}$  {\color{blue} $=\py{ppv}\%$\hfill Risposta}
+
+\end{answer}
+\end{question}
+
+\begin{question}
+\begin{pycode}
+from numpy import arange
+from scipy.stats import binom
+
+p = random.choice([0.6, 0.7])
+
+n_monete = random.choice([30, 35, 40])
+n_sample = n_monete - 5
+
+pH0 = random.choice([0.6, 0.8])
+n_eq = n_monete * pH0
+n_eq = int( n_eq )
+n_di = n_monete - n_eq
+k = n_sample * random.choice([0.6, 0.7])
+k = int( k )
+prev = n_di / n_monete
+
+
+sens = sum( binom.pmf(arange(k,n_sample+1), n_sample, p) )
+spec = sum( binom.pmf(arange(0,k), n_sample, 0.5) )
+
+pos =  sens * prev + (1-spec) * (1-prev)
+ppv =  prev * sens  / pos
+
+sens = round(sens, 3)
+spec = round(spec, 3)
+prev = round(prev, 3)
+ppv = round(ppv, 3)
+pos = round(pos, 3)
+\end{pycode}
+Abbiamo $\py{n_eq+n_di}$ monete di cui $\py{n_eq}$ sono equilibrate, le altre sono difettose e hanno probabilità $\py{p}$ di dare come risultato {\tt Testa}. Scegliamo a caso una di queste $\py{n_eq+n_di}$ monete. Lanciandola $\py{n_sample}$ volte otteniamo $\py{k}$ volte {\tt Testa\/}. Qual è la probabilità che si tratti di una moneta non equilibrata? Dei seguenti dati si usino quelli pertinenti
+
+
+$\Pr(X\ge \py{k})\ =\ \py{1-spec}$\hfill se $X\sim B(\py{n_sample},0.5)$\kern50ex
+
+$\phantom{\Pr(X\ge \py{k})}\ =\ \py{sens}$\hfill se $X\sim B(\py{n_sample},\py{p})$\kern50ex
+
+$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1, n_monete,0.5), 3)}$\hfill se $X\sim B(\py{n_monete},0.5)$\kern50ex
+
+$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1, n_monete,  p), 3)}$\hfill se $X\sim B(\py{n_monete},\py{p})$\kern50ex
+
+
+\begin{answer}
+
+$D$\hfill insieme degli esperimenti fatti con monete sbilanciate\kern22ex
+
+$T_{\ge\py{k}}$\hfill insieme degli esperimenti con risultato $\ge\py{k}$\kern22ex
+
+$\Pr(D)=\py{prev}$\hfill prevalenza\kern22ex
+
+$\Pr(\neg D)=1-\Pr(D)=\py{1-prev}$
+
+$\Pr(T_{\ge\py{k}}| \neg D)=\py{1-spec}$
+
+$\Pr(T_{\ge\py{k}}| D)=\py{sens}$
+
+$\Pr(T_{\ge\py{k}})=\Pr(T_{\ge\py{k}}|D)\ \Pr(D) + \Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)$ {\color{blue} $=\py{pos}$}
+
+$\displaystyle\Pr(D ~|~T_{\ge\py{k}})\ =\ \frac{\Pr(T_{\ge\py{k}}|D)\ \Pr(D)}{\Pr(T_{\ge\py{k}})}$ {\color{blue} $=\py{ppv}$\hfill Risposta}
+
+\end{answer}
+\end{question}
+
+\end{document}
+
+
+\begin{xquestion}
+\begin{pycode}
+from numpy import arange
+from scipy.stats import binom
+
+p = random.choice([0.6])
+n_monete = random.choice([100, 200])
+pH0 = random.choice([0.8, 0.9])
+n_eq = n_monete * pH0
+n_eq = int( n_eq )
+n_di = n_monete - n_eq
+n_sample = random.choice([50, 100])
+k = n_sample * random.choice([0.7, 0.8])
+k = int( k )
+prev = n_di / n_monete
+
+
+sens = binom.pmf(k, n_sample, p)
+spec = 1 - binom.pmf(k, n_sample, 0.5)
+pos =  sens * prev + (1-spec) * (1-prev)
+ppv =  prev * sens  / pos
+
+sens = round(sens, 3)
+spec = round(spec, 3)
+prev = round(prev, 3)
+ppv = round(ppv, 3)
+pos = round(pos, 3)
+\end{pycode}
+Abbiamo $\py{n_eq+n_di}$ monete di cui $\py{n_eq}$ sono equilibrate, le altre sono difettose e hanno probabilità $\py{p}$ di dare come risultato {\tt Testa}. Scegliamo a caso una di queste $\py{n_eq+n_di}$ monete. Lanciandola $n=\py{n_sample}$ volte otteniamo $\py{k}$ volte {\tt Testa\/}. Qual è la probabilità che si tratti di una moneta non equilibrata? Si usi che
+
+$\Pr(X=\py{k})\ =\ \py{round(1-spec, 4)}$\hfill se $X\sim B(n,0.5)$\kern50ex
+
+$\phantom{\Pr(X=\py{k})}\ =\ \py{sens}$\hfill se $X\sim B(n,\py{p})$\kern50ex
+
+$\Pr(X\ge \py{k})\ =\ \py{round(1-binom.cdf(k-1,n_sample,0.5), 4)}$\hfill se $X\sim B(n,0.5)$\kern50ex
+
+$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1,n_sample,p), 4)}$\hfill se $X\sim B(n,\py{p})$\kern50ex
+
+\begin{answer} 1
+
+$D$\hfill insieme degli esperimenti fatti con monete sbilanciate\kern22ex
+
+$T_{=\py{k}}$\hfill insieme degli esperimenti con risultato $\py{k}$\kern22ex
+
+$\Pr(D)=\py{prev}$\hfill prevalenza\kern22ex
+
+$\Pr(\neg D)=1-\Pr(D)=\py{1-prev}$
+
+$\Pr(T_{=\py{k}}| \neg D)=\py{1-spec}$
+
+$\Pr(T_{=\py{k}}| D)=\py{sens}$
+
+$\Pr(T_{=\py{k}})=\Pr(T_{=\py{k}}|D)\ \Pr(D) + \Pr(T_{=\py{k}}|\neg D)\ \Pr(\neg D)$ {\color{blue} $=\py{pos}$}
+
+$\displaystyle\Pr(D ~|~T_{=\py{k}})\ =\ \frac{\Pr(T_{=\py{k}}|D)\ \Pr(D)}{\Pr(T_{=\py{k}})}$ {\color{blue} $=\py{ppv}$\hfill Risposta}
+\end{answer}
+
+\begin{answer} 2
+\begin{pycode}
+sens = sum( binom.pmf(arange(k,n_sample+1), n_sample, p) )
+spec = sum( binom.pmf(arange(0,k), n_sample, 0.5) )
+
+pos =  sens * prev + (1-spec) * (1-prev)
+ppv =  prev * sens  / pos
+
+sens = round(sens, 3)
+spec = round(spec, 3)
+prev = round(prev, 3)
+ppv = round(ppv, 3)
+pos = round(pos, 3)
+\end{pycode}
+
+$D$\hfill insieme degli esperimenti fatti con monete sbilanciate\kern22ex
+
+$T_{\ge\py{k}}$\hfill insieme degli esperimenti con risultato $\ge\py{k}$\kern22ex
+
+$\Pr(D)=\py{prev}$\hfill prevalenza\kern22ex
+
+$\Pr(\neg D)=1-\Pr(D)=\py{1-prev}$
+
+$\Pr(T_{\ge\py{k}}| \neg D)=\py{1-spec}$
+
+$\Pr(T_{\ge\py{k}}| D)=\py{sens}$
+
+$\Pr(T_{\ge\py{k}})=\Pr(T_{\ge\py{k}}|D)\ \Pr(D) + \Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)$ {\color{blue} $=\py{pos}$}
+
+$\displaystyle\Pr(D ~|~T_{\ge\py{k}})\ =\ \frac{\Pr(T_{\ge\py{k}}|D)\ \Pr(D)}{\Pr(T_{\ge\py{k}})}$ {\color{blue} $=\py{ppv}$\hfill Risposta}
+
+\end{answer}
+
+
+\begin{answer} 3
+\begin{pycode}
+i = 3
+sens =     sum( binom.pmf(arange(k-i, k+i+1), n_sample, p) )
+spec = 1 - sum( binom.pmf(arange(k-i, k+i+1), n_sample, 0.5) )
+
+pos =  sens * prev + (1-spec) * (1-prev)
+ppv =  prev * sens  / pos
+
+sens = round(sens, 3)
+spec = round(spec, 3)
+prev = round(prev, 3)
+ppv = round(ppv, 3)
+pos = round(pos, 3)
+\end{pycode}
+
+$D$\hfill insieme degli esperimenti fatti con monete sbilanciate\kern22ex
+
+$T_{[\py{k-i},\py{k+i}]}$\hfill insieme degli esperimenti con risultato $\ge\py{k}$\kern22ex
+
+$\Pr(D)=\py{prev}$\hfill prevalenza\kern22ex
+
+$\Pr(\neg D)=1-\Pr(D)=\py{1-prev}$
+
+$\Pr(T_{[\py{k-i},\py{k+i}]}| \neg D)=\py{1-spec}$
+
+$\Pr(T_{[\py{k-i},\py{k+i}]}| D)=\py{sens}$
+
+$\Pr(T_{[\py{k-i},\py{k+i}]})=\Pr(T_{[\py{k-i},\py{k+i}]}|D)\ \Pr(D) + \Pr(T_{[\py{k-i},\py{k+i}]}|\neg D)\ \Pr(\neg D)$ {\color{blue} $=\py{pos}$}
+
+$\displaystyle\Pr(D ~|~T_{[\py{k-i},\py{k+i}]})\ =\ \frac{\Pr(T_{[\py{k-i},\py{k+i}]}|D)\ \Pr(D)}{\Pr(T_{[\py{k-i},\py{k+i}]})}$ {\color{blue} $=\py{ppv}$\hfill Risposta}
+
+\end{answer}
+
+
+
+
+\begin{answer} 4
+
+\begin{pycode}
+i = 2
+sens = sum( binom.pmf(arange(k-i,n_sample+1), n_sample, p) )
+spec = sum( binom.pmf(arange(0,k-i), n_sample, 0.5) )
+
+pos =  sens * prev + (1-spec) * (1-prev)
+ppv =  prev * sens  / pos
+
+sens = round(sens, 3)
+spec = round(spec, 3)
+prev = round(prev, 3)
+ppv = round(ppv, 3)
+pos = round(pos, 3)
+\end{pycode}
+
+$D$\hfill insieme degli esperimenti fatti con monete sbilanciate\kern22ex
+
+$T_{\ge\py{k-i}}$\hfill insieme degli esperimenti con risultato $\ge\py{k}$\kern22ex
+
+$\Pr(D)=\py{prev}$\hfill prevalenza\kern22ex
+
+$\Pr(\neg D)=1-\Pr(D)=\py{1-prev}$
+
+$\Pr(T_{\ge\py{k-i}}| \neg D)=\py{1-spec}$
+
+$\Pr(T_{\ge\py{k-i}}| D)=\py{sens}$
+
+$\Pr(T_{\ge\py{k-i}})=\Pr(T_{\ge\py{k-i}}|D)\ \Pr(D) + \Pr(T_{\ge\py{k-i}}|\neg D)\ \Pr(\neg D)$ {\color{blue} $=\py{pos}$}
+
+$\displaystyle\Pr(D ~|~T_{\ge\py{k-i}})\ =\ \frac{\Pr(T_{\ge\py{k-i}}|D)\ \Pr(D)}{\Pr(T_{\ge\py{k-i}})}$ {\color{blue} $=\py{ppv}$\hfill Risposta}
+
+
+
+\end{answer}
+
+\end{xquestion}
+
+
+

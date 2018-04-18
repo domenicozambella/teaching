@@ -3,23 +3,39 @@
 \usepackage[utf8]{inputenc}
 \usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
 \usepackage{amsmath}
+\usepackage{calc} 
 \usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
 \parindent0ex
 \parskip2ex
 \def\Pr{{\rm Pr\,}}
 \def\Ex{{\rm E\,}}
 \def\Var{{\rm Var\,}}
-\newenvironment{question}{\bigskip\par\textbf{Quesito.\kern1ex}}{\vspace{\parskip}}
-\newenvironment{answer}{\par\textbf{Risposta.\quad}}{}
-
-\newenvironment{xquestion}{\par\textbf{XQuesito.\kern1ex}}{\vspace{\parskip}}
+\newcounter{quesito}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
 
 \pagestyle{empty} 
 
 \begin{document}
-Domande (qualcuna capziosa e artificiale) per verificare la comprensione del significato di p-valore. 
-
-N.B. Le domande contengono anche informazioni irrilevanti.
+Domande (qualcuna capziosa e artificiale) per verificare la comprensione del significato di p-valore.\\
+N.B. Le domande contengono anche informazioni irrilevanti.\bigskip
 
 \begin{pycode}
 import random
@@ -34,7 +50,7 @@ dim  = random.choice(['sempre della stessa dimensione', 'di dimensione crescente
 risposta = round(1-(1-pval)**n, 3)
 \end{pycode}
 Ripetiamo \py{n} volte lo stesso \py{test} con campioni \py{dim}.
-Assumendo vera $H_0$, qual'è la probabilità che in almeno uno di questi test il p-valore risulti $\le\py{pval}$? 
+Assumendo vera $H_0$, qual è la probabilità che in almeno uno di questi test il p-valore risulti $\le\py{pval}$~? 
 
 Nel caso non sia possibile determinare il valore esatto ma solo un limite superiore/inferiore. Si scelga tra le seguenti opzioni la più opportuna.
 \begin{itemize}
@@ -44,7 +60,7 @@ Nel caso non sia possibile determinare il valore esatto ma solo un limite superi
 \item[4.] Non ci sono sufficienti informazioni per stimare questa probabilità.
 \end{itemize}
 \begin{answer}
-1. La probabilità è $=1-(\py{1-pval})^{\py{n}}=\py{risposta}$.
+{\color{blue}1. La probabilità è $=1-(\py{1-pval})^{\py{n}}=\py{risposta}$.}
 \end{answer}
 \end{question}
 
@@ -61,8 +77,8 @@ test = random.choice(['T-test a due code','T-test a una coda','Z-test ($\sigma$ 
 condizioni  = random.choice(['con un campione della stessa dimensione', 'con un campione doppio'])
 factor =  random.choice([1,2])
 \end{pycode}
-Abbiamo fatto un \py{test} con un campione di dimensione \py{n} e abbiamo ottenuto il p-valore \py{pval}.
-Assumendo vera $H_0$, qual'\`e la  qual'è la probabilità che ripetendo il test una seconda volta \py{condizioni} il p-valore risulti $\le\py{pval/factor}$.
+Abbiamo fatto un \py{test} con un campione di dimensione \py{n} e abbiamo ottenuto come p-valore \py{pval}.
+Assumendo vera $H_0$, qual è la probabilità che ripetendo il test una seconda volta \py{condizioni} il p-valore risulti $\le\py{pval/factor}$~?
 
 Nel caso non sia possibile determinare il valore esatto ma solo un limite superiore/inferiore. Si scelga tra le seguenti opzioni la più opportuna.
 \begin{itemize}
@@ -72,16 +88,9 @@ Nel caso non sia possibile determinare il valore esatto ma solo un limite superi
 \item[4.] Non ci sono sufficienti informazioni per stimare questa probabilità.
 \end{itemize}
 \begin{answer}
-1. La probabilità è $=\py{pval/factor}$
+{\color{blue}1. La probabilità è $=\py{pval/factor}$.}
 \end{answer}
 \end{question}
-
-
-
-
-
-
-
 
 
 \begin{question}
@@ -89,8 +98,8 @@ Nel caso non sia possibile determinare il valore esatto ma solo un limite superi
 pval = random.choice([0.03,0.02,0.01])
 test = random.choice(['T-test a due code','T-test a una coda','Z-test ($\sigma$ nota, una coda)', 'Z-test ($\sigma$ nota, due code)'])
 \end{pycode}
-Abbiamo fatto un \py{test} e abbiamo ottenuto un p-valore \py{pval}.
-Assumendo vera $H_A$, qual è la probabilità che ripetendo il test una seconda volta con un campione della stessa dimensione il p-valore risulti di nuovo $\le\py{pval}$ ?
+Abbiamo fatto un \py{test} e abbiamo ottenuto come p-valore \py{pval}.
+Assumendo vera $H_A$, qual è la probabilità che ripetendo il test una seconda volta con un campione della stessa dimensione il p-valore risulti di nuovo $\le\py{pval}$~?
 
 Nel caso non sia possibile determinare il valore esatto ma solo un limite superiore/inferiore. Si scelga tra le seguenti opzioni la più opportuna.
 \begin{itemize}
@@ -100,47 +109,14 @@ Nel caso non sia possibile determinare il valore esatto ma solo un limite superi
 \item[4.] Non ci sono sufficienti informazioni per stimare questa probabilità.
 \end{itemize}
 \begin{answer}
-4. Non ci sono sufficienti informazioni per stimare questa probabilità.
+{\color{blue}4. Non ci sono sufficienti informazioni per stimare questa probabilità.}
 \end{answer}
 \end{question}
 
 
 
 
-\end{document}
-
-
-\begin{question}
-\begin{pycode}
-test = random.choice(['T-test a una coda','Z-test ($\sigma$ nota, una coda)'])
-test = random.choice(['identica'])
-% x1 = -x[0]
-% x2 = x[1]
-% x3 = x[0]
-% p1 = Rational(1,random.choice([2,3,4]))
-% p2 = Rational(1,random.choice([3,4]))
-% p3 = 1- p1 - p2
-% \end{pycode}
-Vogliamo fare un \py{test} con un campione di dimensione $\py{n}$.
-
-Fissata una significatività $\alpha=\py{alpha}$ otteniamo un valore di soglia $x_\alpha$. 
-
-Per un dato effect size $\delta$, il test risulta avere potenza $\py{1-beta}$. 
-
-Assumendo (almeno di $\delta$), qual'è la probabilità $q$ che in almeno uno di questi test il p-valore risulti $\ge\py{pval}$. (Nel caso non sia possibile determinare il valore esatto di $q$, ma solo un limite superiore/inferiore, si risponda di consequenza.)
-
-\begin{itemize};
-\item[1.] $q=$
-\item[1.] $q\le$
-\item[1.] $q\ge$
-\item[1.] Non ci sono sufficienti informazioni per stimare $q$.
-
-\begin{answer}
-$q\le\py{beta}$
-
-\end{answer}
-\end{question}
-
 
 \end{document}
+
 
