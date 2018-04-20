@@ -9,11 +9,10 @@
 \def\Pr{{\rm Pr\,}}
 \def\Ex{{\rm E\,}}
 \def\Var{{\rm Var\,}}
-\newenvironment{question}{\bigskip\par\textbf{Quesito.\kern1ex}}{\vspace{\parskip}}
-\newenvironment{answer}{\par\textbf{Risposta.\quad}}{}
-
-\newenvironment{xquestion}{\par\textbf{XQuesito.\kern1ex}}{\vspace{\parskip}}
-
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
 \pagestyle{empty} 
 
 \begin{document}
@@ -35,6 +34,37 @@ import random
 \end{answer}
 \end{question}
 
+
+\begin{question}
+\begin{pycode}
+test = random.choice(['T-test a una coda','Z-test ($\sigma$ nota, una coda)'])
+test = random.choice(['identica'])
+% x1 = -x[0]
+% x2 = x[1]
+% x3 = x[0]
+% p1 = Rational(1,random.choice([2,3,4]))
+% p2 = Rational(1,random.choice([3,4]))
+% p3 = 1- p1 - p2
+% \end{pycode}
+Vogliamo fare un \py{test} con un campione di dimensione $\py{n}$.
+
+Fissata una significatività $\alpha=\py{alpha}$ otteniamo un valore di soglia $x_\alpha$. 
+
+Per un dato effect size $\delta$, il test risulta avere potenza $\py{1-beta}$.
+
+Assumendo $H_A$ (almeno di $\delta$), qual'è la probabilità $q$ che in almeno uno di questi test il p-valore risulti $\ge\py{pval}$. (Nel caso non sia possibile determinare il valore esatto di $q$, ma solo un limite superiore/inferiore, si risponda di consequenza.)
+
+\begin{itemize};
+\item[1.] $q=$
+\item[1.] $q\le$
+\item[1.] $q\ge$
+\item[1.] Non ci sono sufficienti informazioni per stimare $q$.
+
+\begin{answer}
+$q\le\py{beta}$
+
+\end{answer}
+\end{question}
 
 
 

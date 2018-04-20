@@ -1,0 +1,266 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{pythontex}
+\parindent0ex
+\parskip2ex
+\def\Pr{{\rm Pr\,}}
+\def\Ex{{\rm E\,}}
+\def\Var{{\rm Var\,}}
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+\pagestyle{empty} 
+
+\begin{document}
+Domande per verificare la comprensione del significato di distribuzione continua (solo caso distribuzione normale). Richiede anche nozione di standardizzazione e di media campionaria.
+
+N.B. Alcune domande potrebbero contenere informazioni irrilevanti.
+\bigskip\bigskip
+
+
+\begin{pycode}
+import random
+random.seed('daxtxsdsxssme')
+ESAME = False
+\end{pycode}
+
+\begin{question} %1
+\begin{pycode}
+from scipy.stats import norm
+mu = random.choice([6,7,8,9])
+sigma = random.choice([3,5])
+n = random.choice([4,8])
+a = mu - random.choice([4,6])
+b = mu + random.choice([1,2])
+
+def pr(x):
+    return "{0:.3f}".format(round(x,3))
+\end{pycode}
+La variabile aleatoria $X$ ha distribuzione normale con media $\mu=\py{mu}$ e deviazione standard $\sigma=\py{sigma}$ 
+
+1. Calcolare la probabilità dell'evento $X\in [\py{a},\py{b}]$ 
+
+2. Calcolare la probabilità che da campione di rango $n=\py{n**2}$ si ottenga una media in $[\py{a},\py{b}]$. 
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+$P(\py{a}\le X\le\py{b})\ =\ P\bigg(\dfrac{\py{a}-\mu}{\sigma}\le Z\le\dfrac{\py{b}-\mu}{\sigma}\bigg)\ =\  P\big(Z\le\py{b-mu}/\py{sigma}\big) -  P\big(Z\le\py{a-mu}/\py{sigma}\big)$ 
+
+$\phantom{P(\py{a}\le X\le\py{b})}\ =\ ${\color{blue}{\tt\ norm.cdf(\py{b-mu}/\py{sigma}) -  norm.cdf(\py{a-mu}/\py{sigma})} \hfill Risposta 1}
+
+$\phantom{P(\py{a}\le X\le\py{b})}\ =\ ${\tt\ norm.cdf(\py{round((b-mu)/sigma,2)}) -  norm.cdf(\py{round((a-mu)/sigma, 2)}) = \py{pr(norm.cdf((b-mu)/sigma) -  norm.cdf((a-mu)/sigma))}}
+
+$\bar X$ v.a.\@ media campionaria
+
+$P(\py{a}\le\bar X\le\py{b})\ =\ P\bigg(\dfrac{\py{a}-\mu}{\sigma/\sqrt{n}}\le Z\le\dfrac{\py{b}-\mu}{\sigma/\sqrt{n}}\bigg)\ =\  P\big(Z\le\py{n*(b-mu)}/\py{sigma}\big) -  P\big(Z\le\py{n*(a-mu)}/\py{sigma}\big)$
+
+$\phantom{P(\py{a}\le\bar X\le\py{b})}\ =\ ${\color{blue}{\tt\ norm.cdf(\py{n*(b-mu)}/\py{sigma}) -  norm.cdf(\py{n*(a-mu)}/\py{sigma}) }\hfill Risposta 2}
+
+$\phantom{P(\py{a}\le\bar X\le\py{b})}\ =\ ${\tt\ norm.cdf(\py{round(n*(b-mu)/sigma,2)}) -  norm.cdf(\py{round(n*(a-mu)/sigma, 2)})  = \py{pr(norm.cdf(n*(b-mu)/sigma) -  norm.cdf(n*(a-mu)/sigma))}}
+
+\end{answer}
+\end{question}
+
+
+
+\begin{question} %2
+\begin{pycode}
+mu = random.choice( [6, 7, 8, 9] )
+sigma = random.choice( [2, 3, 4] )
+n = random.choice( [10, 5, 4, 3] )
+d = random.choice( [3, 4] )
+a = mu - d 
+alpha = random.choice( [0.1, 0.2, 0.3, 0.4, 0.5] )
+z = 0
+
+def pr(x):
+    return "{0:.3f}".format(round(x,3))
+\end{pycode}
+La variabile aleatoria $X$ ha distribuzione normale con media $\mu=\py{mu}$ e deviazione standard $\sigma=\py{sigma}$. Qual'è il minimo $\varepsilon$ tale che $\Pr\big(\py{a}\le X\le\py{a}+\varepsilon\big)\ge\py{alpha}$.
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce. 
+\begin{answer}
+
+$\Pr\big(\py{a}\le X\le\py{a}+\varepsilon\big)$ cresce al variare di $\varepsilon$, quindi il minimo è quando $\Pr\big(\py{a}\le X\le\py{a}+\varepsilon\big)=\py{alpha}$.
+
+$\Pr\big(\py{a}\le X\le\py{a}+\varepsilon\big)
+\ =\ 
+\Pr\bigg(\dfrac{\py{a}-\mu}{\sigma}\le Z\le\dfrac{\py{a}-\mu+\varepsilon}{\sigma}\bigg)
+\ =\ 
+\Pr\bigg(-\py{d}/\py{sigma}\le Z\le-\py{d}/\py{sigma}+\dfrac{\varepsilon}{\sigma}\bigg)\ =\ \py{alpha}$
+
+$\Pr\bigg(Z\le\py{z}+\dfrac{\varepsilon}{\sigma}\bigg) = \py{alpha}+\Pr(Z\le\py{z})$
+
+$\py{z}+ \dfrac{\varepsilon}{\py{sigma}}$ = {\tt  qnorm( \py{alpha} + pnorm(\py{z}) ) }
+
+$\varepsilon$ = {\color{blue}\tt  \py{sigma} * ( qnorm( \py{alpha} + pnorm(\py{z})\ ) + \py{-z} ) }
+
+\end{answer}
+\end{question}
+
+
+\clearpage
+\begin{question} %3
+\begin{pycode}
+cosa = 'una data cultura'
+if ESAME:
+   cosa = random.choice( ['suolo', 'acqua marina', 'gas di scarico', 'sangue'] )
+   
+sigma = random.choice( [5, 7] )
+n_campioni = random.choice( [15, 16, 17, 18, 19] )
+n = random.choice( [3, 4] )
+a = mu - random.choice( [3, 4, 5, 6] ) 
+b = a - random.choice( [1, 2] )
+
+def pr(x):
+    return "{0:.3f}".format(round(x,3))
+\end{pycode}
+Abbiamo prelevato \py{n_campioni} campioni di \py{cosa}. Ci interessa selezionare dei campioni che hanno una concentrazione $\le\py{a}$ di una data sostanza. La misura produce risultati che differiscono dal valore corretto per un errore distribuito normalmente con media $0$ e deviazione standard $\py{sigma}$. Consideriamo la seguente procedura: se la media di $\py{n**2}$ misure è $\le\py{b}$ concludiamo che il campione è come desiderato altrimenti lo scartiamo.
+
+Calcolare (nel caso più sfavorevole) la probabilità di scartare erroneamente un campione.
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+Il caso più sfavorevole occorre quando la concentrazione vera nel compione è $\mu=\py{a}$ 
+
+
+$\bar X\sim N(\mu,\sigma^2)$\hfill media di $\py{n**2}$ misure\kern22ex
+
+$\Pr\big(\bar X\ge\py{b}\big)\ =\ \Pr\bigg(\dfrac{\bar X-\mu}{\sigma/\sqrt{\py{n**2}}}\ge\dfrac{\py{b}-\mu}{\sigma/\sqrt{\py{n**2}}}\bigg)\ =\  \Pr\big(Z\ge\py{n * (b-a) } /\py{sigma} \big)$
+
+$\phantom{\Pr\big(\bar X\ge\py{b}\big)}\ =\ ${\color{blue}{\tt\ 1 -  norm.cdf(\py{n * (b-a)}/\py{sigma})}\hfill Risposta}
+
+$\phantom{\Pr\big(\bar X\ge\py{b}\big)}\ =\ ${\tt\ 1 - norm.cdf(\py{round( n * (b-a)/sigma, 2)})\ =\ \py{ round( 1 -  norm.cdf(n * (b-a)/sigma), 3) } }
+\end{answer}
+\end{question}
+
+
+
+
+
+
+
+\begin{question} %4
+\begin{pycode}
+if ESAME:
+    cosa = random.choice( ['suolo', 'acqua marina', 'gas di scarico', 'sangue'] )
+    sigma = random.choice( [5,7] )
+    n_campioni = random.choice( [15,16,17,18,19] )
+    n = random.choice( [3,4] )
+    a = mu - random.choice( [3,4,5,6] )
+    b = a - random.choice( [1,2] )
+
+def pr(x):
+    return "{0:.3f}".format(round(x,3))
+\end{pycode}
+Abbiamo prelevato \py{n_campioni} campioni di \py{cosa}. Ci interessa selezionare quei campioni che hanno una concentrazione $<\py{a}$ di una data sostanza. La misura produce risultati che differiscono dal valore corretto per un errore distribuito normalmente con media $0$ e deviazione standard $\py{sigma}$. Consideriamo la seguente procedura: se la media di $\py{n**2}$ misure è $\le\py{b}$ concludiamo che il campione è come desiderato altrimenti lo scartiamo.
+
+Calcolare (nel caso più sfavorevole) la probabilità di accettare erroneamente un campione.
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+Il caso più sfavorevole occorre quando la concentrazione vera nel compione è $\mu=\py{a}$ 
+
+
+$\bar X\sim N(\mu,\sigma^2)$\hfill media di $\py{n**2}$ misure\kern22ex
+
+$\displaystyle\Pr\big(\bar X\le\py{b}\big)\ =\ \Pr\bigg(\frac{\bar X-\mu}{\sigma/\sqrt{\py{n**2}}}\le\frac{\py{b}-\mu}{\sigma/\sqrt{\py{n**2}}}\bigg)\ =\  \Pr\big(Z\le\py{n * (b-a) } /\py{sigma} \big)$
+
+$\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\color{blue}{\tt\ norm.cdf(\py{n * (b-a)}/\py{sigma})}\hfill Risposta}
+
+$\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\tt\ norm.cdf(\py{round( n * (b-a)/sigma, 2)})\ =\ \py{ round( norm.cdf(n * (b-a)/sigma), 3) } }
+\end{answer}
+\end{question}
+
+
+
+\clearpage
+\begin{question} %5
+\begin{pycode}
+if ESAME:
+    cosa = random.choice( ['suolo', 'acqua marina', 'gas di scarico', 'sangue'] )
+    sigma = random.choice( [5, 7] )
+    n_campioni = random.choice( [15, 16, 17, 18, 19] )
+    n = random.choice( [3, 4] )
+    a = mu - random.choice( [3, 4, 5, 6] )
+    b = a - random.choice( [1, 2] )
+
+def pr(x):
+    return "{0:.3f}".format(round(x,3))
+\end{pycode}
+Abbiamo prelevato \py{n_campioni} campioni di \py{cosa}. Ci interessa selezionare quei campioni che hanno una concentrazione $<\py{a}$ di una data sostanza. La misura produce risultati che differiscono dal valore corretto per un errore distribuito normalmente con media $0$ e deviazione standard $\py{sigma}$. Consideriamo la seguente procedura: se la media di $\py{n**2}$ misure è $\le\py{b}$ concludiamo che il campione è come desiderato altrimenti lo scartiamo.
+
+Calcolare (nel caso più sfavorevole) la probabilità di accettare almeno un campione errato.
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+Il caso più sfavorevole occorre quando tutti \py{n_campioni} campioni hanno concentrazione $\mu=\py{a}$ 
+
+
+$\bar X\sim N(\mu,\sigma^2)$\hfill media di $\py{n**2}$ misure\kern22ex
+
+$\Pr\big(\bar X\le\py{b}\big)\ =\ \Pr\bigg(\dfrac{\bar X-\mu}{\sigma/\sqrt{\py{n**2}}}\le\dfrac{\py{b}-\mu}{\sigma/\sqrt{\py{n**2}}}\bigg)\ =\  \Pr\big(Z\le\py{n * (b-a) } /\py{sigma} \big)$\medskip
+
+$\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\tt\ norm.cdf(\py{n * (b-a)}/\py{sigma})}\hfill\parbox[t]{43ex}{ probabilità (per un singolo campione) di essere accettato erroneamente}\kern22ex\medskip
+
+{\tt\noindent\phantom{1 - }( 1 - norm.cdf(\py{n * (b-a)}/\py{sigma}) )**\py{n_campioni}}\hfill\parbox[t]{43ex}{probabilità nessuno dei \py{n_campioni} campioni venga accettato erroneamente}\kern22ex\medskip
+
+
+{\color{blue}\tt 1 - ( 1 - norm.cdf(\py{n * (b-a)}/\py{sigma}) )**\py{n_campioni} }\hfill {\color{blue}Risposta}\medskip
+
+{\tt 1 - ( 1 - norm.cdf(\py{n * (b-a)/sigma}) )**\py{n_campioni}\ =\ \py{pr( 1 - ( 1 - norm.cdf(n * (b-a)/sigma) )**n_campioni) } } 
+\end{answer}
+\end{question}
+
+
+\begin{question} %6
+\begin{pycode}
+import random
+import math
+from scipy.stats import norm
+n = random.choice( [3, 4, 5] )
+sigma = random.choice( [53, 73, 97] )
+err = random.choice( [19, 22, 17] )
+xbar = random.choice( [83, 98, 102] )
+def pr(x):
+    return "{0:.3f}".format(round(x,3))
+
+\end{pycode}
+Da una popolazione con distribuzione normale con media $\mu$ ignota e deviazione standard $\py{sigma}$ estraiamo un campione di $\py{n**2}$ individui. Se $\bar x= \py{xbar}$ è la media ottenuta, qual è la probabilità che $\bar x>\mu+ \py{err}$~? 
+    
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+
+\begin{answer}
+  
+  $n = \py{n**2}$\hfill dimensione del campione\kern22ex
+  
+  $\varepsilon = \py{err}$ 
+  
+  $\sigma = \py{sigma}$\hfill deviazione standard della popolazione\kern22ex
+  
+  $\sigma/\sqrt{n}$\hfill errore standard (deviazione standard della media)\kern22ex
+  
+  $P\bigg(Z>\dfrac {\varepsilon}{\sigma/\sqrt{n}}\bigg)\ =\ P\big(Z>\py{n * err}/\py{sigma}\big)\ =\ ${\color{blue}\tt\ 1 - norm.cdf(\py{n * err}/\py{sigma})}{\tt\ = \py{pr(1 - norm.cdf( n * err/sigma ) ) } }{\color{blue}\hfill Risposta}
+
+\end{answer}
+\end{question}
+
+
+\vfill
+\hrulefill
+
+Si assuma noto il valore delle seguente funzione della libreria {\tt scipy.stats\/}
+
+{\tt norm.cdf(z)} = $\Pr(Z<{\tt z})$ per $Z\sim N(0,1)$ 
+
+
+\end{document}
+

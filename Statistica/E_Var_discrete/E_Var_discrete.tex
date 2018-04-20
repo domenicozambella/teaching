@@ -24,8 +24,8 @@
 \parindent0ex
 \parskip2ex
 \newcounter{quesito}
-\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
-\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
 \newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
 
 \pagestyle{empty} 
@@ -103,7 +103,7 @@ $\displaystyle\Ex\big(X(X-\py{y})\big)=\Ex(X^2)-\py{y}\cdot\Ex(X)=\Var(X)+\Ex(X)
 \end{question}
 
 
-
+\clearpage
 \begin{question}
 \def\Pr{{\rm Pr\,}}
 \def\Ex{{\rm E\,}}
@@ -145,8 +145,6 @@ $\displaystyle\Pr(X\cdot Y=\py{x2})$ {\color{blue}$\displaystyle\ =\ \py{latex((
 $\displaystyle\Pr(X\cdot Y=0)$ {\color{blue}$\displaystyle\ =\ \py{latex(1-py)}$\hfill Risposta 1} 
 
 $\displaystyle\Ex(X\cdot Y)\ =\ \py{x1}\cdot\Pr(X\cdot Y=\py{x1}) + \py{x2}\cdot\Pr(X\cdot Y=\py{x2})$ {\color{blue}$\displaystyle\ =\ \py{latex(x1 * px * py + x2 * (1-px) * py)}$\hfill Risposta 2} 
-
-
 
 \end{answer}
 
