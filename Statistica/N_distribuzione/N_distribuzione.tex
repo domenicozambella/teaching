@@ -86,19 +86,19 @@ La variabile aleatoria $X$ ha distribuzione normale con media $\mu=\py{mu}$ e de
 Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce. 
 \begin{answer}
 
-$\Pr\big(\py{a}\le X\le\py{a}+\varepsilon\big)$ cresce al variare di $\varepsilon$, quindi il minimo è quando $\Pr\big(\py{a}\le X\le\py{a}+\varepsilon\big)=\py{alpha}$.
+$\Pr\big(\py{a}\le X\le\py{a}+\varepsilon\big)$ cresce al variare di $\varepsilon$, quindi il minimo è quando $\Pr\big(\py{a}\le X\le\py{a}+\varepsilon\big)=\py{alpha}$\medskip
 
 $\Pr\big(\py{a}\le X\le\py{a}+\varepsilon\big)
 \ =\ 
 \Pr\bigg(\dfrac{\py{a}-\mu}{\sigma}\le Z\le\dfrac{\py{a}-\mu+\varepsilon}{\sigma}\bigg)
 \ =\ 
-\Pr\bigg(-\py{d}/\py{sigma}\le Z\le-\py{d}/\py{sigma}+\dfrac{\varepsilon}{\sigma}\bigg)\ =\ \py{alpha}$
+\Pr\bigg(-\dfrac{\py{d}}{\py{sigma}}\le Z\le\dfrac{\py{-d}+\varepsilon}{\py{sigma}}\bigg)\ =\ \py{alpha}$
 
-$\Pr\bigg(Z\le\py{z}+\dfrac{\varepsilon}{\sigma}\bigg) = \py{alpha}+\Pr(Z\le\py{z})$
+$\Pr\bigg(Z\le\dfrac{\py{-d}+\varepsilon}{\py{sigma}}\bigg) = \py{alpha}+\Pr\bigg(Z\le-\dfrac{\py{d}}{\py{sigma}}\bigg)$\medskip
 
-$\py{z}+ \dfrac{\varepsilon}{\py{sigma}}$ = {\tt  qnorm( \py{alpha} + pnorm(\py{z}) ) }
+{\tt(\py{-d} + $\varepsilon$) / \py{sigma} = norm.ppf( \py{alpha} + norm.cdf(-\py{d}/\py{sigma}) ) }\medskip
 
-$\varepsilon$ = {\color{blue}\tt  \py{sigma} * ( qnorm( \py{alpha} + pnorm(\py{z})\ ) + \py{-z} ) }
+$\varepsilon\ =\ ${\color{blue}\tt  \py{sigma} * norm.ppf( \py{alpha} + norm.cdf(-\py{d}/\py{sigma}) ) + \py{d} }{\tt\ =\ \py{pr(sigma * norm.ppf( alpha + norm.cdf(-d/sigma) ) + d)}}{\color{blue}\hfill Risposta}
 
 \end{answer}
 \end{question}
@@ -257,9 +257,11 @@ Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
 \vfill
 \hrulefill
 
-Si assuma noto il valore delle seguente funzione della libreria {\tt scipy.stats\/}
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/}
 
-{\tt norm.cdf(z)} = $\Pr(Z<{\tt z})$ per $Z\sim N(0,1)$ 
+{\tt norm.cdf(z)} = $\Pr\big(Z<{\tt z}\big)$ per $Z\sim N(0,1)$ 
+
+{\tt norm.ppf($\alpha$)} = $z_\alpha$ dove $z_\alpha$ è tale che $\Pr\big(Z<z_\alpha\big)=\alpha$ per $Z\sim N(0,1)$ 
 
 
 \end{document}
