@@ -3,70 +3,97 @@
 \usepackage[utf8]{inputenc}
 \usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
 \usepackage{amsmath}
+\usepackage{calc} 
 \usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
 \parindent0ex
 \parskip2ex
 \def\Pr{{\rm Pr\,}}
 \def\Ex{{\rm E\,}}
 \def\Var{{\rm Var\,}}
 \newcounter{quesito}
-\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
-\newenvironment{xquestion}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
 \newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
 \pagestyle{empty} 
 
 \begin{document}
-Domande (qualcuna capziosa e artificiale) per verificare la comprensione del significato di potenza di un test. 
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Domande (capziose e artificiali) per verificare la comprensione del significato di errori del II tipo e di potenza.\bigskip
 
-N.B. Le domande contengono anche informazioni irrilevanti.
+N.B. Spesso le domande contengono informazioni irrilevanti.
+\end{minipage}}
+
+\bigskip\bigskip
 
 \begin{pycode}
 import random
+random.seed(25846456445)
+ESAME = False
 \end{pycode}
 
 \begin{question}
 \begin{pycode}
-
+from sympy import Rational, Integer
+from scipy.stats import norm
+mu = random.choice( [ [1,2,4], [2,4,7], [2,6,9] ] )
+n = random.choice( [2, 3, 4, 5 ] ) # = sqrt(n)
+sigma = random.choice( [5, 7] )
+alpha = random.choice( [0.1, 0.05, 0.02, 0.01] )
+zalpha = - norm.ppf(alpha) / 2
+xalpha1 = round( mu[1] - zalpha*sigma / n, 2 )
+xalpha2 = round( mu[1] + zalpha*sigma / n, 2 )
 \end{pycode}
+Preleviamo un campione di rango $n=\py{n**2}$ da una popolazione con distribuzione $N(\mu,\sigma^2)$. Sappiamo che la deviazione standard è $\sigma=\py{sigma}$. La media $\mu$ invece potrebbe avere uno qualsiasi dei tre valori $\py{mu[0]}$, $\py{mu[1]}$, o $\py{mu[2]}$. 
+
+Vogliamo testare $H_0:\mu=\py{mu[1]}$ contro $H_A:\mu\in\{\py{mu[0]},\py{mu[2]}\}$. Fissiamo come significatività $\alpha=\py{alpha}$ otteniamo che l'intervallo critico è per uno z-test a due code è $[\py{xalpha1}, \ \py{xalpha2}]$.
+
+Nel caso valga $H_A$ qual'è la probabilità $\beta$ di non rigettare l'ipotesi nulla?  Si scelga la risposta corretta ta le seguenti
+
+\begin{itemize}
+\item[a.] $\beta =\dots$ (specificare)
+\item[b.] $\beta \le\dots$ (specificare)
+\item[c.] $\beta \ge\dots$ (specificare)
+\item[d.] Non ci sono sufficienti informazioni per stimare $\beta$.
+
+\end{itemize}
 
 \begin{answer}
 
-\end{answer}
-\end{question}
+Il caso più sfavorevole si ottiene quando $\mu = \py{mu[0]}$. Sia $\bar X\sim N(\py{mu[0]},\ \sigma^2/n)$
+
+$\beta
+\ \le\ 
+\Pr\big(\py{xalpha1}\le \bar X \le\py{xalpha2} \big)
+\ =\ 
+\Pr\bigg(\dfrac{\py{xalpha1-mu[0]} }{\sigma/\sqrt{n} }\ \le\ \dfrac{\bar X - \py{mu[0]} }{\sigma/\sqrt{n}}\ \le\ \dfrac{\py{xalpha2-mu[0]} }{\sigma/\sqrt{n} }\bigg)
+\ =\ 
+\Pr\big(\py{n * (xalpha1-mu[0] ) / sigma }\le Z\le \py{n * (xalpha2-mu[0] ) / sigma }\big)$
 
 
-\begin{question}
-\begin{pycode}
-test = random.choice(['T-test a una coda','Z-test ($\sigma$ nota, una coda)'])
-test = random.choice(['identica'])
-% x1 = -x[0]
-% x2 = x[1]
-% x3 = x[0]
-% p1 = Rational(1,random.choice([2,3,4]))
-% p2 = Rational(1,random.choice([3,4]))
-% p3 = 1- p1 - p2
-% \end{pycode}
-Vogliamo fare un \py{test} con un campione di dimensione $\py{n}$.
+{\color{blue}$\beta
+\ \le\ $}
+{\color{blue}\tt\ norm.cdf(\py{n * (xalpha2-mu[0] ) / sigma }) - norm.cdf(\py{n * (xalpha1-mu[0] ) / sigma }) }{\tt\ =\ \py{round( norm.cdf(n * (xalpha2-mu[0] ) / sigma ) - norm.cdf(n * (xalpha1-mu[0] ) / sigma ), 4 ) } }{\color{blue}\hfill Risposta b}
 
-Fissata una significatività $\alpha=\py{alpha}$ otteniamo un valore di soglia $x_\alpha$. 
-
-Per un dato effect size $\delta$, il test risulta avere potenza $\py{1-beta}$.
-
-Assumendo $H_A$ (almeno di $\delta$), qual'è la probabilità $q$ che in almeno uno di questi test il p-valore risulti $\ge\py{pval}$. (Nel caso non sia possibile determinare il valore esatto di $q$, ma solo un limite superiore/inferiore, si risponda di consequenza.)
-
-\begin{itemize};
-\item[1.] $q=$
-\item[1.] $q\le$
-\item[1.] $q\ge$
-\item[1.] Non ci sono sufficienti informazioni per stimare $q$.
-
-\begin{answer}
-$q\le\py{beta}$
 
 \end{answer}
 \end{question}
-
-
 
 
 \end{document}
