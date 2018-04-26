@@ -107,50 +107,56 @@ $\varepsilon\ =\ ${\color{blue}\tt  \py{sigma} * norm.ppf( \py{alpha} + norm.cdf
 \end{question}
 
 
+%\clearpage
+% \begin{question} %3
+% \begin{pycode}
+% cosa = 'una data cultura'
+% if ESAME:
+%    cosa = random.choice( ['suolo', 'acqua marina', 'gas di scarico', 'sangue'] )
+%    
+% sigma = random.choice( [5, 7] )
+% n_campioni = random.choice( [15, 16, 17, 18, 19] )
+% n = random.choice( [3, 4] )
+% a = mu - random.choice( [3, 4, 5, 6] ) 
+% b = a - random.choice( [1, 2] )
+% 
+% def pr(x):
+%     return "{0:.3f}".format(round(x,3))
+% \end{pycode}
+% Abbiamo prelevato \py{n_campioni} campioni di \py{cosa}. Ci interessa selezionare dei campioni che hanno una concentrazione $\le\py{a}$ di una data sostanza. La misura produce risultati che differiscono dal valore corretto per un errore distribuito normalmente con media $0$ e deviazione standard $\py{sigma}$. Consideriamo la seguente procedura: se la media di $\py{n**2}$ misure è $\le\py{b}$ concludiamo che il campione è come desiderato altrimenti lo scartiamo.
+% 
+% Calcolare (nel caso più sfavorevole) la probabilità di scartare erroneamente un campione.
+% 
+% Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+% \begin{answer}
+% 
+% Il caso più sfavorevole occorre quando la concentrazione vera nel compione è $\mu=\py{a}$ 
+% 
+% 
+% $\bar X\sim N(\mu,\sigma^2)$\hfill media di $\py{n**2}$ misure\kern22ex
+% 
+% $\Pr\big(\bar X\ge\py{b}\big)\ =\ \Pr\bigg(\dfrac{\bar X-\mu}{\sigma/\sqrt{\py{n**2}}}\ge\dfrac{\py{b}-\mu}{\sigma/\sqrt{\py{n**2}}}\bigg)\ =\  \Pr\big(Z\ge\py{n * (b-a) } /\py{sigma} \big)$
+% 
+% $\phantom{\Pr\big(\bar X\ge\py{b}\big)}\ =\ ${\color{blue}{\tt\ 1 -  norm.cdf(\py{n * (b-a)}/\py{sigma})}\hfill Risposta}
+% 
+% $\phantom{\Pr\big(\bar X\ge\py{b}\big)}\ =\ ${\tt\ 1 - norm.cdf(\py{round( n * (b-a)/sigma, 2)})\ =\ \py{ round( 1 -  norm.cdf(n * (b-a)/sigma), 3) } }
+% \end{answer}
+% \end{question}
+
+
+
+
+
+
 \clearpage
 \begin{question} %3
 \begin{pycode}
 cosa = 'una data cultura'
-if ESAME:
-   cosa = random.choice( ['suolo', 'acqua marina', 'gas di scarico', 'sangue'] )
-   
+errore = 'scartare'
 sigma = random.choice( [5, 7] )
-n_campioni = random.choice( [15, 16, 17, 18, 19] )
-n = random.choice( [3, 4] )
-a = mu - random.choice( [3, 4, 5, 6] ) 
-b = a - random.choice( [1, 2] )
-
-def pr(x):
-    return "{0:.3f}".format(round(x,3))
-\end{pycode}
-Abbiamo prelevato \py{n_campioni} campioni di \py{cosa}. Ci interessa selezionare dei campioni che hanno una concentrazione $\le\py{a}$ di una data sostanza. La misura produce risultati che differiscono dal valore corretto per un errore distribuito normalmente con media $0$ e deviazione standard $\py{sigma}$. Consideriamo la seguente procedura: se la media di $\py{n**2}$ misure è $\le\py{b}$ concludiamo che il campione è come desiderato altrimenti lo scartiamo.
-
-Calcolare (nel caso più sfavorevole) la probabilità di scartare erroneamente un campione.
-
-Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
-\begin{answer}
-
-Il caso più sfavorevole occorre quando la concentrazione vera nel compione è $\mu=\py{a}$ 
-
-
-$\bar X\sim N(\mu,\sigma^2)$\hfill media di $\py{n**2}$ misure\kern22ex
-
-$\Pr\big(\bar X\ge\py{b}\big)\ =\ \Pr\bigg(\dfrac{\bar X-\mu}{\sigma/\sqrt{\py{n**2}}}\ge\dfrac{\py{b}-\mu}{\sigma/\sqrt{\py{n**2}}}\bigg)\ =\  \Pr\big(Z\ge\py{n * (b-a) } /\py{sigma} \big)$
-
-$\phantom{\Pr\big(\bar X\ge\py{b}\big)}\ =\ ${\color{blue}{\tt\ 1 -  norm.cdf(\py{n * (b-a)}/\py{sigma})}\hfill Risposta}
-
-$\phantom{\Pr\big(\bar X\ge\py{b}\big)}\ =\ ${\tt\ 1 - norm.cdf(\py{round( n * (b-a)/sigma, 2)})\ =\ \py{ round( 1 -  norm.cdf(n * (b-a)/sigma), 3) } }
-\end{answer}
-\end{question}
-
-
-
-
-
-
-
-\begin{question} %4
-\begin{pycode}
+n = 2
+a = mu - 3 
+b = a - 2
 if ESAME:
     cosa = random.choice( ['suolo', 'acqua marina', 'gas di scarico', 'sangue'] )
     sigma = random.choice( [5,7] )
@@ -158,13 +164,23 @@ if ESAME:
     n = random.choice( [3,4] )
     a = mu - random.choice( [3,4,5,6] )
     b = a - random.choice( [1,2] )
-
+    errore =  random.choice( ['accettare', 'scartare'] )
 def pr(x):
     return "{0:.3f}".format(round(x,3))
-\end{pycode}
-Abbiamo prelevato \py{n_campioni} campioni di \py{cosa}. Ci interessa selezionare quei campioni che hanno una concentrazione $<\py{a}$ di una data sostanza. La misura produce risultati che differiscono dal valore corretto per un errore distribuito normalmente con media $0$ e deviazione standard $\py{sigma}$. Consideriamo la seguente procedura: se la media di $\py{n**2}$ misure è $\le\py{b}$ concludiamo che il campione è come desiderato altrimenti lo scartiamo.
 
-Calcolare (nel caso più sfavorevole) la probabilità di accettare erroneamente un campione.
+if errore=='accettare':
+    dis_eq=r'\le'
+    risultato='norm.cdf'
+    risultato_numerico = round( norm.cdf(n * (b-a)/sigma), 3)
+elif errore=='scartare':
+    dis_eq=r'\ge'
+    risultato='1 - norm.cdf'
+    risultato_numerico = round( 1 -  norm.cdf(n * (b-a)/sigma), 3)
+    
+\end{pycode}
+Abbiamo prelevato vari campioni di \py{cosa}. Ci interessa selezionare quei campioni che hanno una concentrazione $\le\py{a}$ di una data sostanza. La misura produce risultati che differiscono dal valore corretto per un errore distribuito normalmente con media $0$ e deviazione standard $\py{sigma}$. Consideriamo la seguente procedura: se la media di $\py{n**2}$ misure è $\le\py{b}$ concludiamo che il campione è come desiderato altrimenti lo scartiamo.
+
+Calcolare (nel caso più sfavorevole) la probabilità di \py{errore} erroneamente un campione.
 
 Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
 \begin{answer}
@@ -174,33 +190,46 @@ Il caso più sfavorevole occorre quando la concentrazione vera nel compione è $
 
 $\bar X\sim N(\mu,\sigma^2)$\hfill media di $\py{n**2}$ misure\kern22ex
 
-$\displaystyle\Pr\big(\bar X\le\py{b}\big)\ =\ \Pr\bigg(\frac{\bar X-\mu}{\sigma/\sqrt{\py{n**2}}}\le\frac{\py{b}-\mu}{\sigma/\sqrt{\py{n**2}}}\bigg)\ =\  \Pr\big(Z\le\py{n * (b-a) } /\py{sigma} \big)$
+$\displaystyle\Pr\big(\bar X\py{dis_eq}\py{b}\big)\ =\ \Pr\bigg(\frac{\bar X-\mu}{\sigma/\sqrt{\py{n**2}}}\py{dis_eq}\frac{\py{b}-\mu}{\sigma/\sqrt{\py{n**2}}}\bigg)\ =\  \Pr\big(Z\py{dis_eq}\py{n * (b-a) } /\py{sigma} \big)$
 
-$\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\color{blue}{\tt\ norm.cdf(\py{n * (b-a)}/\py{sigma})}\hfill Risposta}
+$\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\color{blue}{\tt\ \py{risultato}(\py{n * (b-a)}/\py{sigma})}}{\tt\ =\ \py{ risultato_numerico } }\hfill {\color{blue}\hfill Risposta}
 
-$\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\tt\ norm.cdf(\py{round( n * (b-a)/sigma, 2)})\ =\ \py{ round( norm.cdf(n * (b-a)/sigma), 3) } }
 \end{answer}
 \end{question}
 
 
 
-\clearpage
-\begin{question} %5
+\begin{question} %4
 \begin{pycode}
+n_campioni = 5
+errore = 'accetta'
+errore = 'scarta'
 if ESAME:
     cosa = random.choice( ['suolo', 'acqua marina', 'gas di scarico', 'sangue'] )
     sigma = random.choice( [5, 7] )
-    n_campioni = random.choice( [15, 16, 17, 18, 19] )
-    n = random.choice( [3, 4] )
+    n_campioni = random.choice( [3, 5] )
+    n = random.choice( [2, 3] )
     a = mu - random.choice( [3, 4, 5, 6] )
     b = a - random.choice( [1, 2] )
+    errore =  random.choice( ['accettare', 'scartare'] )
 
 def pr(x):
     return "{0:.3f}".format(round(x,3))
-\end{pycode}
-Abbiamo prelevato \py{n_campioni} campioni di \py{cosa}. Ci interessa selezionare quei campioni che hanno una concentrazione $<\py{a}$ di una data sostanza. La misura produce risultati che differiscono dal valore corretto per un errore distribuito normalmente con media $0$ e deviazione standard $\py{sigma}$. Consideriamo la seguente procedura: se la media di $\py{n**2}$ misure è $\le\py{b}$ concludiamo che il campione è come desiderato altrimenti lo scartiamo.
 
-Calcolare (nel caso più sfavorevole) la probabilità di accettare almeno un campione errato.
+if errore=='accetta':
+    dis_eq=r'\le'
+    risultato='norm.cdf'
+    risultato1='( 1 - norm.cdf'
+    risultato_numerico = round( (1 -  norm.cdf(n * (b-a)/sigma) )**n_campioni, 5)
+elif errore=='scarta':
+    dis_eq=r'\ge'
+    risultato = '1 - norm.cdf'
+    risultato1 = '( norm.cdf'
+    risultato_numerico = round( norm.cdf(n * (b-a)/sigma)**n_campioni, 5)
+\end{pycode}
+Abbiamo prelevato \py{n_campioni} campioni di \py{cosa}. Ci interessa selezionare quei campioni che hanno una concentrazione $\le\py{a}$ di una data sostanza. La misura produce risultati che differiscono dal valore corretto per un errore distribuito normalmente con media $0$ e deviazione standard $\py{sigma}$. Consideriamo la seguente procedura: se la media di $\py{n**2}$ misure è $\le\py{b}$ concludiamo che il campione è come desiderato altrimenti lo scartiamo.
+
+Calcolare (nel caso più sfavorevole) la probabilità che nessun campione venga \py{errore}to erroreamente.
 
 Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
 \begin{answer}
@@ -210,21 +239,18 @@ Il caso più sfavorevole occorre quando tutti \py{n_campioni} campioni hanno con
 
 $\bar X\sim N(\mu,\sigma^2)$\hfill media di $\py{n**2}$ misure\kern22ex
 
-$\Pr\big(\bar X\le\py{b}\big)\ =\ \Pr\bigg(\dfrac{\bar X-\mu}{\sigma/\sqrt{\py{n**2}}}\le\dfrac{\py{b}-\mu}{\sigma/\sqrt{\py{n**2}}}\bigg)\ =\  \Pr\big(Z\le\py{n * (b-a) } /\py{sigma} \big)$\medskip
+$\Pr\big(\bar X\py{dis_eq}\py{b}\big)\ =\ \Pr\bigg(\dfrac{\bar X-\mu}{\sigma/\sqrt{\py{n**2}}}\py{dis_eq}\dfrac{\py{b}-\mu}{\sigma/\sqrt{\py{n**2}}}\bigg)\ =\  \Pr\big(Z\py{dis_eq}\py{n * (b-a) } /\py{sigma} \big)$\medskip
 
-$\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\tt\ norm.cdf(\py{n * (b-a)}/\py{sigma})}\hfill\parbox[t]{43ex}{ probabilità (per un singolo campione) di essere accettato erroneamente}\kern22ex\medskip
+$\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\tt\ \py{risultato}(\py{n * (b-a)}/\py{sigma})}\hfill\parbox[t]{43ex}{ probabilità (per un singolo campione) di essere \py{errore}to erroneamente}\kern22ex\medskip
 
-{\tt\noindent\phantom{1 - }( 1 - norm.cdf(\py{n * (b-a)}/\py{sigma}) )**\py{n_campioni}}\hfill\parbox[t]{43ex}{probabilità nessuno dei \py{n_campioni} campioni venga accettato erroneamente}\kern22ex\medskip
+$\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\color{blue}\tt\ \py{risultato1}(\py{n * (b-a)}/\py{sigma}) )**\py{n_campioni} }{\tt\ =\ \py{ risultato_numerico } }\hfill {\color{blue}Risposta}
 
-
-{\color{blue}\tt 1 - ( 1 - norm.cdf(\py{n * (b-a)}/\py{sigma}) )**\py{n_campioni} }\hfill {\color{blue}Risposta}\medskip
-
-{\tt 1 - ( 1 - norm.cdf(\py{n * (b-a)/sigma}) )**\py{n_campioni}\ =\ \py{pr( 1 - ( 1 - norm.cdf(n * (b-a)/sigma) )**n_campioni) } } 
 \end{answer}
 \end{question}
 
 
-\begin{question} %6
+\clearpage
+\begin{question} %5
 \begin{pycode}
 import random
 import math
