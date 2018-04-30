@@ -80,7 +80,7 @@ $\displaystyle\Ex(X) = \py{x1}\cdot\Pr(X=\py{x1})+\py{x2}\cdot\Pr(X=\py{x2})+\py
 
 $\displaystyle\Ex(X^2) = \py{x1**2}\cdot\Pr(X^2=\py{x1**2})\ +\ \py{x2**2}\cdot\Pr(X^2=\py{x2**2})=\py{latex((x1**2)*(p1+p3))} + \py{latex((x2**2)*p2)} = \py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)}$
 
-$\displaystyle\Var(X)=\Ex(X^2)-\Ex(X)^2=\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)} - \py{latex((x1*p1 + x2*p2 + x3*p3)**2)}\ =\ $ {\color{blue}$\displaystyle\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2 - (x1*p1 + x2*p2 + x3*p3)**2)} $\hfill Risposta 2} 
+$\displaystyle{\color{blue}\Var(X)}=\Ex(X^2)-\Ex(X)^2=\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)} - \py{latex((x1*p1 + x2*p2 + x3*p3)**2)}$ {\color{blue}$\ =\ \displaystyle\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2 - (x1*p1 + x2*p2 + x3*p3)**2)} $\hfill Risposta 2} 
 \end{answer}
 \end{question}
 
@@ -100,7 +100,7 @@ var = x[1]
 La v.a.\@ discreta $X$ ha valore atteso $\Ex(X)=\py{mu}$ e varianza $\Var(X)=\py{var}$. Qual è il valore atteso di $X(X-\py{y})$?  
 \begin{answer}
 
-$\displaystyle\Ex\big(X(X-\py{y})\big)=\Ex(X^2)-\py{y}\cdot\Ex(X)=\Var(X)+\Ex(X)^2-\py{y}\cdot\Ex(X)\ =\ $ {\color{blue}$\displaystyle\py{var+mu**2-y*mu}$\hfill Risposta} 
+$\displaystyle{\color{blue}\Ex\big(X(X-\py{y})\big)}=\Ex(X^2)-\py{y}\cdot\Ex(X)=\Var(X)+\Ex(X)^2-\py{y}\cdot\Ex(X)${\color{blue}$\ =\ \displaystyle\py{var+mu**2-y*mu}$\hfill Risposta} 
 \end{answer}
 \end{question}
 
@@ -146,7 +146,7 @@ $\displaystyle\Pr(X\cdot Y=\py{x2})$ {\color{blue}$\displaystyle\ =\ \py{latex((
 \hfill 
 $\displaystyle\Pr(X\cdot Y=0)$ {\color{blue}$\displaystyle\ =\ \py{latex(1-py)}$\hfill Risposta 1} 
 
-$\displaystyle\Ex(X\cdot Y)\ =\ \py{x1}\cdot\Pr(X\cdot Y=\py{x1}) + \py{x2}\cdot\Pr(X\cdot Y=\py{x2})\ =\ $ {\color{blue}$\displaystyle\py{latex(x1 * px * py + x2 * (1-px) * py)}$\hfill Risposta 2} 
+$\displaystyle{\color{blue}\Ex(X\cdot Y)}\ =\ \py{x1}\cdot\Pr(X\cdot Y=\py{x1}) + \py{x2}\cdot\Pr(X\cdot Y=\py{x2})${\color{blue}$\ =\ \displaystyle\py{latex(x1 * px * py + x2 * (1-px) * py)}$\hfill Risposta 2} 
 
 \end{answer}
 
@@ -190,7 +190,7 @@ $\displaystyle\Pr(X + Y=\py{-2*a})\ =\ \py{latex((1-px) * (1-py)) }$
 \hfill 
 $\displaystyle\Pr(X + Y=0)\ =\ \py{latex(px+py-2*px*py)}$\hfill Risposta 1} 
 
-$\displaystyle\Ex(X + Y)\ =\ \py{2*a}\cdot\Pr(X\cdot Y=\py{2*a}) \ - \py{2*a}\cdot\Pr(X\cdot Y=\py{-2*a})\ =\ $ {\color{blue}$\displaystyle\py{latex(2 * a * px * py - 2 * a * (1-px) *  (1-py))}$\hfill Risposta 2} 
+$\displaystyle{\color{blue}\Ex(X + Y)}\ =\ \py{2*a}\cdot\Pr(X\cdot Y=\py{2*a}) \ - \py{2*a}\cdot\Pr(X\cdot Y=\py{-2*a})${\color{blue}$\ =\ \displaystyle\py{latex(2 * a * px * py - 2 * a * (1-px) *  (1-py))}$\hfill Risposta 2} 
 
 \end{answer}
 
@@ -237,9 +237,9 @@ Esprimere i numeri razionali come frazioni.
  
 \begin{answer}
 
-{\color{blue}$\displaystyle\Pr(Y=\py{ay})$}$\displaystyle\ =\ \Pr(Y=\py{ay}\ |\ X=\py{ax})\cdot\Pr(X=\py{ax}) \ + \ \Pr(Y=\py{ay}\ |\ X=\py{bx})\cdot\Pr(X=\py{bx})\ =\ \ ${\color{blue}$\displaystyle\py{latex(pay*px +  pby*(1-px)) }$}\hfill\smash{\raisebox{-\baselineskip}{\color{blue}$\Bigg\}$ \ \ Risposta}}
+{\color{blue}$\displaystyle\Pr(Y=\py{ay})$}$\displaystyle\ =\ \Pr(Y=\py{ay}\ |\ X=\py{ax})\cdot\Pr(X=\py{ax}) \ + \ \Pr(Y=\py{ay}\ |\ X=\py{bx})\cdot\Pr(X=\py{bx})${\color{blue}\ =\ \ $\displaystyle\py{latex(pay*px +  pby*(1-px)) }$}\hfill\smash{\raisebox{-\baselineskip}{\color{blue}$\Bigg\}$ \ \ Risposta}}
 
-{\color{blue}$\displaystyle\Pr(Y=\py{by})$}$\displaystyle\ =\ 1 - \Pr(Y=\py{ay})\ =\ \ ${\color{blue}$\displaystyle\py{latex((1-pay)*px +  (1-pby)*(1-px)) }$}
+{\color{blue}$\displaystyle\Pr(Y=\py{by})$}$\displaystyle\ =\ 1 - \Pr(Y=\py{ay})${\color{blue}\ =\ \ $\displaystyle\py{latex((1-pay)*px +  (1-pby)*(1-px)) }$}
 
 %{\color{blue}$\displaystyle\Pr(Y=\py{by})$}$\displaystyle\ =\ \Pr(Y=\py{by}\ |\ X=\py{ax})\cdot\Pr(X=\py{ax}) \ + \ \Pr(Y=\py{by}\ |\ X=\py{bx})\cdot\Pr(X=\py{bx})\ =\ \ ${\color{blue}$\displaystyle\py{latex((1-pay)*px +  (1-pby)*(1-px)) }$}
 

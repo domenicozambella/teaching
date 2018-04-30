@@ -149,6 +149,38 @@ Con un effect size $\delta=\py{delta}$ la potenza del test è $1-\beta=${\color{
 
 
 
+\clearpage
+\begin{question} % 33333333333333
+\begin{pycode}
+# dis = random.choice( [ '>', '<'])
+dis =  '>'
+if ESAME: dis = '<'
+
+if dis == '<':
+   dis_eq  = '\\le'
+   adis    = '>'
+   adis_eq = '\\ge'
+   sign = '+'
+
+if dis == '>':
+   dis_eq  = '\\ge'
+   adis    = '<'
+   adis_eq = '\\le'
+   sign = '-'
+
+\end{pycode}
+Vogliamo testare $H_0:\mu=\mu_0$ contro $H_A:\mu\py{dis}\mu_0$ per una popolazione distribuita normalmente con deviazione standard nota $\sigma$. Fissiamo una significatività $\alpha$ e una potenza $1-\beta$. L'effect-size che ci interessa è $\delta$.  Esprimere, in funzione dei parametri che assumiamo noti, le condizioni cui deve soddisfare il rango $n$ del campione.
+
+\begin{answer}
+
+{\color{blue}Il rango necessario è il minimo $n$ tale che $\displaystyle\Pr\bigg(Z\py{adis}\frac{x_\alpha-\mu_0\py{sign}\delta}{\sigma/\sqrt{n}}\bigg)\le\beta$
+
+dove $x_\alpha$ tale che $\displaystyle\Pr\bigg(Z\py{dis_eq} \frac{x_\alpha-\mu_0}{\sigma/\sqrt{n}}\bigg)=\alpha$\hfill Risposta}
+
+
+\end{answer}
+
+\end{question}
 
 
 
