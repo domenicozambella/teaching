@@ -35,7 +35,7 @@
 
 \begin{document}
 \colorbox{blue!10}{\begin{minipage}{\textwidth}
-Domande (capziose e artificiali) per verificare la comprensione del significato di p-valore.\bigskip
+Domande (qualcuna capziosa e artificiale) per verificare la comprensione del significato di p-valore (ed implicitamente anche del FWER).\bigskip
 
 N.B. Spesso le domande contengono informazioni irrilevanti.
 \end{minipage}}
@@ -248,6 +248,49 @@ Lanciamo il dado $\py{lanci}$ volte e registriamo la frequenza assoluta $k_i$ de
 \end{answer}
 \end{question}
 
+
+
+
+\begin{question} % 7777
+\begin{pycode}
+from sympy import symbols, Rational, Integer, latex, Eq, solve
+from scipy.stats import norm
+x = symbols('x')
+alpha = Integer( random.choice( [ 1, 2, 3, 4, 5 ] ) )
+n_tests = Integer( random.choice([4,6,8]) )
+\end{pycode}
+Assume the null hypothesis is true and denote by $P$ the random variable that gives the p-value you would get if you ran a test.
+
+\begin{itemize}
+\item[1.] What is the probability that $\Pr(P<\py{float(alpha/100) })$~?
+
+\item[2.] If we run $\py{n_tests}$ independent tests, what is the probability of incorrectly rejecting at least one of the null hypotheses with a significance $\alpha=\py{alpha}\%$~?
+
+\item[3.] If we run $\py{n_tests}$ independent tests, how small do we have to make the cutoff ($\alpha$ above) to lower to $\py{alpha}\%$ the probability of incorrectly rejecting at least one of the null hypotheses? 
+\end{itemize}
+
+\begin{answer}
+
+$\Pr(P<\py{pval})\ =\ ${\color{blue}$\py{float(alpha/100) }$\hfill Risposta 1}
+
+
+$\displaystyle 1-\Big(1-\py{latex(alpha/100) }\Big)^{\py{n_tests}}\ =\  ${\color{blue}\py{round(float(1-(1-alpha/100)**n_tests), 4)} \hfill Risposta 2}
+
+$\displaystyle 1-\Big(1-\frac{x}{100}\Big)^{\py{n_tests}}=\py{latex(alpha/100) }, \quad$ 
+risolvendo 
+%$\displaystyle \Big(1-\frac{x}{100}\Big)=\sqrt[\py{n_tests}]{\py{latex(1-alpha/100) } }\quad$  
+%ovvero 
+
+$\displaystyle x\ =\ 100\,\Big( 1-\sqrt[\py{n_tests}]{\py{latex(1-alpha/100) } }\Big)$\medskip
+
+$\displaystyle\phantom{x}\ =$ {\color{blue}$\kern1ex\py{round(float( 100*( 1- (1-alpha/100)**(1/n_tests) ) ), 4) }\%$\hfill Risposta 3}
+
+
+
+%$\py{latex(solve(Eq( 1-(1-x)**n_tests, alpha/100), x ) ) }$
+
+\end{answer}
+\end{question}
 
 
 
