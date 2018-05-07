@@ -57,7 +57,9 @@ n = random.choice([2,3])
 test = 'T-test a due code'
 if ESAME: test = random.choice(['T-test coda inferiore','T-test coda superiore', 'Z-test ($\sigma$ nota) a due code', 'Z-test ($\sigma$ nota) coda inferiore' 'Z-if ESAME: test ($\sigma$ nota) coda superiore'])
 
-pval = random.choice([0.05, 0.06, 0.07,0.08, 0.09, 0.1])
+
+pval = 0.05
+if ESAME: pval = random.choice([0.05, 0.06, 0.07,0.08, 0.09, 0.1])
 
 dis = '\\le'
 if ESAME: dis = random.choice(['\\le', '\\ge'] )
@@ -97,9 +99,10 @@ if ESAME: n = random.choice([30,40,50])
 test = 'T-test a due code'
 if ESAME: test = random.choice(['T-test coda inferiore','T-test coda superiore', 'Z-test ($\sigma$ nota) a due code', 'Z-test ($\sigma$ nota) coda inferiore' 'Z-if ESAME: test ($\sigma$ nota) coda superiore'])
 
-pval = random.choice([0.05,0.04,0.02])
-factor =  random.choice([0.5,2])
+pval = 0.05
+if ESAME: pval = random.choice([0.05,0.04,0.02, 0.01])
 
+factor =  random.choice([0.5,2])
 
 dis = '\\ge'
 if ESAME: dis = random.choice(['\\le', '\\ge'] )
@@ -129,9 +132,12 @@ Si scelga tra le seguenti opzioni la più opportuna.
 \begin{pycode}
 n = 25
 if ESAME: n = random.choice([30,40,50])
+
 test = 'T-test a due code'
-test = random.choice(['T-test coda inferiore','T-test coda superiore', 'Z-test ($\sigma$ nota) a due code', 'Z-test ($\sigma$ nota) coda inferiore' 'Z-if ESAME: test ($\sigma$ nota) coda superiore'])
-pval = random.choice([0.03,0.02,0.01])
+if ESAME: test = random.choice(['T-test a due code', 'Z-test ($\sigma$ nota) a due code'])
+
+pval = 0.05
+if ESAME: pval = random.choice([0.05,0.04,0.02, 0.01])
 \end{pycode}
 Abbiamo fatto un \py{test} con un campione di dimensione $n=\py{n}$ e abbiamo ottenuto come p-valore \py{pval}.
 Assumendo vera $H_A$, qual è la probabilità che ripetendo il test una seconda volta con un campione della stessa dimensione il p-valore risulti di nuovo $\le\py{pval}$~?
@@ -150,7 +156,34 @@ Nel caso non sia possibile determinare il valore esatto ma solo un limite superi
 
 
 \clearpage
-\begin{question} %444444444444444
+\begin{question} %4444444444
+\begin{pycode}
+n = 25
+if ESAME: n = random.choice([30,40,50])
+
+test = 'T-test a due code'
+if ESAME: test = random.choice(['T-test coda inferiore','T-test coda superiore', 'Z-test ($\sigma$ nota) coda inferiore' 'Z-test ($\sigma$ nota) coda superiore'])
+
+pval = 0.05
+if ESAME: pval = random.choice([0.05,0.04,0.02, 0.01])
+\end{pycode}
+Abbiamo fatto un \py{test} con un campione di dimensione $n=\py{n}$ e abbiamo ottenuto come p-valore \py{pval}.
+Assumendo vera $H_A$, qual è la probabilità che ripetendo il test una seconda volta con un campione della stessa dimensione il p-valore risulti di nuovo $\le\py{pval}$~?
+
+Nel caso non sia possibile determinare il valore esatto ma solo un limite superiore/inferiore. Si scelga tra le seguenti opzioni la più opportuna.
+\begin{itemize}
+\item[1.] La probabilità è $=\dots$ (specificare)
+\item[2.] La probabilità è $<\dots$ (specificare)
+\item[3.] La probabilità è $>\dots$ (specificare)
+\item[4.] Non ci sono sufficienti informazioni per stimare questa probabilità.
+\end{itemize}
+\begin{answer}
+{\color{blue}3. La probabilità è $>\py{pval}$.}
+\end{answer}
+\end{question}
+
+
+\begin{question} %555555555555555
 \begin{pycode}
 from sympy import Rational, Integer
 from scipy.stats import norm
@@ -186,7 +219,8 @@ $\phantom{\Pr\big(|\bar X|\ge\py{xbar}\big)}\ =\ ${\color{blue}\tt 2 * norm.cdf(
 \end{question}
 
 
-\begin{question} %5555555
+\clearpage
+\begin{question} %66666666666666
 \begin{pycode}
 from sympy import Rational, Integer
 from scipy.stats import norm
@@ -219,8 +253,7 @@ $\phantom{\Pr\big(\bar X\ge\py{xbar}\big)}\ =\ ${\color{blue}\tt\ 1 - norm.cdf(\
 
 
 
-\clearpage
-\begin{question} %666
+\begin{question} %7777777777777777
 \begin{pycode}
 from sympy import Rational, Integer
 from scipy.stats import norm
@@ -251,7 +284,8 @@ Lanciamo il dado $\py{lanci}$ volte e registriamo la frequenza assoluta $k_i$ de
 
 
 
-\begin{question} % 7777
+\clearpage
+\begin{question} %88888888888888
 \begin{pycode}
 from sympy import symbols, Rational, Integer, latex, Eq, solve
 from scipy.stats import norm
