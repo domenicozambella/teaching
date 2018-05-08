@@ -48,43 +48,109 @@ random.seed(25846456445)
 ESAME = False
 \end{pycode}
 
-\begin{question}
+% \begin{question}
+% \begin{pycode}
+% from sympy import Rational, Integer
+% from scipy.stats import norm
+% mu = random.choice( [ [1,2,4], [2,4,7], [2,5,9] ] )
+% n = random.choice( [2, 3, 4, 5 ] ) # = sqrt(n)
+% sigma = random.choice( [5, 7] )
+% alpha = random.choice( [0.1, 0.05, 0.02, 0.01] )
+% zalpha = - norm.ppf(alpha) / 2
+% xalpha1 = round( mu[1] - zalpha*sigma / n, 2 )
+% xalpha2 = round( mu[1] + zalpha*sigma / n, 2 )
+% \end{pycode}
+% Preleviamo un campione di rango $n=\py{n**2}$ da una popolazione con distribuzione $N(\mu,\sigma^2)$. Sappiamo che la deviazione standard è $\sigma=\py{sigma}$. La media $\mu$ invece potrebbe avere uno qualsiasi dei tre valori $\py{mu[0]}$, $\py{mu[1]}$, o $\py{mu[2]}$. 
+% 
+% Vogliamo testare $H_0:\mu=\py{mu[1]}$ contro $H_A:\mu\in\{\py{mu[0]},\py{mu[2]}\}$. Fissiamo come significatività $\alpha=\py{alpha}$ otteniamo che l'intervallo critico è per uno z-test a due code è $[\py{xalpha1}, \ \py{xalpha2}]$.
+% 
+% Qual è la potenza del test? Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+% 
+% \begin{answer}
+% 
+% Notazione: $\bar X\sim N(\py{mu[0]},\ \sigma^2/n)$
+% 
+% Il caso in cui $H_A$ meno distante da $H_0$ si verifica quando $\mu = \py{mu[0]}$. Calcoliamo la probabilità di un errore del II tipo (falso negativo) in questo caso
+% 
+% 
+% $\beta
+% \ =\ 
+% \Pr\big(\py{xalpha1}\le \bar X \le\py{xalpha2} \big)
+% \ =\ 
+% \Pr\bigg(\dfrac{\py{xalpha1-mu[0]} }{\sigma/\sqrt{n} }\ \le\ \dfrac{\bar X - \py{mu[0]} }{\sigma/\sqrt{n}}\ \le\ \dfrac{\py{xalpha2-mu[0]} }{\sigma/\sqrt{n} }\bigg)
+% \ =\ 
+% \Pr\big(\py{n * (xalpha1-mu[0] ) / sigma }\le Z\le \py{n * (xalpha2-mu[0] ) / sigma }\big)$
+% 
+% 
+% {\color{blue}$\beta
+% \ \le\ $}
+% {\color{blue}\tt norm.cdf(\py{n * (xalpha2-mu[0] ) / sigma }) - norm.cdf(\py{n * (xalpha1-mu[0] ) / sigma }) }{\tt\ =\ \py{round( norm.cdf(n * (xalpha2-mu[0] ) / sigma ) - norm.cdf(n * (xalpha1-mu[0] ) / sigma ), 4 ) } }{\color{blue}\hfill Risposta}
+% 
+% \end{answer}
+% \end{question}
+
+
+\begin{question}% 11111111111111111
+\def\pyl#1{\py{latex(#1)}}
+\def\pyr#1{\py{round(#1,4)}}
 \begin{pycode}
-from sympy import Rational, Integer
+from sympy import *
 from scipy.stats import norm
-mu = random.choice( [ [1,2,4], [2,4,7], [2,5,9] ] )
-n = random.choice( [2, 3, 4, 5 ] ) # = sqrt(n)
-sigma = random.choice( [5, 7] )
+mu = random.choice( [ [1,3,6], [2,4,7], [2,5,9] ] )
+n = Integer( random.choice( [4, 5, 6 ] )**2 )
+sigma = Integer( random.choice( [6, 7] ) )
 alpha = random.choice( [0.1, 0.05, 0.02, 0.01] )
 zalpha = - norm.ppf(alpha) / 2
-xalpha1 = round( mu[1] - zalpha*sigma / n, 2 )
-xalpha2 = round( mu[1] + zalpha*sigma / n, 2 )
+xalpha1 = mu[1] - 1#round( mu[1] - zalpha*sigma / n, 2 )
+xalpha2 = mu[1] + 1#round( mu[1] + zalpha*sigma / n, 2 )
 \end{pycode}
-Preleviamo un campione di rango $n=\py{n**2}$ da una popolazione con distribuzione $N(\mu,\sigma^2)$. Sappiamo che la deviazione standard è $\sigma=\py{sigma}$. La media $\mu$ invece potrebbe avere uno qualsiasi dei tre valori $\py{mu[0]}$, $\py{mu[1]}$, o $\py{mu[2]}$. 
+Consideriamo una popolazione normale con $\sigma=\py{sigma}$ e media $\mu\in\{\py{mu[0]}, \py{mu[1]}, \py{mu[2]}\}$ ignota. 
 
-Vogliamo testare $H_0:\mu=\py{mu[1]}$ contro $H_A:\mu\in\{\py{mu[0]},\py{mu[2]}\}$. Fissiamo come significatività $\alpha=\py{alpha}$ otteniamo che l'intervallo critico è per uno z-test a due code è $[\py{xalpha1}, \ \py{xalpha2}]$.
+Vogliamo testare $H_0:\mu=\py{mu[1]}$ contro $H_A:\mu\in\{\py{mu[0]},\py{mu[2]}\}$. Preleviamo un campione di rango $n=\py{n}$ e decidiamo di rifiutare $H_0$ se la media campionaria $\bar x$ non appartiene all'intervallo $[\py{xalpha1}, \ \py{xalpha2}]$.
 
-Qual è la potenza del test? Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{itemize}
+\item[1.] Qual è la significatività del test?
+\item[2.] Qual è la potenza del test?
+\end{itemize}
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
 
 \begin{answer}
 
-Notazione: $\bar X\sim N(\py{mu[0]},\ \sigma^2/n)$
+$\displaystyle\alpha\ =\ 1 - \Pr\big(\py{xalpha1}\le\bar X\le\py{xalpha2}\big)$ dove $\displaystyle\bar X\sim N(\mu,\frac{\sigma^2}{n})$ \ con \ $\mu=\py{mu[1]}$ \ e \ $\displaystyle\frac{\sigma^2}{n}=\pyl{sigma**2/n}$
 
-Il caso in cui $H_A$ meno distante da $H_0$ si verifica quando $\mu = \py{mu[0]}$. Calcoliamo la probabilità di un errore del II tipo (falso negativo) in questo caso
+$\displaystyle\phantom{\alpha}\ =\ 1- \Pr\bigg(\pyl{(xalpha1-mu[1])/(sigma/sqrt(n))}\le Z\le\pyl{(xalpha2-mu[1])/(sigma/sqrt(n))}\bigg)\ =\ $
+{\color{blue}\tt 2 * norm.cdf( \py{ (xalpha1-mu[1])/(sigma/sqrt(n)) } ) }
+{\tt=\ \pyr{ 2 * norm.cdf( float(xalpha1-mu[1])/float(sigma/sqrt(n)) ) } }
+{\color{blue}\hfill Risposta 1}
+
+Per calcolare la potenza assumo $H_A$ valga nel caso più sfaforevole $\mu=\py{mu[0]}$  
+
+$\displaystyle1-\beta\ =\ 1 - \Pr\big(\py{xalpha1}\le\bar X\le\py{xalpha2}\big)$ dove $\displaystyle\bar X\sim N(\mu,\frac{\sigma^2}{n})$ \ con \ $\mu=\py{mu[0]}$ \ e \ $\displaystyle\frac{\sigma^2}{n}=\pyl{sigma**2/n}$
+
+$\displaystyle\phantom{\alpha}\ =\ 1- \Pr\bigg(\pyl{(xalpha1-mu[0])/(sigma/sqrt(n))}\le Z\le\pyl{(xalpha2-mu[0])/(sigma/sqrt(n))}\bigg)\ =\ $
+{\color{blue}\tt norm.cdf( \py{ (xalpha1-mu[0])/(sigma/sqrt(n)) } ) + norm.cdf( -\py{ (xalpha2-mu[0])/(sigma/sqrt(n)) } ) }
+{\tt =\ \pyr{ norm.cdf( float(xalpha1-mu[0])/float(sigma/sqrt(n)) ) + norm.cdf( -float(xalpha2-mu[0])/float(sigma/sqrt(n)) ) } }
+{\color{blue}\hfill Risposta 2}
 
 
-$\beta
-\ =\ 
-\Pr\big(\py{xalpha1}\le \bar X \le\py{xalpha2} \big)
-\ =\ 
-\Pr\bigg(\dfrac{\py{xalpha1-mu[0]} }{\sigma/\sqrt{n} }\ \le\ \dfrac{\bar X - \py{mu[0]} }{\sigma/\sqrt{n}}\ \le\ \dfrac{\py{xalpha2-mu[0]} }{\sigma/\sqrt{n} }\bigg)
-\ =\ 
-\Pr\big(\py{n * (xalpha1-mu[0] ) / sigma }\le Z\le \py{n * (xalpha2-mu[0] ) / sigma }\big)$
 
 
-{\color{blue}$\beta
-\ \le\ $}
-{\color{blue}\tt norm.cdf(\py{n * (xalpha2-mu[0] ) / sigma }) - norm.cdf(\py{n * (xalpha1-mu[0] ) / sigma }) }{\tt\ =\ \py{round( norm.cdf(n * (xalpha2-mu[0] ) / sigma ) - norm.cdf(n * (xalpha1-mu[0] ) / sigma ), 4 ) } }{\color{blue}\hfill Risposta}
+% Il caso in cui $H_A$ meno distante da $H_0$ si verifica quando $\mu = \py{mu[0]}$. Calcoliamo la probabilità di un errore del II tipo (falso negativo) in questo caso
+% 
+% 
+% $\beta
+% \ =\ 
+% \Pr\big(\py{xalpha1}\le \bar X \le\py{xalpha2} \big)
+% \ =\ 
+% \Pr\bigg(\dfrac{\py{xalpha1-mu[0]} }{\sigma/\sqrt{n} }\ \le\ \dfrac{\bar X - \py{mu[0]} }{\sigma/\sqrt{n}}\ \le\ \dfrac{\py{xalpha2-mu[0]} }{\sigma/\sqrt{n} }\bigg)
+% \ =\ 
+% \Pr\big(\py{n * (xalpha1-mu[0] ) / sigma }\le Z\le \py{n * (xalpha2-mu[0] ) / sigma }\big)$
+% 
+% 
+% {\color{blue}$\beta
+% \ \le\ $}
+% {\color{blue}\tt norm.cdf(\py{n * (xalpha2-mu[0] ) / sigma }) - norm.cdf(\py{n * (xalpha1-mu[0] ) / sigma }) }{\tt\ =\ \py{round( norm.cdf(n * (xalpha2-mu[0] ) / sigma ) - norm.cdf(n * (xalpha1-mu[0] ) / sigma ), 4 ) } }{\color{blue}\hfill Risposta}
 
 
 \end{answer}

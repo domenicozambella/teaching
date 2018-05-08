@@ -193,7 +193,6 @@ sigma = random.choice([2,3,5])
 xbar = mu[1] + random.choice( [ -1, 1, 2 ] ) 
 \end{pycode}
 Preleviamo un campione di rango $n=\py{n**2}$ da una popolazione con distribuzione $N(\mu,\sigma^2)$. Sappiamo che la deviazione standard è $\sigma=\py{sigma}$. La media $\mu$ invece potrebbe avere uno qualsiasi dei tre valori $\py{mu[0]}$, $\py{mu[1]}$, o $\py{mu[2]}$. 
-
 Vogliamo testare $H_0:\mu=\py{mu[1]}$ contro $H_A:\mu\in\{\py{mu[0]},\py{mu[2]}\}$.
 \begin{itemize}
 \item[1.] Che test facciamo?
@@ -291,7 +290,7 @@ from sympy import symbols, Rational, Integer, latex, Eq, solve
 from scipy.stats import norm
 x = symbols('x')
 alpha = Integer( random.choice( [ 1, 2, 3, 4, 5 ] ) )
-n_tests = Integer( random.choice([4,6,8]) )
+n_tests = Integer( random.choice( [ 4, 6, 8 ] ) )
 \end{pycode}
 Assume the null hypothesis is true and denote by $P$ the random variable that gives the p-value you would get if you ran a test.
 
