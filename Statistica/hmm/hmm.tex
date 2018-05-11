@@ -1,0 +1,297 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{calc} 
+\usepackage{pythontex}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip2ex
+\newcounter{quesito}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern0ex}}{\par\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\par\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\par\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Esperimento con HMM (senza definirli)
+
+\end{minipage}}
+
+\bigskip\bigskip
+
+
+\begin{pycode}
+import random
+random.seed(258346445)
+\end{pycode}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{question}
+% \def\Pr{{\rm Pr\,}}
+% \def\pyl#1{\py{latex(#1)}}
+% \everymath{\displaystyle}
+% \renewcommand{\arraystretch}{2}
+% \begin{pycode}
+% from sympy import *
+% p = random.sample([2, 3, 4, 5, 6, 7, 8], 4)
+% pab = Rational(p[0],10)
+% pba = Rational(p[1],10)
+% paa = 1 - pab
+% pbb = 1 - pba
+% P = Matrix(( (paa, pba), 
+%              (pba, pbb) ))
+% M = Matrix(( (paa-1, pba, 0),
+%              (1,     1,   1) ))
+% x = Symbol('x')
+% y = Symbol('y')
+% equilibrio = solve_linear_system(M, x, y)
+% 
+% 
+% 
+% A1= Rational(p[2],10)
+% B1= Rational(p[3],10)
+% \end{pycode}
+% Consideriamo un cammino aleatorio tra due stati {\sf a} e {\sf b}. Quando siamo nello stato {\sf a} lanciamo una moneta con probabilità di successo $q_{\sf a}=\py{A1}$ quando siamo in {\sf b} lanciamo una moneta con probablilità di successo $q_{\sf b}=\py{B1}$. Noi osserviamo solo il risultato del lancio e non abbiamo informazioni sullo stato. Possiamo però assumere che la distribuzione sugli stati siano in equilibrio (steady state). 
+% 
+% %Modelliamo il lancio di due monete che modelliamo con le v.a.\@ $A,B\in\{0,1\}$. Quando siamo nello stato {\sf a} laciamo la moneta $A$ che ha probablilità di successo $q_{\sf a}=\py{A1}$ quando siamo in {\sf b} lanciamo $B$ che ha probablilità di successo $q_{\sf b}=\py{B1}$.  
+% 
+% \hfil
+% %\begin{minipage}[t]{0.45\textwidth}
+% \begin{tikzpicture}[baseline=2ex]
+%     % Draw the states
+%     \node[state]             (a) {{\sf a}};
+%     \node[state, right=of a] (b) {{\sf b}};
+%  
+%     % Connect the states with arrows
+%     \draw[every loop]
+%         (a) edge[bend right, auto=right] node {\py{pab}} (b)
+%         (b) edge[bend right, auto=right] node {\py{pba}} (a);
+% \end{tikzpicture}
+% %\end{minipage}
+% \hfil
+% \begin{minipage}[t]{40ex}
+% $q_{\sf a}\ =\ \Pr(A=1)\ =\ \py{A1}$
+% \\[2ex] 
+% $q_{\sf b}\ =\ \Pr(B=1)\ =\ \py{B1}$
+% \end{minipage}
+% 
+% 
+% 
+% \begin{itemize}
+% \item[1.] Supponiamo di osservare $1$, qual è la probabilità il processo si trovi nello stato {\sf a}.
+% \item[2.] Supponiamo di osservare $01$ in due istanti successivi qual è la probabilità che il processo si trovi in entrambi gli istanti nello stato {\sf a}.
+% \end{itemize}
+% 
+% 
+% 
+% \begin{answer}
+% 
+% La matrice di transizione è $P=\displaystyle\pyl{P}$ la distribuzione di equilibrio è $\pi_{\sf a}=\py{equilibrio[x]}$,  $\pi_{\sf b}=\py{equilibrio[y]}$ 
+% 
+% $\Pr(X_0=1 | S_0={\sf a})$
+% 
+% {\color{blue}\hfill Risposta 1} 
+% 
+% {\color{blue}\hfill Risposta 2} 
+% \end{answer}
+% \end{question}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{question}%11111111111111111111
+\def\Pr{{\rm Pr\,}}
+\def\pyl#1{\py{latex(#1)}}
+\everymath{\displaystyle}
+\renewcommand{\arraystretch}{2}
+\begin{pycode}
+from sympy import *
+p = random.sample([2,4,6,8], 4)
+pab = Rational(p[0],10)
+pba = Rational(p[1],10)
+paa = 1 - pab
+pbb = 1 - pba
+P  = Matrix([ [paa, pba], 
+              [pab, pbb] ])
+M  = Matrix(( (paa-1, pba, 0),
+             (1,     1,   1) ))
+S0 = Matrix([1,0])
+x = Symbol('x')
+y = Symbol('y')
+equilibrio = solve_linear_system(M, x, y)
+
+
+
+qa = Rational(p[2],10)
+qb = Rational(p[3],10)
+px2 = qa*(P*P*S0)[0] + qb*(P*P*S0)[1] 
+\end{pycode}
+Consideriamo il percorso aleatorio descritto in figura. Nello stato {\sf a} viene lanciata una moneta a valori {\sf T} o {\sf C}. la probabilità che esca {\sf T} è $\py{qa}$. Nello stato {\sf b} viene lanciata una moneta con probabilità $\py{qb}$ che esca {\sf T}.
+
+\hfil
+\begin{tikzpicture}[baseline=0ex]
+    % Draw the states
+    \node[state,fill=gray!30]             (a) {{\sf a}};
+    \node[state,fill=gray!30, right=3 of a] (b) {{\sf b}};
+ 
+    % Connect the states with arrows
+    \draw[every loop]
+        (a) edge[bend right, line width=1pt, auto=right] node {\py{pab}} (b)
+        (b) edge[bend right, line width=1pt, auto=right] node {\py{pba}} (a);
+\end{tikzpicture}
+\hfil Le transizioni {\sf aa} e {\sf bb} sono impicite.
+
+Il percorso comincia (al tempo $t{=}0$) dallo stato {\sf a}. Al tempo $t=2$ il risultato del lancio della moneta è {\sf T} ma non abbiamo informazioni sul pescorso. Qual è la probabilità che il processo al tempo $t{=}2$ si trovi nello stato {\sf a}~?
+
+Indichiamo con $S_t\in\{{\sf a}, {\sf b}\}$ le variabili aleatorie che danno lo stato al tempo $t$. Indichiamo con $X_t\in\{{\sf T}, {\sf C}\}$ le variabili aleatorie che danno il risultato del lancio al tempo $t$. Si esprima usando queste v.a.\@ la probabilità condizionata che si intende calcolare. 
+
+Esprimere i risultati numerici come frazioni di interi.
+
+
+\begin{answer}
+
+Dalla figura inferiamo la matrice di transizione $P=\pyl{P}$. 
+
+Il testo riporta le seguenti probabilità:
+
+$\Pr\big(S_0={\sf a}\big)=1$\hfill e per ogni $t$\hfill  $\Pr\big(X_t={\sf T}~|~S_t={\sf a}\big)=\pyl{qa}$,\hfill $\Pr\big(X_t={\sf T}~|~S_t={\sf b}\big)=\pyl{qb}$
+\bigskip
+
+
+$\begin{bmatrix}\Pr(S_1={\sf a})\\\Pr(S_1={\sf b})\end{bmatrix}=P\pyl{S0}=\pyl{P*S0}$
+\hfil
+$\begin{bmatrix}\Pr(S_2={\sf a})\\\Pr(S_2={\sf b})\end{bmatrix}=P^2\pyl{S0}= P\pyl{P*S0} =\pyl{P*P*S0}$
+
+\medskip
+$\Pr\big(X_2={\sf T}\big)\ =\ \Pr\big(X_2={\sf T}~|~S_2={\sf a}\big)\cdot\Pr\big(S_2={\sf a}\big) \ + \ \Pr\big(X_2={\sf T}~|~S_2={\sf b}\big)\cdot\Pr\big(S_2={\sf b}\big)$
+\\[2ex]
+$\phantom{\Pr\big(X_2={\sf T}\big)}\ =\ \pyl{qa}\cdot\pyl{(P*P*S0)[0]} \ + \ \pyl{qb}\cdot\pyl{(P*P*S0)[1]}\ =\ \pyl{px2}$
+
+\bigskip
+{\color{blue}$\Pr(S_2={\sf a}~|~X_2={\sf T})$}$\ =\ \frac{\Pr(X_2={\sf T}~|~S_2={\sf a})\cdot\Pr(S_2={\sf a})}{\Pr(X_2={\sf T})}${\color{blue}$\ =\ \pyl{qa*(P*P*S0)[0]/px2}$\hfill Risposta} 
+\end{answer}
+\end{question}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{question}
+% \def\Pr{{\rm Pr\,}}
+% \def\pyl#1{\py{latex(#1)}}
+% \everymath{\displaystyle}
+% \renewcommand{\arraystretch}{2}
+% \begin{pycode}
+% from sympy import *
+% p = random.sample(range(2,9), 3)
+% pab = Rational(p[0],10)
+% pba = Rational(p[0]+1,10)
+% paa = 1 - pab
+% pbb = 1 - pba
+% P  = Matrix([ [paa, pba], 
+%               [pab, pbb] ])
+% M  = Matrix(( (paa-1, pba, 0),
+%              (1,     1,   1) ))
+% S0 = Matrix([1,0])
+% x = Symbol('x')
+% y = Symbol('y')
+% equilibrio = solve_linear_system(M, x, y)
+% 
+% 
+% 
+% qa = Rational(p[1],10)
+% qb = Rational(p[2],10)
+% px1 = qa*(P*S0)[0] + qb*(P*S0)[1] 
+% \end{pycode}
+% Consideriamo il percorso aleatorio descritto in figura. Nello stato {\sf a} viene lanciata una moneta a valori {\sf T} o {\sf C}. la probabilità che esca {\sf T} è $\py{qa}$. Nello stato {\sf b} viene lanciata una moneta simile, ma la probabilità di {\sf T} è $\py{qb}$.
+% 
+% \hfil
+% \begin{tikzpicture}[baseline=0ex]
+%     % Draw the states
+%     \node[state,fill=gray!30]             (a) {{\sf a}};
+%     \node[state,fill=gray!30, right=3 of a] (b) {{\sf b}};
+%  
+%     % Connect the states with arrows
+%     \draw[every loop]
+%         (a) edge[bend right, line width=1pt, auto=right] node {\py{pab}} (b)
+%         (b) edge[bend right, line width=1pt, auto=right] node {\py{pba}} (a);
+% \end{tikzpicture}
+% \hfil(Le transizioni {\sf aa} e {\sf bb} sono state lasciate impicite.) 
+% 
+% Il percorso comincia (al tempo $t{=}0$) dallo stato {\sf a}. Noi osserviamo solo il risultato del lancio della moneta e non abbiamo informazioni sullo stato.
+% 
+% Al tempo $t{=}1$ osserviamo {\sf T} all'istante successivo (tempo $t{=}2$) osserviamo  {\sf T}.
+% 
+% \begin{itemize}
+% \item[1.] Qual è la probabilità che il processo al tempo $t{=}1$ si trovi nello stato {\sf a}~?
+% \item[2.] Qual è la probabilità che il processo si trovi nello stato {\sf a} al tempo $t{=}2$~?
+% \end{itemize}
+% 
+% Siano $S_t\in\{{\sf a}, {\sf b}\}$ le variabili aleatorie che danno lo stato al tempo $t$. Sia $X_t\in\{{\sf T}, {\sf C}\}$ le variabili aleatorie che danno il risultato del lancio al tempo $t$. Si esprima usando queste v.a.\@ la probabilità condizionata che si intende calcolare.
+% 
+% Esprimere i numeri razionali come frazioni.
+% 
+% 
+% \begin{answer}
+% 
+% Dalla figura inferiamo che matrice di transizione è $P=\pyl{P}$
+% 
+% Il testo riferisce i valori \hfill$\Pr\big(S_0={\sf a}\big)=1$\hfill  $\Pr\big(X_t={\sf T}~|~S_t={\sf a}\big)=\pyl{qa}$\hfill $\Pr\big(X_t={\sf T}~|~S_t={\sf b}\big)=\pyl{qb}$
+% 
+% $\begin{bmatrix}\Pr(S_1={\sf a})\\\Pr(S_1={\sf b})\end{bmatrix}=P\pyl{S0}=\pyl{P*S0}$
+% \hfil
+% $\begin{bmatrix}\Pr(S_2={\sf a})\\\Pr(S_2={\sf b})\end{bmatrix}=P^2\pyl{S0}= P\pyl{P*S0} =\pyl{P*P*S0}$
+% 
+% \bigskip
+% $\Pr\big(X_1={\sf T}\big)\ =\ \Pr\big(X_1={\sf T}~|~S_1={\sf a}\big)\cdot\Pr\big(S_1={\sf a}\big) \ + \ \Pr\big(X_1={\sf T}~|~S_1={\sf b}\big)\cdot\Pr\big(S_1={\sf b}\big)$
+% \\[2ex]
+% $\phantom{\Pr\big(X_1={\sf T}\big)}\ =\ \pyl{qa}\cdot\pyl{(P*S0)[0]} \ + \ \pyl{qb}\cdot\pyl{(P*S0)[1]}\ =\ \pyl{px1}$
+% 
+% \bigskip
+% {\color{blue}$\Pr(S_1={\sf a}~|~X_1={\sf T})$}$\ =\ \frac{\Pr(X_1={\sf T}~|~S_1={\sf a})\cdot\Pr(S_1={\sf a})}{\Pr(X_1={\sf T})}${\color{blue}$\ =\ \pyl{qa*(P*S0)[0]/px1}$\hfill Risposta 1} 
+% 
+% {\color{blue}\hfill Risposta 2} 
+% \end{answer}
+% \end{question}
+
+
+
+\end{document}
+
