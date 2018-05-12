@@ -37,7 +37,7 @@
 \colorbox{blue!10}{\begin{minipage}{\textwidth}
 Domande per verificare la comprensione del significato di errori del II tipo e di potenza.\bigskip
 
-N.B. Spesso le domande contengono informazioni irrilevanti.
+N.B. Le domande potrebbero contenere informazioni irrilevanti.
 \end{minipage}}
 
 \bigskip\bigskip
@@ -175,13 +175,12 @@ risposta_numerica2 = 1 - risposta_numerica1
 \end{pycode}
 Preleviamo un campione di rango $n=\py{n**2}$ da una popolazione con distribuzione $N(\mu,\sigma^2)$. Sappiamo che la deviazione standard è $\sigma=\py{sigma}$. La media $\mu$ invece potrebbe avere uno qualsiasi valori dei nell'intervallo $[\py{mu[0]},\ \py{mu[1]}  ]$.
 
-Vogliamo testare $H_0:\mu=\py{mu[0]}$ contro $H_A:\mu\in (\py{mu[0]},\py{mu[1]}]$. Fissiamo come significatività $\alpha=\py{alpha}$ otteniamo che per uno z-test a coda superiore l'intervallo critico è $[\py{xalpha2}, \ +\infty)$.
+Vogliamo testare $H_0:\mu=\py{mu[0]}$ contro $H_A:\mu\in (\py{mu[0]},\py{mu[1]}]$. Fissiamo come significatività $\alpha=\py{alpha}$ otteniamo che per uno z-test a coda superiore la zona di rifiuto è $[\py{xalpha2}, \ +\infty)$.
 
 \begin{itemize}
-\item[1.] Nel caso $H_A:\mu\in (\py{muA},\ \py{mu[1]}]$ qual'è la massima probabilità $\beta$ di non rigettare $H_0$ (errore II tipo)?
+\item[1.] Nel caso $H_A:\mu\in [\py{muA},\ \py{mu[1]}]$ qual'è la massima probabilità $\beta$ di non rigettare $H_0$ (errore II tipo)?
 \item[2.] Calcolare la potenza del test con l'effect-size suggerito nel punto precedente.
 \end{itemize}
-
 
 Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
 

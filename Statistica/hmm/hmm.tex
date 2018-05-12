@@ -44,7 +44,7 @@ Esperimento con HMM (senza definirli)
 
 \begin{pycode}
 import random
-random.seed(258346445)
+random.seed(258346435)
 \end{pycode}
 
 
@@ -130,7 +130,6 @@ random.seed(258346445)
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{question}%11111111111111111111
 \def\Pr{{\rm Pr\,}}
 \def\pyl#1{\py{latex(#1)}}
@@ -138,9 +137,9 @@ random.seed(258346445)
 \renewcommand{\arraystretch}{2}
 \begin{pycode}
 from sympy import *
-p = random.sample([2,4,6,8], 4)
-pab = Rational(p[0],10)
-pba = Rational(p[1],10)
+d = random.sample([2,3,4,5,6], 4)
+pab = Rational( random.choice( range( 1,d[0] ) ), d[0] ) 
+pba = Rational( random.choice( range( 1,d[1] ) ), d[1] ) 
 paa = 1 - pab
 pbb = 1 - pba
 P  = Matrix([ [paa, pba], 
@@ -154,11 +153,11 @@ equilibrio = solve_linear_system(M, x, y)
 
 
 
-qa = Rational(p[2],10)
-qb = Rational(p[3],10)
+qa = Rational( random.choice( range( 1,d[2] ) ), d[2] ) 
+qb = Rational( random.choice( range( 1,d[3] ) ), d[3] ) 
 px2 = qa*(P*P*S0)[0] + qb*(P*P*S0)[1] 
 \end{pycode}
-Consideriamo il percorso aleatorio descritto in figura. Nello stato {\sf a} viene lanciata una moneta a valori {\sf T} o {\sf C}. la probabilità che esca {\sf T} è $\py{qa}$. Nello stato {\sf b} viene lanciata una moneta con probabilità $\py{qb}$ che esca {\sf T}.
+Consideriamo il percorso aleatorio descritto in figura. Nello stato {\sf a} viene lanciata una moneta a valori {\sf T} o {\sf C}. La probabilità che esca {\sf T} è $\py{qa}$. Nello stato {\sf b} viene lanciata una moneta con probabilità $\py{qb}$ che esca {\sf T}.
 
 \hfil
 \begin{tikzpicture}[baseline=0ex]
@@ -171,9 +170,9 @@ Consideriamo il percorso aleatorio descritto in figura. Nello stato {\sf a} vien
         (a) edge[bend right, line width=1pt, auto=right] node {\py{pab}} (b)
         (b) edge[bend right, line width=1pt, auto=right] node {\py{pba}} (a);
 \end{tikzpicture}
-\hfil Le transizioni {\sf aa} e {\sf bb} sono impicite.
+\hfil Le transizioni {\sf aa} e {\sf bb} sono implicite.
 
-Il percorso comincia (al tempo $t{=}0$) dallo stato {\sf a}. Al tempo $t=2$ il risultato del lancio della moneta è {\sf T} ma non abbiamo informazioni sul pescorso. Qual è la probabilità che il processo al tempo $t{=}2$ si trovi nello stato {\sf a}~?
+Il percorso comincia (al tempo $t{=}0$) dallo stato {\sf a}. Al tempo $t=2$ il risultato del lancio della moneta è {\sf T}. Non abbiamo informazioni sul pescorso, qual è la probabilità che il processo al tempo $t{=}2$ si trovi nello stato {\sf a}~?
 
 Indichiamo con $S_t\in\{{\sf a}, {\sf b}\}$ le variabili aleatorie che danno lo stato al tempo $t$. Indichiamo con $X_t\in\{{\sf T}, {\sf C}\}$ le variabili aleatorie che danno il risultato del lancio al tempo $t$. Si esprima usando queste v.a.\@ la probabilità condizionata che si intende calcolare. 
 
@@ -203,6 +202,90 @@ $\phantom{\Pr\big(X_2={\sf T}\big)}\ =\ \pyl{qa}\cdot\pyl{(P*P*S0)[0]} \ + \ \py
 {\color{blue}$\Pr(S_2={\sf a}~|~X_2={\sf T})$}$\ =\ \frac{\Pr(X_2={\sf T}~|~S_2={\sf a})\cdot\Pr(S_2={\sf a})}{\Pr(X_2={\sf T})}${\color{blue}$\ =\ \pyl{qa*(P*P*S0)[0]/px2}$\hfill Risposta} 
 \end{answer}
 \end{question}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage%2222222222222222222
+% \begin{question}
+% \def\Pr{{\rm Pr\,}}
+% \def\pyl#1{\py{latex(#1)}}
+% \everymath{\displaystyle}
+% \renewcommand{\arraystretch}{2}
+% \begin{pycode}
+% from sympy import *
+% d = random.sample([2,3,4,5,6], 4)
+% pab = Rational( random.choice( range( 1,d[0] ) ), d[0] ) 
+% pba = Rational( random.choice( range( 1,d[1] ) ), d[1] ) 
+% paa = 1 - pab
+% pbb = 1 - pba
+% P  = Matrix([ [paa, pba], 
+%               [pab, pbb] ])
+% M  = Matrix(( (paa-1, pba, 0),
+%              (1,     1,   1) ))
+% S0 = Matrix([1,0])
+% x = Symbol('x')
+% y = Symbol('y')
+% equilibrio = solve_linear_system(M, x, y)
+% 
+% 
+% 
+% qa = Rational( random.choice( range( 1,d[2] ) ), d[2] ) 
+% qb = Rational( random.choice( range( 1,d[3] ) ), d[3] ) 
+% px1 = qa*(P*S0)[0] + qb*(P*S0)[1] 
+% px2 = qa*(P*P*S0)[0] + qb*(P*P*S0)[1] 
+% \end{pycode}
+% Consideriamo il percorso aleatorio descritto in figura. Nello stato {\sf a} viene lanciata una moneta a valori {\sf T} o {\sf C}. La probabilità che esca {\sf T} è $\py{qa}$. Nello stato {\sf b} viene lanciata una moneta con probabilità $\py{qb}$ che esca {\sf T}.
+% 
+% \hfil
+% \begin{tikzpicture}[baseline=0ex]
+%     % Draw the states
+%     \node[state,fill=gray!30]             (a) {{\sf a}};
+%     \node[state,fill=gray!30, right=3 of a] (b) {{\sf b}};
+%  
+%     % Connect the states with arrows
+%     \draw[every loop]
+%         (a) edge[bend right, line width=1pt, auto=right] node {\py{pab}} (b)
+%         (b) edge[bend right, line width=1pt, auto=right] node {\py{pba}} (a);
+% \end{tikzpicture}
+% \hfil Le transizioni {\sf aa} e {\sf bb} sono impicite.
+% 
+% Il percorso comincia (al tempo $t{=}0$) dallo stato {\sf b}. Al tempo $t=1$ il risultato del lancio della moneta è {\sf T} ma non abbiamo informazioni sul pescorso. Qual è la probabilità di osservare {\sf C}  al tempo $t{=}2$~?
+% 
+% Indichiamo con $S_t\in\{{\sf a}, {\sf b}\}$ le variabili aleatorie che danno lo stato al tempo $t$. Indichiamo con $X_t\in\{{\sf T}, {\sf C}\}$ le variabili aleatorie che danno il risultato del lancio al tempo $t$. Si esprima usando queste v.a.\@ la probabilità condizionata che si intende calcolare. 
+% 
+% Esprimere i risultati numerici come frazioni di interi.
+% 
+% 
+% \begin{answer}
+% 
+% Dalla figura inferiamo la matrice di transizione $P=\pyl{P}$. 
+% 
+% Il testo riporta le seguenti probabilità:
+% 
+% $\Pr\big(S_0={\sf b}\big)=1$\hfill e per ogni $t$\hfill  $\Pr\big(X_t={\sf T}~|~S_t={\sf a}\big)=\pyl{qa}$,\hfill $\Pr\big(X_t={\sf T}~|~S_t={\sf b}\big)=\pyl{qb}$
+% \bigskip
+% 
+% 
+% $\begin{bmatrix}\Pr(S_1={\sf a})\\\Pr(S_1={\sf b})\end{bmatrix}=P\pyl{S0}=\pyl{P*S0}$
+% \hfil
+% $\begin{bmatrix}\Pr(S_2={\sf a})\\\Pr(S_2={\sf b})\end{bmatrix}=P^2\pyl{S0}= P\pyl{P*S0} =\pyl{P*P*S0}$
+% 
+% \medskip
+% $\Pr\big(X_1={\sf T}\big)\ =\ \Pr\big(X_1={\sf T}~|~S_1={\sf a}\big)\cdot\Pr\big(S_1={\sf a}\big) \ + \ \Pr\big(X_1={\sf T}~|~S_1={\sf b}\big)\cdot\Pr\big(S_1={\sf b}\big)$
+% \\[2ex]
+% $\phantom{\Pr\big(X_1={\sf T}\big)}\ =\ \pyl{qa}\cdot\pyl{(P*S0)[0]} \ + \ \pyl{qb}\cdot\pyl{(P*S0)[1]}\ =\ \pyl{px1}$
+% 
+% \bigskip
+% $\Pr(S_1={\sf a}~|~X_1={\sf T})\ =\ \frac{\Pr(X_1={\sf T}~|~S_1={\sf a})\cdot\Pr(S_1={\sf a})}{\Pr(X_1={\sf T})}\ =\ \pyl{qa*(P*S0)[0]/px1}$
+% 
+% \bigskip
+% $\Pr\big(X_2={\sf C}~|~X_1={\sf T}\big)\ =\ \Pr\big(X_2={\sf C}~|~X_1={\sf T},\ S_2={\sf a}\big)\cdot\Pr\big(S_2={\sf a}\big) \ + \ \Pr\big(X_1={\sf T}~|~X_1={\sf T},\ S_2={\sf b}\big)\cdot\Pr\big(S_1={\sf b}\big)$
+% 
+% \end{answer}
+% \end{question}
 
 
 
