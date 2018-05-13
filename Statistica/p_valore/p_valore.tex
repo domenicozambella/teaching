@@ -199,7 +199,7 @@ Vogliamo testare $H_0:\mu=\py{mu[1]}$ contro $H_A:\mu\in\{\py{mu[0]},\py{mu[2]}\
 \item[2.] Se la media del campione di cui sopra è $\bar x=\py{xbar}$, quant'è il p-valore?
 \item[3.] Dato questo risultato, la probabilità di $\mu\in\{\py{mu[0]},\py{mu[2]}\}$ è \ldots (si scelga la risposta corretta ta le seguenti)\medskip
 
-(a) $=$ p-valore;\hfill (b) $=1-$ p-valore;\hfill (c) $2/3$;\hfill (d) Non ci sono sufficienti informazioni per ripondere.
+(a) $=$ p-valore;\hfill (b) $=1-$ p-valore;\hfill (c) $2/3$;\hfill (d) Non ci sono sufficienti informazioni per rispondere.
 \end{itemize}
 
 Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
@@ -212,7 +212,7 @@ $\Pr\big(|\bar X|\ge\py{xbar}\big)\ =\ \Pr\bigg(\bigg|\dfrac{\bar X-\py{mu[1]}}{
 $\phantom{\Pr\big(|\bar X|\ge\py{xbar}\big)}\ =\ ${\color{blue}\tt 2 * norm.cdf(-\py{Rational(Integer(n*abs(xbar-mu[1]) ) / Integer(sigma) ) }) }{\tt\ =  \ \py{round( 2 * norm.cdf(-(n*abs(xbar-mu[1]) / sigma) ), 3) } }{\color{blue}\hfill Risposta 2}
 
 \medskip
-{\color{blue}(d) Non ci sono sufficienti informazioni per ripondere.\hfill Risposta 3}
+{\color{blue}(d) Non ci sono sufficienti informazioni per rispondere.\hfill Risposta 3}
 
 \end{answer}
 \end{question}
@@ -260,14 +260,14 @@ alpha = random.choice( [ 0.1, 0.05 ] )
 facce = Integer( random.choice([4,6,8]) )
 lanci = Integer( random.choice([100,200,300]) )
 \end{pycode}
-Abbiamo un dado con $\py{facce}$ facce numerate da $1$ a $\py{facce}$. Sospettiamo che il dado non sia perfettamente equilibrato. Quindi per $i=1,\dots,\py{Integer(facce)}$ testiamo le seguenti ipotesi: $H^{(i)}_0:p_i=\py{Rational(1/facce)}$ contro $H^{(i)}_A:p_i>\py{Rational(1/facce)}$.
+Abbiamo un dado con $\py{facce}$ facce numerate da $1$ a $\py{facce}$. Sospettiamo che il dado non sia perfettamente equilibrato. Quindi per $i=1,\dots,\py{facce}$ testiamo le seguenti ipotesi: $H^{(i)}_0:p_i=\py{Rational(1/facce)}$ contro $H^{(i)}_A:p_i>\py{Rational(1/facce)}$.
 
 Fissiamo una significatività $\alpha$ e, per $X\sim B(\py{lanci}, \py{Rational(1/facce) } )$, sia $k_\alpha$ tale che $\alpha\approx\Pr(X>k_\alpha)$. 
 
-Lanciamo il dado $\py{lanci}$ volte e registriamo la frequenza assoluta $k_i$ dell $i$-esima faccia. Se $k_i>k_\alpha$ scartiamo $H^{(i)}_0$ e dichiariamo il dado difettato. Qual è (in funzione di $\alpha$) la probabilità che un dado equilibrato venga dichiarato difettato? Si risponda per i seguenti $2$ scenari
+Lanciamo il dado $\py{lanci}$ volte e registriamo la frequenza assoluta $k_i$ dell $i$-esima faccia. Se per qualche $i$ osserviamo $k_i>k_\alpha$ dichiariamo il dado difettato. Qual è (in funzione di $\alpha$) la probabilità che il dado venga dichiarato difettato anche se equilibrato? Si risponda per i seguenti $2$ scenari
 
 \begin{itemize}
-\item[1.] I test di ipotesi vengono fatti ciascuno con una serie diversa di $\py{lanci}$ lanci
+\item[1.] I test di ipotesi per $i=1,\dots,\py{facce}$ vengono fatti ciascuno con una serie diversa di $\py{lanci}$ lanci
 \item[2.] La stessa serie di $\py{lanci}$ lanci viene usata per tutti test (trascuriamo la possibilità che due test possano essere contemporaneamente positivi).
 \end{itemize}
 
