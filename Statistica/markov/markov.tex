@@ -1,0 +1,164 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{calc} 
+\usepackage{pythontex}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip2ex
+\newcounter{quesito}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern0ex}}{\par\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\par\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\par\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Esperimento con catene di Markov (senza definirle)
+
+\end{minipage}}
+
+
+\begin{pycode}
+import random
+random.seed(258346435)
+ESAME = False
+\end{pycode}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\def\pyl#1{\py{latex(#1)}}
+\everymath{\displaystyle}
+\renewcommand{\arraystretch}{2}
+\begin{pycode}
+from sympy import *
+units = Integer( random.choice([2,3,4,5,6,7] ) )
+pw =  Integer(6)
+pz =  Integer(6)
+wp =  Integer(2)
+wz =  Integer(1)
+zw =  Integer(5)
+M = Matrix([ [100-pz-pw, wp,        0     ],
+             [pw,        100-wp-wz, zw    ],
+             [pz,        wz,        100-zw] ] )
+
+x0 = Matrix([ 0, units, 0 ] )
+
+d = (M/100).eigenvals()
+autovalori = dict( zip( [r'\lambda_1', r'\lambda_2', r'\lambda_3'], list(d.keys() ) ) )
+
+p = Symbol('p')
+w = Symbol('w')
+z = Symbol('z')
+
+
+M1 = M - 100*eye(3)
+M1 = M1.row_insert(3, Matrix([ [1, 1, 1] ] ) )
+M1 = M1.col_insert(3, Matrix([0, 0, 0, units] ) )
+equilibrio = solve_linear_system(M1, p,w,z)
+
+\end{pycode}
+Vogliamo modellare il trasferimento di nutrienti nella catena alimentare di un acquario. La catena alimentare consite di tre compartimenti: phytoplankton ({\sf P}), acqua ({\sf W}), zooplankton ({\sf Z}).
+
+Dissolviamo $\py{units}$ unità del radioisotopo $^{14}C$. Qui sotto riassumiamo le percentuali di $^{14}C$ che ogni ora passano tra i compartimenti. Possiamo assumere che la concentrazione di radioisotopo nel sistema rimanga constante quindi gli isotopi che non vengono trasferiti rimangono nello stesso compartimento (nel grafico sono sottointese)
+
+\hfil
+\begin{tikzpicture}[font=\sffamily]
+ 
+        % Setup the style for the states
+        \tikzset{node style/.style={state, 
+                                    minimum width=1.5cm,
+                                    line width=0.5mm,
+                                    fill=gray!20!white}}
+ 
+        % Draw the states
+        \node[node style] at (0, 0)     (P)     {P};
+        \node[node style] at (6, 0)     (W)     {W};
+        \node[node style] at (12, 0)    (Z)     {Z};
+ 
+        % Connect the states with arrows
+        \draw[every loop,
+              auto=right,
+              line width=0.5mm,
+              >=latex]
+            (P)     edge[bend right=20, auto=right]  node {$\py{pz}\%$} (Z)
+            (P)     edge[bend right=5, auto=right]   node {$\py{pw}\%$} (W)
+           %(W)     edge[bend right=30]            node {0.3} (P)
+            (W)     edge[bend right=5, auto=right]  node {$\py{wz}\%$} (Z)
+            (Z) edge[bend right=20]                  node {$\py{zw}\%$} (W)
+            (W) edge[bend right=20, auto=right]      node {$\py{wp}\%$} (P);
+\end{tikzpicture}
+
+
+
+
+\begin{itemize}
+\item[1.]  Scrivere la matrice $M$ che descrive l'evoluzione del processo $\vec x_{n+1}=M\vec x_{n}$ dove 
+$\vec x_n\ =\ 
+% \begin{bmatrix*}[l]
+% p_n\\
+% z_n\\
+% w_n\\
+% \end{bmatrix*}
+[p_n,w_n,z_n]^{\rm T}$ dove $p_n$, $w_n$, e $z_n$ sono le quantità radioisotopo dopo $n$ ore nei rispettivi compartimenti.
+\item[2.] Descrivere $\vec x_{0}$ lo stato iniziale del sistema descritto nel testo.
+\item[3.] Calcolare $\vec x_{1}$
+\item[4.] La matrice $M$ ha questo insieme di autovalori 
+
+\hfil$\py{latex(autovalori)[8:-9 ].replace(':','=')}$.\medskip
+
+Dire se partendo da $\vec x_0$ si raggiunge uno stato di equilibrio e nel caso calcolarlo.
+\end{itemize}
+
+
+
+\begin{answer}
+\vskip-4ex
+La matrice di transizione è {\color{blue}$M=\displaystyle\frac{1}{100}\pyl{M}$}\quad 
+Lo stato iniziale è {\color{blue}$\vec x_{0}=\pyl{x0}$\hfill Risposte 1 e 2} 
+
+{\color{blue}$\displaystyle\vec x_{1}\ =\ $}$M\,\vec x_{0}\ =\ \frac{1}{100}\pyl{M}\pyl{x0}\  =\ ${\color{blue}$\pyl{(M*x0)/100}$\hfill Risposta 3} 
+
+Notiamo che $|\lambda_2|, |\lambda_3|<|\lambda_1|=1$. Quindi la concentrazione tende all'equilibrio $\vec x_\infty$ che è l'autovettore corrispondente a $\lambda_1=1$. Possiamo calcolare  $\vec x_\infty$ risolvendo il sistema:
+
+\hfil$M\,\big[p,\ w,\ z\big]^T = \,\big[p,\ w,\ z\big]^T$\qquad e\qquad $p+w+z=\py{units}$
+
+
+
+{\color{blue}$p_\infty=\pyl{equilibrio[p]}$,\quad $w_\infty=\pyl{equilibrio[w]}$,\quad $z_\infty=\pyl{equilibrio[z]}$\hfill Risposta 4} 
+\end{answer}
+\end{question}
+
+
+
+
+
+
+\end{document}
+
