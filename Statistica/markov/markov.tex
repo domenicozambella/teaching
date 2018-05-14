@@ -42,7 +42,7 @@ Esperimento con catene di Markov (senza definirle)
 
 \begin{pycode}
 import random
-random.seed(258346435)
+random.seed(939399435)
 ESAME = False
 \end{pycode}
 
@@ -55,27 +55,32 @@ ESAME = False
 \def\Pr{{\rm Pr\,}}
 \def\pyl#1{\py{latex(#1)}}
 \everymath{\displaystyle}
-\renewcommand{\arraystretch}{2}
+\def\nicefrac#1#2{#1/#2}
+\renewcommand{\arraystretch}{1.3}
 \begin{pycode}
 from sympy import *
-units = Integer( random.choice([2,3,4,5,6,7] ) )
-pw =  Integer(6)
-pz =  Integer(6)
-wp =  Integer(2)
-wz =  Integer(1)
-zw =  Integer(5)
-M = Matrix([ [100-pz-pw, wp,        0     ],
-             [pw,        100-wp-wz, zw    ],
-             [pz,        wz,        100-zw] ] )
 
-x0 = Matrix([ 0, units, 0 ] )
+while True :
+    units = Integer( random.choice([5,10] ) )
+    tp  =  random.sample( [1,2,3,4,5,6], 5 ) 
+    pw, pz, wp, wz, zw = [Integer(i) for i in tp] 
 
-d = (M/100).eigenvals()
-autovalori = dict( zip( [r'\lambda_1', r'\lambda_2', r'\lambda_3'], list(d.keys() ) ) )
+    M = Matrix([ [100-pz-pw, wp,        0     ],
+                [pw,        100-wp-wz, zw    ],
+                [pz,        wz,        100-zw] ] )
 
-p = Symbol('p')
-w = Symbol('w')
-z = Symbol('z')
+    x0 = Matrix([ 0, units, 0 ] )
+
+    d = (M/100).eigenvals()
+
+    autovalori = dict( zip( [r'\lambda_1', r'\lambda_2', r'\lambda_3'], 
+                           list(d.keys() ) ) )
+    REAL = True
+    for i, a in enumerate( list(d.keys() ) ):
+        REAL = REAL and (0 == im(a))
+    if REAL: break
+
+p, w, z = symbols('p w z')
 
 
 M1 = M - 100*eye(3)
@@ -84,7 +89,7 @@ M1 = M1.col_insert(3, Matrix([0, 0, 0, units] ) )
 equilibrio = solve_linear_system(M1, p,w,z)
 
 \end{pycode}
-Vogliamo modellare il trasferimento di nutrienti nella catena alimentare di un acquario. La catena alimentare consite di tre compartimenti: phytoplankton ({\sf P}), acqua ({\sf W}), zooplankton ({\sf Z}).
+Vogliamo modellare il trasferimento di nutrienti nella catena alimentare di un acquario. La catena alimentare consite di tre compartimenti: phytoplankton ({\sf P}), water ({\sf W}), zooplankton ({\sf Z}).
 
 Dissolviamo $\py{units}$ unità del radioisotopo $^{14}C$. Qui sotto riassumiamo le percentuali di $^{14}C$ che ogni ora passano tra i compartimenti. Possiamo assumere che la concentrazione di radioisotopo nel sistema rimanga constante quindi gli isotopi che non vengono trasferiti rimangono nello stesso compartimento (nel grafico sono sottointese)
 
@@ -109,8 +114,8 @@ Dissolviamo $\py{units}$ unità del radioisotopo $^{14}C$. Qui sotto riassumiamo
               >=latex]
             (P)     edge[bend right=20, auto=right]  node {$\py{pz}\%$} (Z)
             (P)     edge[bend right=5, auto=right]   node {$\py{pw}\%$} (W)
-           %(W)     edge[bend right=30]            node {0.3} (P)
-            (W)     edge[bend right=5, auto=right]  node {$\py{wz}\%$} (Z)
+           %(W)     edge[bend right=30]              node {0.3} (P)
+            (W)     edge[bend right=5, auto=right]   node {$\py{wz}\%$} (Z)
             (Z) edge[bend right=20]                  node {$\py{zw}\%$} (W)
             (W) edge[bend right=20, auto=right]      node {$\py{wp}\%$} (P);
 \end{tikzpicture}
@@ -143,9 +148,9 @@ Dire se partendo da $\vec x_0$ si raggiunge uno stato di equilibrio e nel caso c
 La matrice di transizione è {\color{blue}$M=\displaystyle\frac{1}{100}\pyl{M}$}\quad 
 Lo stato iniziale è {\color{blue}$\vec x_{0}=\pyl{x0}$\hfill Risposte 1 e 2} 
 
-{\color{blue}$\displaystyle\vec x_{1}\ =\ $}$M\,\vec x_{0}\ =\ \frac{1}{100}\pyl{M}\pyl{x0}\  =\ ${\color{blue}$\pyl{(M*x0)/100}$\hfill Risposta 3} 
+{\color{blue}$\displaystyle\vec x_{1}\ =\ $}$M\,\vec x_{0}\ =\ \frac{1}{100}\pyl{M}\pyl{x0}\  =\ ${\color{blue}$\py{latex((M*x0)/100).replace('frac','nicefrac')}$\hfill Risposta 3} 
 
-Notiamo che $|\lambda_2|, |\lambda_3|<|\lambda_1|=1$. Quindi la concentrazione tende all'equilibrio $\vec x_\infty$ che è l'autovettore corrispondente a $\lambda_1=1$. Possiamo calcolare  $\vec x_\infty$ risolvendo il sistema:
+Notiamo che $|\lambda_2|, |\lambda_3|<|\lambda_1|=1$. Quindi la concentrazione tende all'autovettore corrispondente a $\lambda_1=1$. Possiamo calcolarlo risolvendo il sistema:
 
 \hfil$M\,\big[p,\ w,\ z\big]^T = \,\big[p,\ w,\ z\big]^T$\qquad e\qquad $p+w+z=\py{units}$
 
@@ -158,7 +163,104 @@ Notiamo che $|\lambda_2|, |\lambda_3|<|\lambda_1|=1$. Quindi la concentrazione t
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\def\pyl#1{\py{latex(#1) } }
+\everymath{\displaystyle}
+\def\nicefrac#1#2{#1/#2}
+\renewcommand{\arraystretch}{1.3}
+\begin{pycode}
+from sympy import *
+if not ESAME: random.seed(93393435)
 
+while True :
+    units = Integer( random.choice([5,10] ) )
+    tp  =  random.sample( [1,2,3,4,5,6], 6 ) 
+    ns, nv, sn, sv, vn, vs = [Integer(i) for i in tp] 
+
+    M = Matrix([ [10-ns-nv, sn,        vn       ],
+                [ns,         10-sn-sv, vs       ],
+                [nv,         sv,        10-vn-vs] ] )
+
+    x0 = Matrix([ 1, 0, 0 ] )
+
+    d = (M/10).eigenvals()
+
+    autovalori = dict( zip( [r'\lambda_1', r'\lambda_2', r'\lambda_3'], 
+                           list(d.keys() ) ) )
+    REAL = True
+    for i, a in enumerate( list(d.keys() ) ):
+        REAL = REAL and (0 == im(a))
+    if REAL: break
+
+n, s, v = symbols('n s v')
+
+M1 = M - 10*eye(3)
+M1 = M1.row_insert(3, Matrix([ [1, 1, 1] ] ) )
+M1 = M1.col_insert(3, Matrix([0, 0, 0, 1] ) )
+equilibrio = solve_linear_system(M1, n, s, v)
+
+\end{pycode}
+John’s Truck Rental does business in North Carolina ({\sf NC}), South Carolina ({\sf SC}) and Virginia ({\sf VA}). As with most rental agencies, customers may return the vehicle that they have rented at any of the company’s franchises throughout the three state area. In order to keep track of the movement of its vehicles, the company has accumulated data on the percentage of tracks rented one location that are  returned in a different location. The data are represented with the following diagram:
+
+\hfil
+\begin{tikzpicture}[font=\sffamily]
+ 
+        % Setup the style for the states
+        \tikzset{node style/.style={state, 
+                                    minimum width=1.5cm,
+                                    line width=0.5mm,
+                                    fill=gray!20!white}}
+ 
+        % Draw the states
+        \node[node style] at (0, 0)     (N)     {NC};
+        \node[node style] at (6, 0)     (S)     {SC};
+        \node[node style] at (12, 0)    (V)     {VA};
+ 
+        % Connect the states with arrows
+        \draw[every loop,
+              auto=right,
+              line width=0.5mm,
+              >=latex]
+            (N) edge[bend right=20, auto=right]  node {$\py{10*nv}\%$} (V)
+            (N) edge[bend right=7, auto=right]   node {$\py{10*ns}\%$} (S)
+            (S) edge[bend right=7, auto=right]   node {$\py{10*sn}\%$} (N)
+            (S) edge[bend right=7, auto=right]   node {$\py{10*sv}\%$} (V)
+            (V) edge[bend right= 7, auto=right]  node {$\py{10*vs}\%$} (S)
+            (V) edge[bend right=20, auto=right]  node {$\py{10*vn}\%$} (N);
+\end{tikzpicture}
+
+
+\begin{itemize}
+\item[1.] If a truck is presently in North Carolina, what is the probability that it will again be in North Carolina after it has been rented twice? (Si usi un vettore $\vec x_{t} = [n_t,s_t,v_t]^{\rm T}$ per indicare la probabilità che dopo $t$ noleggi l'automezzo si trovi in ciascuno dei 3 stati indicati. Si scriva una matrice $M$ che  che descrive l'evoluzione delle probabilità $\vec x_{t+1}=M\vec x_{t}$)
+
+\item[2.] What fraction of the life of a truck is spent in each of the three states? (La vita di un automezzo è sufficientemente lunga da poter assumere che trascorre tutto ilsuo tempo in condizioni di `steady-state'.)
+\end{itemize}
+
+\begin{answer}
+\vskip-4ex
+La matrice di transizione è $M=\displaystyle\frac{1}{10}\pyl{M}$. Lo stato iniziale è $\vec x_{0}=\pyl{x0}$ quindi 
+
+$\displaystyle\vec x_{1}\ =\ M\,\vec x_{0}\ =\ \frac{1}{10}\pyl{M}\pyl{x0}\ =\ \frac{1}{10}\pyl{M*x0}$\hfil e\hfil $\displaystyle\vec x_{2}\ =\ M\,\vec x_{1}\ =\ \frac{1}{100}\pyl{M}\pyl{M*x0}\ =\ \py{latex( (M*M*x0)/100 ).replace('frac','nicefrac') }$
+
+\medskip
+{\color{blue}$n_2=\py{ ((M*M*x0)/100)[0] }$\hfill Risposta 1}
+
+\medskip
+La probabilità all'equilibrio la calcoliamo risolvendo il sistema:
+
+\hfil$M\,\big[n,\ s,\ v\big]^T = \,\big[n,\ s,\ v\big]^T$\qquad e\qquad $n+s+v=1$
+
+
+
+{\color{blue}$n_\infty=\pyl{equilibrio[n]}$,\quad $s_\infty=\pyl{equilibrio[s]}$,\quad $v_\infty=\pyl{equilibrio[v]}$\hfill Risposta 2} 
+\end{answer}
+\end{question}
 
 \end{document}
 
