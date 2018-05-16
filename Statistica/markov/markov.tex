@@ -61,13 +61,16 @@ ESAME = False
 from sympy import *
 
 while True :
-    units = Integer( random.choice([5,10] ) )
     tp  =  random.sample( [1,2,3,4,5,6], 5 ) 
     pw, pz, wp, wz, zw = [Integer(i) for i in tp] 
+    if pw+pz<=10 and wz+wz<=10 : break 
+    
+units = Integer( random.choice([5,10] ) )
 
+while True :
     M = Matrix([ [100-pz-pw, wp,        0     ],
-                [pw,        100-wp-wz, zw    ],
-                [pz,        wz,        100-zw] ] )
+                 [pw,        100-wp-wz, zw    ],
+                 [pz,        wz,        100-zw] ] )
 
     x0 = Matrix([ 0, units, 0 ] )
 
@@ -83,7 +86,7 @@ while True :
 p, w, z = symbols('p w z')
 
 
-M1 = M - 100*eye(3)
+M1 = Rational(1,100)*M - eye(3)
 M1 = M1.row_insert(3, Matrix([ [1, 1, 1] ] ) )
 M1 = M1.col_insert(3, Matrix([0, 0, 0, units] ) )
 equilibrio = solve_linear_system(M1, p,w,z)
@@ -179,10 +182,11 @@ from sympy import *
 if not ESAME: random.seed(93393435)
 
 while True :
-    units = Integer( random.choice([5,10] ) )
     tp  =  random.sample( [1,2,3,4,5,6], 6 ) 
     ns, nv, sn, sv, vn, vs = [Integer(i) for i in tp] 
+    if ns+nv<=10 and sn+sv<=10 and vn+vs<=10: break
 
+while True :    
     M = Matrix([ [10-ns-nv, sn,        vn       ],
                 [ns,         10-sn-sv, vs       ],
                 [nv,         sv,        10-vn-vs] ] )
