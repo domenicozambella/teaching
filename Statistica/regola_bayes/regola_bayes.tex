@@ -1,10 +1,13 @@
 \documentclass[11pt,twoside,a4paper]{article}
+\usepackage[italian]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=25mm, right=25mm]{geometry}
 \usepackage{amsmath}
 \usepackage{calc} 
 \usepackage{pythontex}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
 \newcommand{\mylabel}[1]{#1\hfill}
 \renewenvironment{itemize}
   {\begin{list}{$\triangleright$}{%
@@ -39,6 +42,7 @@ Domande per verificare la comprensione del significato di probabilità condizion
 \begin{pycode}
 import random
 random.seed(25874445)
+ESAME = False
 \end{pycode}
 
 
@@ -259,13 +263,13 @@ pfn = round(pfn, 3)
 Abbiamo $\py{n_eq+n_di}$ monete di cui $\py{n_eq}$ sono equilibrate, le altre sono difettose e hanno probabilità $\py{p}$ di dare come risultato {\tt Testa}. Scegliamo a caso una di queste $\py{n_eq+n_di}$ monete. Per decidere se è equilibrata o no, la lanciamo $\py{n_sample}$ volte. Se otteniamo $\ge\py{k}$ volte {\tt Testa\/} diremo che è èquilibrata. Qual è la probabilità di dichiarare equilibrata una moneta che non lo è? Dei seguenti dati si usino quelli pertinenti
 
 
-$\Pr(X\ge \py{k})\ =\ \py{1-spec}$\hfill se $X\sim B(\py{n_sample},0.5)$\kern50ex
+$\Pr(X\ge \py{k})\ =\ \py{1-spec}$\hfill se $X\sim B(\py{n_sample},0.5)$\kern53ex
 
-$\phantom{\Pr(X\ge \py{k})}\ =\ \py{sens}$\hfill se $X\sim B(\py{n_sample},\py{p})$\kern50ex
+$\phantom{\Pr(X\ge \py{k})}\ =\ \py{sens}$\hfill se $X\sim B(\py{n_sample},\py{p})$\kern53ex
 
-$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1, n_monete,0.5), 3)}$\hfill se $X\sim B(\py{n_monete},0.5)$\kern50ex
+$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1, n_monete,0.5), 3)}$\hfill se $X\sim B(\py{n_monete},0.5)$\kern53ex
 
-$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1, n_monete,  p), 3)}$\hfill se $X\sim B(\py{n_monete},\py{p})$\kern50ex
+$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1, n_monete,  p), 3)}$\hfill se $X\sim B(\py{n_monete},\py{p})$\kern53ex
 
 
 \begin{answer}
@@ -288,6 +292,116 @@ $\displaystyle\Pr(\neg D ~|~T_{\ge\py{k}})\ =\ \frac{\Pr(T_{\ge\py{k}}|\neg D)\ 
 
 \end{answer}
 \end{question}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\def\pyl#1{\py{latex(#1) } }
+\everymath{\displaystyle}
+\def\nicefrac#1#2{#1/#2}
+\renewcommand{\arraystretch}{1.3}
+\begin{pycode}
+from sympy import *
+#if not ESAME: 
+random.seed(940934)
+while True :
+    tp  =  random.sample( [1,2,3,4,5,6], 6 ) 
+    pab, pac, pba, pbc, pca, pcb = [Integer(i) for i in tp] 
+    if pab+pac<=10 and pba+pbc<=10 and pca+pcb<=10: break
+    
+M = Matrix([ [10-pab-pac, pba,        pca       ],
+             [pab,         10-pba-pbc, pcb       ],
+             [pac,         pbc,        10-pca-pcb] ] )
+    
+a, b, c = symbols('a b c')
+
+M1 = Rational(1,10)*M - eye(3)
+M1 = M1.row_insert(3, Matrix([ [1, 1, 1] ] ) )
+M1 = M1.col_insert(3, Matrix([0, 0, 0, 1] ) )
+equilibrio = solve_linear_system(M1, a, b, c)
+
+\end{pycode}
+Un rospo vive in uno stagno e passa le sue giornate su tre foglie di ninfea che indichiamo con {\sf a}, {\sf b}, e {\sf c}. Ogni ora salta da una all'altra con probabilità riassunte nel diagramma sottostante (la probabilità di restare nello stesso punto è lasciata implicita). 
+
+
+
+
+\hfil
+\begin{tikzpicture}[font=\sffamily]
+ 
+        % Setup the style for the states
+        \tikzset{node style/.style={state, 
+                                    minimum width=1.2cm,
+                                    line width=0.5mm,
+                                    fill=gray!20!white}}
+ 
+        % Draw the states
+        \node[node style] at (0, 0)     (a)     {a};
+        \node[node style] at (6, 0)     (b)     {b};
+        \node[node style] at (12, 0)    (c)     {c};
+ 
+        % Connect the states with arrows
+        \draw[every loop,
+              auto=right,
+              line width=0.5mm,
+              >=latex]
+            (a) edge[bend right=20, auto=right]  node {$\py{10*pac}\%$} (c)
+            (a) edge[bend right=7, auto=right]   node {$\py{10*pab}\%$} (b)
+            (b) edge[bend right=7, auto=right]   node {$\py{10*pba}\%$} (a)
+            (b) edge[bend right=7, auto=right]   node {$\py{10*pbc}\%$} (c)
+            (c) edge[bend right= 7, auto=right]  node {$\py{10*pcb}\%$} (b)
+            (c) edge[bend right=20, auto=right]  node {$\py{10*pca}\%$} (a);
+\end{tikzpicture}
+
+Se guardiamo in un momento qualsiasi troveremo il rospo in {\sf a}, {\sf b}, o {\sf c} con probabilità rispettivamente $\pyl{equilibrio[a]}$, $\pyl{equilibrio[b]}$, e $\pyl{equilibrio[c]}$. Supponiamo di osservare il rospo in {\sf a} al tempo $t=1$. 
+
+\begin{itemize}
+\item[1.] Qual è la probabilità che al tempo $t=2$ il rospo si trovi in {\sf b}~?
+
+\item[2.] Qual è la probabilità che al tempo $t=0$ il rospo fosse in {\sf c}~?
+\end{itemize}
+
+\begin{answer}
+
+Siano $R_t$ le variabili aleatorie che danno la posizione del rospo al tempo $t$.
+
+Dal testo leggiamo $\Pr(R_t={\sf a})=\py{equilibrio[a]}$, $\Pr(R_t={\sf b})=\py{equilibrio[b]}$, e $\Pr(R_t={\sf c})=\py{equilibrio[c]}$
+
+Dal diagramma leggiamo 
+
+$\Pr(R_{t+1}={\sf a}~|~R_t={\sf b})\ =\ ${\color{blue}$\py{pba/10}$\hfill Risposta 1}
+
+$\Pr(R_{t+1}={\sf c}~|~R_t={\sf a})\ =\ \py{pac/10}$
+
+Quindi
+
+$\Pr(R_0={\sf c}~|~R_1={\sf a})
+\ =\ \frac{\Pr(R_1={\sf a}\,|\,R_0={\sf c})\cdot\Pr(R_0={\sf c})}{\Pr(R_1={\sf a})}
+\ =\ \frac{(\py{pac/10})\cdot(\py{equilibrio[c]})}{\py{equilibrio[a]}}$
+
+$\phantom{\Pr(R_0={\sf c}~|~R_1={\sf a})}
+\ =\ ${\color{blue}$\py{pac*equilibrio[c]/(equilibrio[a]*10)}$\hfill Risposta 2}
+
+\end{answer}
+
+
+
+\end{question}
+
+
+
+
+
+
 
 \end{document}
 
@@ -322,13 +436,13 @@ pos = round(pos, 3)
 \end{pycode}
 Abbiamo $\py{n_eq+n_di}$ monete di cui $\py{n_eq}$ sono equilibrate, le altre sono difettose e hanno probabilità $\py{p}$ di dare come risultato {\tt Testa}. Scegliamo a caso una di queste $\py{n_eq+n_di}$ monete. Lanciandola $n=\py{n_sample}$ volte otteniamo $\py{k}$ volte {\tt Testa\/}. Qual è la probabilità che si tratti di una moneta non equilibrata? Si usi che
 
-$\Pr(X=\py{k})\ =\ \py{round(1-spec, 4)}$\hfill se $X\sim B(n,0.5)$\kern50ex
+$\Pr(X=\py{k})\ =\ \py{round(1-spec, 4)}$\hfill se $X\sim B(n,0.5)$\kern53ex
 
-$\phantom{\Pr(X=\py{k})}\ =\ \py{sens}$\hfill se $X\sim B(n,\py{p})$\kern50ex
+$\phantom{\Pr(X=\py{k})}\ =\ \py{sens}$\hfill se $X\sim B(n,\py{p})$\kern53ex
 
-$\Pr(X\ge \py{k})\ =\ \py{round(1-binom.cdf(k-1,n_sample,0.5), 4)}$\hfill se $X\sim B(n,0.5)$\kern50ex
+$\Pr(X\ge \py{k})\ =\ \py{round(1-binom.cdf(k-1,n_sample,0.5), 4)}$\hfill se $X\sim B(n,0.5)$\kern53ex
 
-$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1,n_sample,p), 4)}$\hfill se $X\sim B(n,\py{p})$\kern50ex
+$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1,n_sample,p), 4)}$\hfill se $X\sim B(n,\py{p})$\kern53ex
 
 \begin{answer} 1
 
@@ -453,11 +567,5 @@ $\Pr(T_{\ge\py{k-i}})=\Pr(T_{\ge\py{k-i}}|D)\ \Pr(D) + \Pr(T_{\ge\py{k-i}}|\neg 
 
 $\displaystyle\Pr(D ~|~T_{\ge\py{k-i}})\ =\ \frac{\Pr(T_{\ge\py{k-i}}|D)\ \Pr(D)}{\Pr(T_{\ge\py{k-i}})}$ {\color{blue} $=\py{ppv}$\hfill Risposta}
 
-
-
 \end{answer}
-
-\end{xquestion}
-
-
 
