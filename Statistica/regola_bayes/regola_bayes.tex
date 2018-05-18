@@ -28,14 +28,16 @@
 \parskip2ex
 \def\Pr{{\rm Pr\,}}
 \newcounter{quesito}
-\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
-\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.}}{\vspace{\parskip}}
 \newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
 
 \pagestyle{empty} 
 
 \begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
 Domande per verificare la comprensione del significato di probabilità condizionata; dei termini che descrivono l'attendibilità dei test diagnostici; della regola di Bayes.
+\end{minipage}}
 
 \bigskip\bigskip
 
@@ -131,17 +133,17 @@ $\Pr(A)=\py{prev}\%$\hfill prevalenza\kern22ex
 
 $\Pr(\neg A)=1-\Pr(A)=\py{100-prev}\%$
 
-$\Pr(T_+|~ A)$ {\color{blue}$=\py{sens}\%$}\hfill sensitività\kern22ex \llap{\color{blue} Risposta 1}
+$\Pr(T_+|~ A)\ =\kern1ex${\color{blue}$\py{sens}\%$}\hfill sensitività\kern22ex \llap{\color{blue} Risposta 1}
 
 $\Pr(T_+|\neg A)=\py{100-spec}\%$\hfill probabilità falsi positivi\kern22ex
 
-$\Pr(T_-|\neg A)=1-P(T_+|\neg A)$ {\color{blue}$=\py{spec}\%$}\hfill specificità\kern22ex \llap{\color{blue} Risposta 2}
+$\Pr(T_-|\neg A)=1-P(T_+|\neg A)\ =\kern1ex${\color{blue}$\py{spec}\%$}\hfill specificità\kern22ex \llap{\color{blue} Risposta 2}
 
 $\Pr(T_+)=\Pr(T_+|~A)\ \Pr(A) + \Pr(T_+|\neg A)\ \Pr(\neg A)=\py{pos}\%$
 
 
 
-$\displaystyle\Pr(A ~|~T_+)\ =\ \frac{\Pr(T_+|~A)\Pr(A)}{\Pr(T_+)}$ {\color{blue}$=\py{ppv}\%$}\hfill valore predittivo positivo\kern22ex \llap{\color{blue} Risposta 3} 
+$\displaystyle\Pr(A ~|~T_+)\ =\ \frac{\Pr(T_+|~A)\Pr(A)}{\Pr(T_+)}\ =\kern1ex${\color{blue}$\py{ppv}\%$}\hfill valore predittivo positivo\kern22ex \llap{\color{blue} Risposta 3} 
 
 
 
@@ -181,9 +183,9 @@ $\Pr(T_+|~ A)=\py{sens}\%$\hfill sensitività\kern22ex
 
 $\Pr(T_+|\neg A)=\py{100-spec}\%$
 
-$\Pr(T_+)=\Pr(T_+|~A)\ \Pr(A) + \Pr(T_+|\neg A)\ \Pr(\neg A)$ {\color{blue} $=\py{pos}\%$\hfill Risposta 1}
+$\Pr(T_+)=\Pr(T_+|~A)\ \Pr(A) + \Pr(T_+|\neg A)\ \Pr(\neg A)\ =\kern1ex${\color{blue} $\py{pos}\%$\hfill Risposta 1}
 
-$\displaystyle\Pr(A ~|~T_+)\ =\ \frac{\Pr(T_+|~A)\Pr(A)}{\Pr(T_+)}$ {\color{blue} $=\py{ppv}\%$\hfill Risposta 2}
+$\displaystyle\Pr(A ~|~T_+)\ =\ \frac{\Pr(T_+|~A)\Pr(A)}{\Pr(T_+)}\ =\kern1ex${\color{blue}$\py{ppv}\%$\hfill Risposta 2}
 
 \end{answer}
 \end{question}
@@ -221,7 +223,7 @@ $\Pr(T_+|\neg R) = \py{100-spec}\%$\hfill when it does not rain,  rain is predic
 
 $\Pr(T_+) = \Pr(T_+|R)\cdot \Pr(R)+ \Pr(T_+|\neg R)\cdot \Pr(\neg R) = \py{pos}\%$ 
 
-$\displaystyle \Pr(R\,| T_+)\ =\ \frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr(T_+)\vphantom{\Big[}}$  {\color{blue} $=\py{ppv}\%$\hfill Risposta}
+$\displaystyle \Pr(R\,| T_+)\ =\ \frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr(T_+)\vphantom{\Big[}}\ =\kern1ex${\color{blue}$\py{ppv}\%$\hfill Risposta}
 
 \end{answer}
 \end{question}
@@ -286,9 +288,9 @@ $\Pr(T_{\ge\py{k}}| \neg D)=\py{1-spec}$
 
 $\Pr(T_{\ge\py{k}}| D)=\py{sens}$
 
-$\Pr(T_{\ge\py{k}})=\Pr(T_{\ge\py{k}}|D)\ \Pr(D) + \Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)$ {\color{blue} $=\py{pos}$}
+$\Pr(T_{\ge\py{k}})=\Pr(T_{\ge\py{k}}|D)\ \Pr(D) + \Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)\ =\kern1ex${\color{blue}$=\py{pos}$}
 
-$\displaystyle\Pr(\neg D ~|~T_{\ge\py{k}})\ =\ \frac{\Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)}{\Pr(T_{\ge\py{k}})}$ {\color{blue} $=\py{ppv}$\hfill Risposta}
+$\displaystyle\Pr(\neg D ~|~T_{\ge\py{k}})\ =\ \frac{\Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)}{\Pr(T_{\ge\py{k}})}\ =\kern1ex${\color{blue}$\py{ppv}$\hfill Risposta}
 
 \end{answer}
 \end{question}
@@ -362,13 +364,15 @@ Un rospo vive in uno stagno e passa le sue giornate su tre foglie di ninfea che 
             (c) edge[bend right=20, auto=right]  node {$\py{10*pca}\%$} (a);
 \end{tikzpicture}
 
-Se guardiamo in un momento qualsiasi troveremo il rospo in {\sf a}, {\sf b}, o {\sf c} con probabilità rispettivamente $\pyl{equilibrio[a]}$, $\pyl{equilibrio[b]}$, e $\pyl{equilibrio[c]}$. Supponiamo di osservare il rospo in {\sf a} al tempo $t=1$. 
+Se guardiamo in un momento qualsiasi troveremo il rospo in {\sf a}, {\sf b}, o {\sf c} con probabilità rispettivamente $\py{equilibrio[a]}$, $\py{equilibrio[b]}$, e $\py{equilibrio[c]}$. Supponiamo che il rospo sia in {\sf a} al tempo $t=1$ 
 
 \begin{itemize}
-\item[1.] Qual è la probabilità che al tempo $t=2$ il rospo si trovi in {\sf b}~?
+\item[1.] Qual è la probabilità che al tempo $t=2$ il rospo passi a {\sf b}~?
 
 \item[2.] Qual è la probabilità che al tempo $t=0$ il rospo fosse in {\sf c}~?
 \end{itemize}
+
+Esprimere il risultato come rapporto di numeri interi.
 
 \begin{answer}
 
@@ -378,9 +382,9 @@ Dal testo leggiamo $\Pr(R_t={\sf a})=\py{equilibrio[a]}$, $\Pr(R_t={\sf b})=\py{
 
 Dal diagramma leggiamo 
 
-$\Pr(R_{t+1}={\sf a}~|~R_t={\sf b})\ =\ ${\color{blue}$\py{pba/10}$\hfill Risposta 1}
+$\Pr(R_{t+1}={\sf a}~|~R_t={\sf b})\ =\kern1.2ex${\color{blue}$\py{pba/10}$\hfill Risposta 1}
 
-$\Pr(R_{t+1}={\sf c}~|~R_t={\sf a})\ =\ \py{pac/10}$
+$\Pr(R_{t+1}={\sf c}~|~R_t={\sf a})\ =\kern1ex\py{pac/10}$
 
 Quindi
 
@@ -389,7 +393,7 @@ $\Pr(R_0={\sf c}~|~R_1={\sf a})
 \ =\ \frac{(\py{pac/10})\cdot(\py{equilibrio[c]})}{\py{equilibrio[a]}}$
 
 $\phantom{\Pr(R_0={\sf c}~|~R_1={\sf a})}
-\ =\ ${\color{blue}$\py{pac*equilibrio[c]/(equilibrio[a]*10)}$\hfill Risposta 2}
+\ =\kern1.2ex${\color{blue}$\py{pac*equilibrio[c]/(equilibrio[a]*10)}$\hfill Risposta 2}
 
 \end{answer}
 
