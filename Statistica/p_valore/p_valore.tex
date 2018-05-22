@@ -99,19 +99,17 @@ if ESAME: n = random.choice([30,40,50])
 test = 'T-test a due code'
 if ESAME: test = random.choice(['T-test coda inferiore','T-test coda superiore', 'Z-test ($\sigma$ nota) a due code', 'Z-test ($\sigma$ nota) coda inferiore' 'Z-if ESAME: test ($\sigma$ nota) coda superiore'])
 
-pval = 0.05
-if ESAME: pval = random.choice([0.05,0.04,0.02, 0.01])
-
-factor =  random.choice([0.5,2])
+pval, pval2 = 0.05, 0.1
+if ESAME: pval, pval2 = random.sample([0.1, 0.05,0.04,0.02, 0.01], 2)
 
 dis = '\\ge'
 if ESAME: dis = random.choice(['\\le', '\\ge'] )
 
-if   dis=='\\le' : risposta = '= {:g}'.format(pval/factor)
-elif dis=='\\ge' : risposta = '= 1-{:g} = {:g}'.format(pval/factor, 1 - pval/factor)
+if   dis=='\\le' : risposta = '= {:g}'.format(pval2)
+elif dis=='\\ge' : risposta = '= 1-{:g} = {:g}'.format(pval2, 1 - pval2)
 \end{pycode}
 Abbiamo fatto un \py{test} con un campione di dimensione $n=\py{n}$ e abbiamo ottenuto come p-valore \py{pval}.
-Assumendo vera $H_0$, qual è la probabilità che, ripetendo il test una seconda volta con un campione \py{dim}, il p-valore risulti $\py{dis}\py{pval/factor}$~?
+Assumendo vera $H_0$, qual è la probabilità che, ripetendo il test una seconda volta con un campione \py{dim}, il p-valore risulti $\py{dis}\py{pval2}$~?
 
 Si scelga tra le seguenti opzioni la più opportuna.
 \begin{itemize}
@@ -127,7 +125,6 @@ Si scelga tra le seguenti opzioni la più opportuna.
 
 
 
-
 \begin{question} %333333333
 \begin{pycode}
 n = 25
@@ -136,11 +133,14 @@ if ESAME: n = random.choice([30,40,50])
 test = 'T-test a due code'
 if ESAME: test = random.choice(['T-test a due code', 'Z-test ($\sigma$ nota) a due code'])
 
+delta = 0.1
+if ESAME: delta = random.choice([0.2, 0.3, 0.4, 0.5, 0.6, 0.7])
+
 pval = 0.05
 if ESAME: pval = random.choice([0.05,0.04,0.02, 0.01])
 \end{pycode}
 Abbiamo fatto un \py{test} con un campione di dimensione $n=\py{n}$ e abbiamo ottenuto come p-valore \py{pval}.
-Assumendo vera $H_A$, qual è la probabilità che ripetendo il test una seconda volta con un campione della stessa dimensione il p-valore risulti di nuovo $\le\py{pval}$~?
+Assumendo vera $H_A$ con effect size \py{delta}, qual è la probabilità che ripetendo il test una seconda volta con un campione della stessa dimensione il p-valore risulti di nuovo $\le\py{pval}$~?
 
 Nel caso non sia possibile determinare il valore esatto ma solo un limite superiore/inferiore. Si scelga tra le seguenti opzioni la più opportuna.
 \begin{itemize}
@@ -161,6 +161,9 @@ Nel caso non sia possibile determinare il valore esatto ma solo un limite superi
 n = 25
 if ESAME: n = random.choice([30,40,50])
 
+delta = 0.1
+if ESAME: delta = random.choice([0.2, 0.3, 0.4, 0.5, 0.6, 0.7])
+
 test = 'T-test coda inferiore'
 if ESAME: test = random.choice(['T-test coda inferiore','T-test coda superiore', 'Z-test ($\sigma$ nota) coda inferiore' 'Z-test ($\sigma$ nota) coda superiore'])
 
@@ -168,7 +171,7 @@ pval = 0.05
 if ESAME: pval = random.choice([0.05,0.04,0.02, 0.01])
 \end{pycode}
 Abbiamo fatto un \py{test} con un campione di dimensione $n=\py{n}$ e abbiamo ottenuto come p-valore \py{pval}.
-Assumendo vera $H_A$, qual è la probabilità che ripetendo il test una seconda volta con un campione della stessa dimensione il p-valore risulti di nuovo $\le\py{pval}$~?
+Assumendo vera $H_A$ con effect size \py{delta}, qual è la probabilità che ripetendo il test una seconda volta con un campione della stessa dimensione il p-valore risulti di nuovo $\le\py{pval}$~?
 
 Nel caso non sia possibile determinare il valore esatto ma solo un limite superiore/inferiore. Si scelga tra le seguenti opzioni la più opportuna.
 \begin{itemize}
