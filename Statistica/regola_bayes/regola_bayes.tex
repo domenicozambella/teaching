@@ -332,7 +332,7 @@ M1 = M1.col_insert(3, Matrix([0, 0, 0, 1] ) )
 equilibrio = solve_linear_system(M1, a, b, c)
 
 \end{pycode}
-Un rospo vive in uno stagno e passa le sue giornate su tre foglie di ninfea che indichiamo con {\sf a}, {\sf b}, e {\sf c}. Ogni ora salta da una all'altra con probabilità riassunte nel diagramma sottostante (la probabilità di restare nello stesso punto è lasciata implicita). 
+Un rospo vive in uno stagno e passa le sue giornate saltando tra tre foglie di ninfea che indichiamo con {\sf a}, {\sf b}, e {\sf c}. Ogni ora salta da foglia una all'altra con probabilità riassunte nel diagramma sottostante (la probabilità di restare nello stesso punto è lasciata implicita). 
 
 
 
@@ -364,7 +364,7 @@ Un rospo vive in uno stagno e passa le sue giornate su tre foglie di ninfea che 
             (c) edge[bend right=20, auto=right]  node {$\py{10*pca}\%$} (a);
 \end{tikzpicture}
 
-Se guardiamo in un momento qualsiasi troveremo il rospo in {\sf a}, {\sf b}, o {\sf c} con probabilità rispettivamente $\py{equilibrio[a]}$, $\py{equilibrio[b]}$, e $\py{equilibrio[c]}$. Supponiamo che il rospo sia in {\sf a} al tempo $t=1$ 
+Osservando il rospo in un momento qualsiasi, lo troveremo in {\sf a}, {\sf b}, o {\sf c} con probabilità rispettivamente $\py{equilibrio[a]}$, $\py{equilibrio[b]}$, e $\py{equilibrio[c]}$. Supponiamo che il rospo sia in {\sf a} al tempo $t=1$ 
 
 \begin{itemize}
 \item[1.] Qual è la probabilità che al tempo $t=2$ il rospo passi a {\sf b}~?
@@ -378,9 +378,9 @@ Esprimere il risultato come rapporto di numeri interi.
 
 Siano $R_t$ le variabili aleatorie che danno la posizione del rospo al tempo $t$.
 
-Dal testo leggiamo $\Pr(R_t={\sf a})=\py{equilibrio[a]}$, $\Pr(R_t={\sf b})=\py{equilibrio[b]}$, e $\Pr(R_t={\sf c})=\py{equilibrio[c]}$
+Dal testo inferiamo che $\Pr(R_t={\sf a})=\py{equilibrio[a]}$, $\Pr(R_t={\sf b})=\py{equilibrio[b]}$, e $\Pr(R_t={\sf c})=\py{equilibrio[c]}$
 
-Dal diagramma leggiamo 
+Dal diagramma inferiamo 
 
 $\Pr(R_{t+1}={\sf a}~|~R_t={\sf b})\ =\kern1.2ex${\color{blue}$\py{pba/10}$\hfill Risposta 1}
 
