@@ -111,7 +111,7 @@ if   dis=='\\le' : risposta = '= {:g}'.format(pval/factor)
 elif dis=='\\ge' : risposta = '= 1-{:g} = {:g}'.format(pval/factor, 1 - pval/factor)
 \end{pycode}
 Abbiamo fatto un \py{test} con un campione di dimensione $n=\py{n}$ e abbiamo ottenuto come p-valore \py{pval}.
-Assumendo vera $H_0$, qual è la probabilità che, ripetendo il test una seconda volta con un campione \py{dim}, il p-valore risulti $\le\py{pval/factor}$~?
+Assumendo vera $H_0$, qual è la probabilità che, ripetendo il test una seconda volta con un campione \py{dim}, il p-valore risulti $\py{dis}\py{pval/factor}$~?
 
 Si scelga tra le seguenti opzioni la più opportuna.
 \begin{itemize}
@@ -197,7 +197,7 @@ Vogliamo testare $H_0:\mu=\py{mu[1]}$ contro $H_A:\mu\in\{\py{mu[0]},\py{mu[2]}\
 \begin{itemize}
 \item[1.] Che test facciamo?
 \item[2.] Se la media del campione di cui sopra è $\bar x=\py{xbar}$, quant'è il p-valore?
-\item[3.] Dato questo risultato, la probabilità di $\mu\in\{\py{mu[0]},\py{mu[2]}\}$ è \ldots (si scelga la risposta corretta ta le seguenti)\medskip
+\item[3.] Data questa media campionaria, la probabilità che $\mu\in\{\py{mu[0]},\py{mu[2]}\}$ è (si scelga tra le seguenti)\medskip
 
 (a) $=$ p-valore;\hfill (b) $=1-$ p-valore;\hfill (c) $2/3$;\hfill (d) Non ci sono sufficienti informazioni per rispondere.
 \end{itemize}
@@ -292,14 +292,14 @@ x = symbols('x')
 alpha = Integer( random.choice( [ 1, 2, 3, 4, 5 ] ) )
 n_tests = Integer( random.choice( [ 4, 6, 8 ] ) )
 \end{pycode}
-Assume the null hypothesis is true and denote by $P$ the random variable that gives the p-value you would get if you ran a test.
+Assume the null hypothesis is true and denote by $P$ the random variable that gives the p-value you would get if you run a test.
 
 \begin{itemize}
 \item[1.] What is the probability that $\Pr(P<\py{float(alpha/100) })$~?
 
-\item[2.] If we run $\py{n_tests}$ independent tests, what is the probability of incorrectly rejecting at least one of the null hypotheses with a significance $\alpha=\py{alpha}\%$~?
+\item[2.] If we run the tests $\py{n_tests}$ times (independently), what is the probability of incorrectly rejecting at least once the null hypotheses with a significance $\alpha=\py{alpha}\%$~?
 
-\item[3.] If we run $\py{n_tests}$ independent tests, how small do we have to make the cutoff ($\alpha$ above) to lower to $\py{alpha}\%$ the probability of incorrectly rejecting at least one of the null hypotheses? 
+\item[3.] If we run the tests $\py{n_tests}$ times (independently), how small do we have to make the cutoff ($\alpha$ above) to lower to $\py{alpha}\%$ the probability of incorrectly rejecting at least once the null hypotheses? 
 \end{itemize}
 
 \begin{answer}
