@@ -255,37 +255,6 @@ $\phantom{\Pr\big(\bar X\ge\py{xbar}\big)}\ =\ ${\color{blue}\tt\ 1 - norm.cdf(\
 
 
 
-\begin{question} %7777777777777777
-\begin{pycode}
-from sympy import Rational, Integer
-from scipy.stats import norm
-alpha = random.choice( [ 0.1, 0.05 ] ) 
-facce = Integer( random.choice([4,6,8]) )
-lanci = Integer( random.choice([100,200,300]) )
-\end{pycode}
-Abbiamo un dado con $\py{facce}$ facce numerate da $1$ a $\py{facce}$. Sospettiamo che il dado non sia perfettamente equilibrato. Quindi per $i=1,\dots,\py{facce}$ testiamo le seguenti ipotesi: $H^{(i)}_0:p_i=\py{Rational(1/facce)}$ contro $H^{(i)}_A:p_i>\py{Rational(1/facce)}$.
-
-Fissiamo una significatività $\alpha$ e, per $X\sim B(\py{lanci}, \py{Rational(1/facce) } )$, sia $k_\alpha$ tale che $\alpha\approx\Pr(X>k_\alpha)$. 
-
-Lanciamo il dado $\py{lanci}$ volte e registriamo la frequenza assoluta $k_i$ dell $i$-esima faccia. Se per qualche $i$ osserviamo $k_i>k_\alpha$ dichiariamo il dado difettato. Qual è (in funzione di $\alpha$) la probabilità che il dado venga dichiarato difettato anche se equilibrato? Si risponda per i seguenti $2$ scenari
-
-\begin{itemize}
-\item[1.] I test di ipotesi per $i=1,\dots,\py{facce}$ vengono fatti ciascuno con una serie diversa di $\py{lanci}$ lanci
-\item[2.] La stessa serie di $\py{lanci}$ lanci viene usata per tutti test (trascuriamo la possibilità che due test possano essere contemporaneamente positivi).
-\end{itemize}
-
-\begin{answer}
-
-{\color{blue}$1 - (1-\alpha)^{\py{Integer(facce) } }$\hfill Risposta 1}
-
-{\color{blue}$\py{Integer(facce) }\,\alpha$\hfill Risposta 2}
-
-\end{answer}
-\end{question}
-
-
-
-
 \clearpage
 \begin{question} %88888888888888
 \begin{pycode}
@@ -349,5 +318,36 @@ Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats
 
 
 \end{document}
+
+
+
+
+\begin{question} %7777777777777777
+\begin{pycode}
+from sympy import Rational, Integer
+from scipy.stats import norm
+alpha = random.choice( [ 0.1, 0.05 ] ) 
+facce = Integer( random.choice([4,6,8]) )
+lanci = Integer( random.choice([100,200,300]) )
+\end{pycode}
+Abbiamo un dado con $\py{facce}$ facce numerate da $1$ a $\py{facce}$. Sospettiamo che il dado non sia perfettamente equilibrato. Quindi per $i=1,\dots,\py{facce}$ testiamo le seguenti ipotesi: $H^{(i)}_0:p_i=\py{Rational(1/facce)}$ contro $H^{(i)}_A:p_i>\py{Rational(1/facce)}$.
+
+Fissiamo una significatività $\alpha$ e, per $X\sim B(\py{lanci}, \py{Rational(1/facce) } )$, sia $k_\alpha$ tale che $\alpha\approx\Pr(X>k_\alpha)$. 
+
+Lanciamo il dado $\py{lanci}$ volte e registriamo la frequenza assoluta $k_i$ dell $i$-esima faccia. Se per qualche $i$ osserviamo $k_i>k_\alpha$ dichiariamo il dado difettato. Qual è (in funzione di $\alpha$) la probabilità che il dado venga dichiarato difettato anche se equilibrato? Si risponda per i seguenti $2$ scenari
+
+\begin{itemize}
+\item[1.] I test di ipotesi per $i=1,\dots,\py{facce}$ vengono fatti ciascuno con una serie diversa di $\py{lanci}$ lanci
+\item[2.] La stessa serie di $\py{lanci}$ lanci viene usata per tutti test (trascuriamo la possibilità che due test possano essere contemporaneamente positivi).
+\end{itemize}
+
+\begin{answer}
+
+{\color{blue}$1 - (1-\alpha)^{\py{Integer(facce) } }$\hfill Risposta 1}
+
+{\color{blue}$\py{Integer(facce) }\,\alpha$\hfill Risposta 2}
+
+\end{answer}
+\end{question}
 
 
