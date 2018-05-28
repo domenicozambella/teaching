@@ -48,44 +48,7 @@ random.seed(25846456445)
 ESAME = False
 \end{pycode}
 
-\begin{question} %1
-\begin{pycode}
-dim = 'di dimensione $n = 25$'
-if ESAME: dim  = random.choice(['della stessa dimensione', 'di dimensione crescente', 'di dimesione $n =16$'])
-n = random.choice([2,3])
-
-test = 'T-test a due code'
-if ESAME: test = random.choice(['T-test coda inferiore','T-test coda superiore', 'Z-test ($\sigma$ nota) a due code', 'Z-test ($\sigma$ nota) coda inferiore' 'Z-if ESAME: test ($\sigma$ nota) coda superiore'])
-
-
-pval = 0.05
-if ESAME: pval = random.choice([0.05, 0.06, 0.07,0.08, 0.09, 0.1])
-
-dis = '\\le'
-if ESAME: dis = random.choice(['\\le', '\\ge'] )
-
-if   dis=='\\le' : risposta = '=1-({:0.2g})^{:d} = {:g}'.format(1-pval, n, 1-(1-pval)**n )
-elif dis=='\\ge' : risposta = '=1-({:0.2g})^{:d} = {:g}'.format(pval, n, 1-(pval)**n )
-\end{pycode}
-Ripetiamo \py{n} volte lo stesso \py{test} con campioni \py{dim}.
-Assumendo vera $H_0$, qual è la probabilità che in almeno uno di questi test il p-valore risulti $\py{dis}\py{pval}$~? 
-
-Si scelga tra le seguenti opzioni la più opportuna.
-\begin{itemize}
-\item[1.] La probabilità è $=\dots$ (specificare)
-\item[2.] La probabilità è $<\dots$ (specificare)
-\item[3.] La probabilità è $>\dots$ (specificare)
-\item[4.] Non ci sono sufficienti informazioni per stimare questa probabilità.
-\end{itemize}
-\begin{answer}
-{\color{blue}1. La probabilità è $\py{risposta}$.}
-\end{answer}
-\end{question}
-
-
-
-
-\begin{question} %22222222
+\begin{question} %11111111111
 \begin{pycode}
 n = 25
 if ESAME: n = random.choice([16,36])
@@ -122,6 +85,43 @@ Si scelga tra le seguenti opzioni la più opportuna.
 {\color{blue}1. La probabilità è $\py{risposta}$.}
 \end{answer}
 \end{question}
+
+
+\begin{question} %22222222222
+\begin{pycode}
+dim = 'di dimensione $n = 25$'
+if ESAME: dim  = random.choice(['della stessa dimensione', 'di dimensione crescente', 'di dimesione $n =16$'])
+n = random.choice([2,3])
+
+test = 'T-test a due code'
+if ESAME: test = random.choice(['T-test coda inferiore','T-test coda superiore', 'Z-test ($\sigma$ nota) a due code', 'Z-test ($\sigma$ nota) coda inferiore' 'Z-if ESAME: test ($\sigma$ nota) coda superiore'])
+
+
+pval = 0.05
+if ESAME: pval = random.choice([0.05, 0.06, 0.07,0.08, 0.09, 0.1])
+
+dis = '\\le'
+if ESAME: dis = random.choice(['\\le', '\\ge'] )
+
+if   dis=='\\le' : risposta = '=1-({:0.2g})^{:d} = {:g}'.format(1-pval, n, 1-(1-pval)**n )
+elif dis=='\\ge' : risposta = '=1-({:0.2g})^{:d} = {:g}'.format(pval, n, 1-(pval)**n )
+\end{pycode}
+Ripetiamo \py{n} volte lo stesso \py{test} con campioni \py{dim}.
+Assumendo vera $H_0$, qual è la probabilità che in almeno uno di questi test il p-valore risulti $\py{dis}\py{pval}$~? 
+
+Si scelga tra le seguenti opzioni la più opportuna.
+\begin{itemize}
+\item[1.] La probabilità è $=\dots$ (specificare)
+\item[2.] La probabilità è $<\dots$ (specificare)
+\item[3.] La probabilità è $>\dots$ (specificare)
+\item[4.] Non ci sono sufficienti informazioni per stimare questa probabilità.
+\end{itemize}
+\begin{answer}
+{\color{blue}1. La probabilità è $\py{risposta}$.}
+\end{answer}
+\end{question}
+
+
 
 
 
