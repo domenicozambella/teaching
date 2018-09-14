@@ -262,16 +262,22 @@ ppv = round(ppv, 3)
 pos = round(pos, 3)
 pfn = round(pfn, 3)
 \end{pycode}
-Abbiamo $\py{n_eq+n_di}$ monete di cui $\py{n_eq}$ sono equilibrate, le altre sono difettose e hanno probabilità $\py{p}$ di dare come risultato {\tt Testa}. Scegliamo a caso una di queste $\py{n_eq+n_di}$ monete. Per decidere se è equilibrata o no, la lanciamo $\py{n_sample}$ volte. Se otteniamo $\ge\py{k}$ volte {\tt Testa\/} diremo che è èquilibrata. Qual è la probabilità di dichiarare equilibrata una moneta che non lo è? Dei seguenti dati si usino quelli pertinenti
+Abbiamo $\py{n_eq+n_di}$ monete di cui $\py{n_eq}$ sono equilibrate, le altre sono difettose e hanno probabilità $\py{p}$ di dare come risultato {\tt Testa}. Scegliamo a caso una di queste $\py{n_eq+n_di}$ monete. Per decidere se è equilibrata o difettosa, la lanciamo $\py{n_sample}$ volte. Se otteniamo $\ge\py{k}$ volte {\tt Testa\/} diremo che è difettosa. Dei seguenti dati si usino quelli pertinenti
+
+1. Qual è la probabilità di dichiarare difettosa una moneta che non lo è? 
+
+2. Qual è la probabilità che una moneta dichiarata difettosa lo sia veramente?
 
 
-$\Pr(X\ge \py{k})\ =\ \py{1-spec}$\hfill se $X\sim B(\py{n_sample},0.5)$\kern53ex
+$\Pr(X\ge \py{k})\ =\ \py{1-spec}$\kern4ex se $X\sim B(\py{n_sample},0.5)$\kern13ex%
+$=\ \py{round(1-binom.cdf(k-1, n_monete,0.5), 3)}$\hfill se $X\sim B(\py{n_monete},0.5)$\kern10ex
 
-$\phantom{\Pr(X\ge \py{k})}\ =\ \py{sens}$\hfill se $X\sim B(\py{n_sample},\py{p})$\kern53ex
+$\phantom{\Pr(X\ge \py{k})}\ =\ \py{sens}$\kern4ex se $X\sim B(\py{n_sample},\py{p})$\kern13ex%
+$=\ \py{round(1-binom.cdf(k-1, n_monete,  p), 3)}$\hfill se $X\sim B(\py{n_monete},\py{p})$\kern10ex
 
-$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1, n_monete,0.5), 3)}$\hfill se $X\sim B(\py{n_monete},0.5)$\kern53ex
 
-$\phantom{\Pr(X\ge \py{k})}\ =\ \py{round(1-binom.cdf(k-1, n_monete,  p), 3)}$\hfill se $X\sim B(\py{n_monete},\py{p})$\kern53ex
+
+
 
 
 \begin{answer}
@@ -280,17 +286,17 @@ $D$\hfill insieme degli esperimenti fatti con monete sbilanciate\kern22ex
 
 $T_{\ge\py{k}}$\hfill insieme degli esperimenti con risultato $\ge\py{k}$\kern22ex
 
-$\Pr(D)=\py{prev}$\hfill prevalenza\kern22ex
+$\Pr(D)=\py{prev}$\hfill prevalenza del difetto\kern22ex
 
 $\Pr(\neg D)=1-\Pr(D)=\py{1-prev}$
 
-$\Pr(T_{\ge\py{k}}| \neg D)=\py{1-spec}$
+$\Pr(T_{\ge\py{k}}| \neg D)\ =\kern1ex${\color{blue} $\py{1-spec}$\hfill Risposta 1} 
 
-$\Pr(T_{\ge\py{k}}| D)=\py{sens}$
+$\Pr(T_{\ge\py{k}}| D)\ =\ \py{sens}$
 
-$\Pr(T_{\ge\py{k}})=\Pr(T_{\ge\py{k}}|D)\ \Pr(D) + \Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)\ =\kern1ex${\color{blue}$=\py{pos}$}
+$\Pr(T_{\ge\py{k}})=\Pr(T_{\ge\py{k}}|D)\ \Pr(D) + \Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)\ =\ \py{pos}$
 
-$\displaystyle\Pr(\neg D ~|~T_{\ge\py{k}})\ =\ \frac{\Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)}{\Pr(T_{\ge\py{k}})}\ =\kern1ex${\color{blue}$\py{ppv}$\hfill Risposta}
+$\displaystyle\Pr(D ~|~T_{\ge\py{k}})\ =\ \frac{\Pr(T_{\ge\py{k}}| D)\ \Pr(D)}{\Pr(T_{\ge\py{k}})}\ =\kern1ex${\color{blue}$\py{ppv}$\hfill Risposta 2}
 
 \end{answer}
 \end{question}

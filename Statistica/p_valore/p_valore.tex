@@ -201,15 +201,37 @@ Nel caso non sia possibile determinare il valore esatto ma solo un limite superi
 \item[4.] Non ci sono sufficienti informazioni per stimare questa probabilità.
 \end{itemize}
 \begin{answer}
-{\color{blue}\py{risposta}.} Qui l'argomento è meno semplice del caso di un test ad una coda quindi anche la risposta 4 è accettata come buona.
+{\color{blue}\py{risposta}.} Qui l'argomento è meno semplice del caso di un test ad una coda quindi anche la risposta 4 è valutata come buona.
 \end{answer}
 \end{question}
 
 
 
-
-
 \begin{question} %555555555555555
+\begin{pycode}
+from sympy import Rational, Integer
+from scipy.stats import binom
+n_fattori = random.choice( [ 2, 3, 4 ] ) 
+rango = random.choice( [20,30,40,50] )
+alpha = random.choice( [1, 2, 5] )
+\end{pycode}
+[da rivedere]
+
+Il disturbo $D$ è causato dalla presenza di almeno uno dei fattori $F_1,\dots,F_{\py{n_fattori}}$. Ovvero possiamo assumere che $D=F_1\cup\dots\cup F_{\py{n_fattori}}$. 
+
+Un gruppo di ricercatori, non sospettando nemmeno l'esistenza dei fattori $F_i$, ipotizza invece ci sia un associazione tra $D$ e un altro fattore $A$. La prevalinza $\Pr(D)$ nella popolazione generale è nota e i ricercatori vogliono fare il seguente test di ipotesi
+
+\hfil $H_0:\quad\Pr(D)=\Pr(D|A)$\hfil$H_A:\quad\Pr(D)<\Pr(D|A)$
+
+Quindi viene isolato un campione casuale dimensione $\py{rango}$ di individui con fattore $A$ e misurano la proporzione $p_0$ di individui affetti dal disturbo $D$.  Viene fatto un test binomiale.
+
+Si assuma che $A$ sia indipendente da $D$. Per semplificare assumiamo che $A, F_1,\dots,F_{\py{n_fattori}}$ siano tra loro mutualmente indipendenti e che $\Pr(F_i)=p$. Si calcoli la probabilità che venga rifiutata l'ipotesi nulla con una significatività $\alpha=\py{alpha}\%$.
+\end{question}
+
+
+
+
+\begin{question} %666666666666666666
 \begin{pycode}
 from sympy import Rational, Integer
 from scipy.stats import norm
@@ -218,7 +240,7 @@ n = random.choice([2,3,4,5])
 sigma = random.choice([2,3,5])
 xbar = mu[1] + random.choice( [ -1, 1, 2 ] ) 
 \end{pycode}
-Preleviamo un campione di rango $n=\py{n**2}$ da una popolazione con distribuzione $N(\mu,\sigma^2)$. Sappiamo che la deviazione standard è $\sigma=\py{sigma}$. La media $\mu$ invece potrebbe avere uno qualsiasi dei tre valori $\py{mu[0]}$, $\py{mu[1]}$, o $\py{mu[2]}$. 
+Preleviamo un campione di rango $n=\py{n**2}$ da una popolazione con distribuzione $N(\mu,\sigma^2)$. Sappiamo che la deviazione standard è $\sigma=\py{sigma}$. La media $\mu$ invece potrebbe avere uno qualsiasi dei tre valori $\py{mu[0]}$, $\py{mu[1]}$, o $\py{mu[2]}$.
 Vogliamo testare $H_0:\mu=\py{mu[1]}$ contro $H_A:\mu\in\{\py{mu[0]},\py{mu[2]}\}$.
 \begin{itemize}
 \item[1.] Che test facciamo?
@@ -245,21 +267,22 @@ $\phantom{\Pr\big(|\bar X|\ge\py{xbar}\big)}\ =\ ${\color{blue}\tt 2 * norm.cdf(
 
 
 \clearpage
-\begin{question} %66666666666666
+\begin{question} %77777777777777
 \begin{pycode}
 from sympy import Rational, Integer
 from scipy.stats import norm
-mu = random.choice( [ [1,4,5], [2,6,7], [3,8,9] ] ) 
+mu = random.choice( [ [1,4], [2,6], [3,8] ] ) 
 n = random.choice([2,3,4,5])
 sigma = random.choice([2,3,5])
 xbar = mu[0] + random.choice( [ 1, 2 ] ) 
 \end{pycode}
-Preleviamo un campione di rango $n=\py{n**2}$ da una popolazione con distribuzione $N(\mu,\sigma^2)$. Sappiamo che la deviazione standard è $\sigma=\py{sigma}$. La media $\mu$ invece potrebbe avere uno qualsiasi dei tre valori $\py{mu[0]}$, $\py{mu[1]}$, o $\py{mu[2]}$. 
-
-Vogliamo testare $H_0:\mu=\py{mu[0]}$ contro $H_A:\mu\in\{\py{mu[1]},\py{mu[2]}\}$.
+Preleviamo un campione di rango $n=\py{n**2}$ da una popolazione con distribuzione $N(\mu,\sigma^2)$. Sappiamo che la deviazione standard è $\sigma=\py{sigma}$. La media $\mu$ invece potrebbe avere uno qualsiasi dei due valori $\py{mu[0]}$ o $\py{mu[1]}$. Vogliamo testare $H_0:\mu=\py{mu[0]}$ contro $H_A:\mu=\py{mu[1]}$.
 \begin{itemize}
 \item[1.] Che test facciamo?
 \item[2.] Se la media del campione di cui sopra è $\bar x=\py{xbar}$, quant'è il p-valore?
+\item[3.] Data questa media campionaria, la probabilità che $\mu=\py{mu[1]}$ è (si scelga tra le seguenti)\medskip
+
+(a) $=$ p-valore;\hfill (b) $=1-$ p-valore;\hfill (c) $2/3$;\hfill (d) Non ci sono sufficienti informazioni per rispondere.
 \end{itemize}
 
 Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
@@ -269,7 +292,11 @@ Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
 
 $\Pr\big(\bar X\ge\py{xbar}\big)\ =\ \Pr\bigg(\dfrac{\bar X-\py{mu[0]}}{\sigma/\sqrt{n}}\ge\dfrac{\py{xbar}-\py{mu[0]} }{\sigma/\sqrt{n} }\bigg)\ =\ \Pr\big(Z\ge\py{Rational(Integer(n*(xbar-mu[0]) ) / Integer(sigma) ) }\big)$
 
-$\phantom{\Pr\big(\bar X\ge\py{xbar}\big)}\ =\ ${\color{blue}\tt\ 1 - norm.cdf(\py{Rational(Integer(n*(xbar-mu[0]) ) / Integer(sigma) ) }) }{\tt\ =  \ \py{round( 2 * norm.cdf(-(n*(xbar-mu[0]) / sigma) ), 3) } }{\color{blue}\hfill Risposta 2}
+$\phantom{\Pr\big(\bar X\ge\py{xbar}\big)}\ =\ ${\color{blue}\tt\ 1 - norm.cdf(\py{Rational(Integer(n*(xbar-mu[0]) ) / Integer(sigma) ) }) }{\tt\ =  \ \py{round( 2 * norm.cdf(-(n*(xbar-mu[0]) / sigma) ), 4) } }{\color{blue}\hfill Risposta 2}
+
+\medskip
+{\color{blue}(d) Non ci sono sufficienti informazioni per rispondere.\hfill Risposta 3}
+
 
 
 
@@ -278,7 +305,6 @@ $\phantom{\Pr\big(\bar X\ge\py{xbar}\big)}\ =\ ${\color{blue}\tt\ 1 - norm.cdf(\
 
 
 
-\clearpage
 \begin{question} %88888888888888
 \begin{pycode}
 from sympy import symbols, Rational, Integer, latex, Eq, solve
@@ -299,10 +325,10 @@ Assume the null hypothesis is true and denote by $P$ the random variable that gi
 
 \begin{answer}
 
-$\Pr(P<\py{pval})\ =\ ${\color{blue}$\py{float(alpha/100) }$\hfill Risposta 1}
+$\Pr(P<\py{float(alpha/100) })\ =\ ${\color{blue}$\py{float(alpha/100) }$\hfill Risposta 1}
 
 
-$\displaystyle 1-\Big(1-\py{latex(alpha/100) }\Big)^{\py{n_tests}}\ =\  ${\color{blue}\py{round(float(1-(1-alpha/100)**n_tests), 4)} \hfill Risposta 2}
+$1-\Big(1-\py{latex(alpha/100) }\Big)^{\py{n_tests}}\ =\  ${\color{blue}$\py{round(float(1-(1-alpha/100)**n_tests), 4)}$ \hfill Risposta 2}
 
 $\displaystyle 1-\Big(1-\frac{x}{100}\Big)^{\py{n_tests}}=\py{latex(alpha/100) }, \quad$ 
 risolvendo 
@@ -322,18 +348,10 @@ $\displaystyle\phantom{x}\ =$ {\color{blue}$\kern1ex\py{round(float( 100*( 1- (1
 
 
 
-
-
-
-
-
-
-
-
 \vfill
 \hrulefill
 
-Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/}
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}
 
 {\tt norm.cdf(z)} = $\Pr\big(Z<{\tt z}\big)$ per $Z\sim N(0,1)$ 
 
@@ -345,7 +363,7 @@ Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats
 
 
 
-\begin{question} %7777777777777777
+\begin{question} %999999999999999999999
 \begin{pycode}
 from sympy import Rational, Integer
 from scipy.stats import norm
@@ -373,4 +391,4 @@ Lanciamo il dado $\py{lanci}$ volte e registriamo la frequenza assoluta $k_i$ de
 \end{answer}
 \end{question}
 
-
+\end{document}
