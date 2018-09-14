@@ -1,0 +1,70 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{pythontex}
+\usepackage{graphicx}
+\parindent0ex
+\parskip2ex
+\newenvironment{question}{\par\textbf{Quesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta.\hfill}}{}
+
+
+\pagestyle{empty}
+
+\begin{document}
+\begin{pycode}
+import random
+\end{pycode}
+
+\begin{question}
+\begin{pycode}
+import math
+liquid = random.choice(['milk','water','acetone', 'hydrogen peroxide (H$_2$O$_2$)', 'ethyl alcohol'])
+from scipy import stats
+mu0 = random.choice([500, 600, 750])
+n = random.choice([9,16])
+xbar = mu0 - random.choice([8,10,12])
+sd = random.choice([10,20,30])
+tstat = - abs(xbar-mu0)*math.sqrt(n)/sd
+tstat = round(tstat, 4)
+pval = 2 * stats.t.cdf(tstat,n-1)
+pval = round(pval, 4)
+\end{pycode}
+A machine fills $\py{mu0}$ml of \py{liquid} into packages. It is suspected that the machine is not working correctly and that the amount filled differs from the setpoint. A sample of $\py{n}$ packages filled by the machine are collected. The sample mean is $\py{xbar}$ml and the sample standard deviation is $\py{sd}$ml. Can we reject the hypothesis that the machine is working correctly?
+
+What are H$_0$ and H$_A$? Which test is required? What is the value of the statistic? What is the p-value?
+
+%Use the statistical tables or the functions listed below. You may leave your answer in implicit form.
+\begin{answer}\parskip5pt
+
+  $\mu_0 = \py{mu0}$\hfill setpoint\kern39ex
+  
+  $\mu$\hfill actual amount filled by the machine on average\kern39ex
+
+  H$_0:$ $\mu = \mu_0$\kern39ex
+  
+  H$_A:$ $\mu\neq\mu_0$\kern39ex
+  
+  We use a two tail t-test
+  
+  $n = \py{n}$\hfill sample size\kern39ex
+  
+  $s = \py{sd}$\hfill sample standard deviation\kern39ex
+  
+  $\bar{x} = \py{xbar}$\hfill sample mean\kern39ex
+  
+  $t = \displaystyle\frac{|\bar{x}-\mu_0|}{s/\sqrt{n}}{\color{blue}\ = \py{-tstat}}$\hfill value of the t-test statistic\kern39ex
+  
+  $n-1 = \py{n-1}$\hfill degrees of freedom\kern39ex
+  
+  $P\big(|T_{n-1}|>t\big) = 2\cdot P\big(T_{n-1}<-t\big){\color{blue}\  = \py{pval}}$\hfill p-value\kern39ex
+
+\end{answer}
+\end{question}
+
+
+
+
+\end{document}
