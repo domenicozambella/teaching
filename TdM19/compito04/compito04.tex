@@ -1,0 +1,110 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=24cm,width=13cm]{geometry}
+\usepackage[italian]{babel}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{fourier}
+\usepackage{euscript}
+\usepackage{amsmath,amssymb, amsthm}
+
+\def\lh{\textrm{lh}}
+\def\phi{\varphi}
+\def\P{\EuScript P}
+\def\M{\EuScript M}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\S{\EuScript S}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\PP{\mathds P}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\eq{{\rm eq}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+\def\swedge{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\wedge$}}}
+\def\svee{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\vee$}}}
+
+\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+   \end{list}}
+%\def\ssf#1{\textsf{\small #1}}
+\newcounter{ex}
+\newenvironment{exercise}{\clearpage\addtocounter{ex}{1}\textbf{Esercizio \theex.\quad}}{}
+\pagestyle{empty}
+\parindent0ex
+\parskip2ex
+\raggedbottom
+\def\nsR{{}^*\!\RR}
+\def\ssf#1{\textsf{#1}}
+\renewcommand{\baselinestretch}{1.3}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Logica Matematica a.a.~2017/18}
+\rhead{}
+\cfoot{}
+\rfoot{\rput(1.5,-0.5){\small\thepage}}
+
+\begin{document}
+
+\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\hfill }\setcounter{ex}{0}
+
+\begin{exercise}\label{ex_feqthm_senza_eq}
+Let $A\subseteq\U$, let $\D$ be a definable set with finite orbit over $A$. Without using $\U^\eq$ prove that $\D$ is union of classes of a finite equivalence relation definable over $A$.
+
+L'esercizio può richiedere un po' di riflessione (e discussione). I seguenti due esercizi sono in alternativa.
+\end{exercise}
+
+
+\begin{exercise}
+Let $p(x)\subseteq L(A)$ and let $\phi(x\,;y)\in L(A)$ be a formula that defines, when restricted to $p(\U)$, an equivalence relation with finitely many classes. Prove that there is a finite equivalence relation definable over $A$ that coincides with $\phi(x\,;y)$ on $p(\U)$.
+\end{exercise}
+
+
+\begin{exercise}
+Let $T$ be strongly minimal and let $\phi(x\,;y)\in L(A)$ with $|x|=|y|=1$. For arbitrary $c\in\U$, prove that if the orbit of $\phi(\U\,; c)$ over $A$ is finite, then $\phi(\U\,; c)$ is definable over $\acl A$.
+\end{exercise}
+
+
+
+
+\end{document}
+
+
