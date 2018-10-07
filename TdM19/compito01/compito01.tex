@@ -93,14 +93,31 @@ $T\cup S$ for some set $S$ of quantifier-free sentences. Prove (in the  most dir
 
 
 \begin{exercise}
-For every $a\in\U^{|u|}$ and $A\subseteq\U$, the following are equivalent
+Let $L$ be the language of strict orders. Let $T$ be the theory of \emph{discrete linear orders}. Namely, $T$ extends $T_{\rm dlo}$ with the following two of axioms
 \begin{itemize}
-\item[1.] $a$ is solution of some algebraic formula  $\phi(u)\in L(A)$;
-\item[2.] $a= a_1,\dots, a_n$ for some $ a_1,\dots, a_n\in\acl(A)$. 
+\item[dis$\uparrow$.] $\E z\ \big[x<z\ \wedge\ \neg\E y\ x<y<z\big]$;
+\item[dis$\downarrow$.] $\E z\ \big[ z<x\ \wedge\ \neg\E y\ z<y<x\big]$.
+\end{itemize}\vskip-0.5\baselineskip
+Let $\Delta$ be the set of formulas that contains (all alphabetic variants of) the formulas 
+\vskip-\parskip
+\qquad $x<_ny\ \ :=\ \ \E^{\ge n}z\ (x\mathord<z\mathord< y)$ 
+\\
+and their negations (read $<_0$ as $<$). 
+
+\begin{itemize}
+\item[1.] Prove that the structure $\QQ\times\ZZ$ ordered with the lexicographic order 
+\vskip-\parskip
+\qquad$(a_1,a_2)<(b_1,b_2)\quad\IFF\quad a_1<b_1$\ \ or\ \ ($a_1=b_1$\ \ e\ \ $a_2<b_2$)
+\\
+is a saturated model of $T$.
+
+\item[2.] Prove that the theory of discrete linear orders has $\Delta$-elimination of quantifiers.
+
+\item[3.] Prove that T is model-complete.
 \end{itemize}
 \end{exercise}
 
-\begin{exercise}\label{pofu}
+\begin{exercise}
 Let $\phi( z)\in L(A)$ be a consistent formula. Prove that, if $a\in\acl(A, b)$ for every $b\models\phi(z)$, then $a\in\acl(A)$. Prove the same claim with a type $p(z)\subseteq L(A)$ for $\phi(z)$.
 \end{exercise}
 
@@ -123,11 +140,7 @@ Suggerimento per la seconda domanda: potrebbe esserci un controesempio in $\U\eq
 
 
 \begin{exercise}
-prove that for every $a\in\U^{|u|}$ and $A\subseteq\U$, the following are equivalent
-\begin{itemize}
-\item[1.] $a$ is solution of some algebraic formula  $\phi(u)\in L(A)$;
-\item[2.] $a= a_1,\dots, a_n$ for some $ a_1,\dots, a_n\in\acl(A)$. 
-\end{itemize}
+Si dia una dimostrazione sintattica di $\acl(\acl A)\subseteq \acl A$
 \end{exercise}
 
 
