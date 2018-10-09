@@ -45,8 +45,9 @@
 \def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
 \def\swedge{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\wedge$}}}
 \def\svee{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\vee$}}}
+\def\ssf#1{{\sf\footnotesize #1}}
 
-\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\newcommand{\labella}[1]{\ssf{#1}\hfill}
 \renewenvironment{itemize}
   {\begin{list}{$\triangleright$}{%
    \setlength{\parskip}{0mm}
@@ -94,6 +95,17 @@ Prove that $M\preceq N$.
 \begin{exercise}
 Give an alternative proof of Exercise~\ref{ex1} using the elementary chain lemma and the downward L\"owenheim-Skolem Theorem (instead of its proof).
 Hint: construct two chains of countable models such that $K_i\cap M\subseteq M_i\preceq N$ and $A\cup M_i\subseteq K_{i+1}\preceq N$.
+\end{exercise}
+
+
+
+\begin{exercise}
+Let $N$ consist of 3 copies of $\ZZ$ that share the same non negative part. The language has only a function symbol for the successor function (which will be non invertible in $0$).  Let $M$ be the substructure of $MN$ obtained erasing one copy of $\ZZ$. 
+\begin{itemize}
+\item[1.] Prove that $M\not\equiv N$. 
+\item[2.] Suppose instead that $N$ is build from infinitely many copies of $\ZZ$, prove that $M\equiv N$. 
+\item[3.] If $N$ is like in \ssf{2} is $M\preceq N$\,?
+\end{itemize}
 \end{exercise}
 
 
