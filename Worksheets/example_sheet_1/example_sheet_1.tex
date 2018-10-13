@@ -1,0 +1,140 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=24cm,width=13cm]{geometry}
+\usepackage[italian]{babel}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{fourier}
+\usepackage{euscript}
+\usepackage{amsmath,amssymb, amsthm}
+
+\def\lh{\textrm{lh}}
+\def\phi{\varphi}
+\def\K{\EuScript K}
+\def\M{\EuScript M}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\V{\EuScript V}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\PP{\mathds P}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\eq{{\rm eq}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+\def\swedge{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\wedge$}}}
+\def\svee{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\vee$}}}
+\def\ssf#1{{\sf\footnotesize #1}}
+
+\newcommand{\labella}[1]{\ssf{#1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+   \end{list}\vskip-0.5\baselineskip}
+\newcounter{ex}
+\newenvironment{exercise}{\bigskip\refstepcounter{ex}\textbf{Exercise \theex.\quad}}{}
+\parindent0ex
+\parskip2ex
+\raggedbottom
+\renewcommand{\baselinestretch}{1.5}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Example sheet 1}
+\chead{Model Theory 2018/19}
+\rhead{Part III}
+\cfoot{}
+\begin{document}
+
+\begin{exercise}\label{ex1}
+Assume $L$ is countable and let $M\preceq N$ have arbitrary (large) cardinality.
+Let $A\subseteq N$ be countable.
+Adapt the construction used for the downward L\"owenheim-Skolem Theorem to prove that there is a countable model $K$ such that $A\subseteq K\preceq N$ and $K\cap M\preceq N$ (in particular, $K\cap M$ is a model).
+\end{exercise}
+
+
+\begin{exercise}
+Let $\<M_i:i\in\lambda\>$ be an elementary chain of substructures of $N$.
+Let $M$ be the union of the chain.
+Prove that $M\preceq N$.
+\end{exercise}
+
+\begin{exercise}
+Give an alternative proof of Exercise~\ref{ex1} using the elementary chain lemma and the downward L\"owenheim-Skolem Theorem (instead of its proof).
+Hint: construct two chains of countable models such that $K_i\cap M\subseteq M_i\preceq N$ and $A\cup M_i\subseteq K_{i+1}\preceq N$.
+\end{exercise}
+
+
+
+\begin{exercise}
+Let $N$ consist of 3 copies of $\ZZ$ that share the same non negative part. The language has only a function symbol for the successor function (which will be non invertible in $0$).  Let $M$ be the substructure of $MN$ obtained erasing one copy of $\ZZ$. 
+\begin{itemize}
+\item[1.] Prove that $M\not\equiv N$. 
+\item[2.] Suppose instead that $N$ is build from infinitely many copies of $\ZZ$, prove that $M\equiv N$. 
+\item[3.] If $N$ is like in \ssf{2} is $M\preceq N$\,?
+\end{itemize}
+\end{exercise}
+
+
+\begin{exercise}
+Prove that $T_{\rm dlo}$ is not $\lambda$-categorical for any uncountable $\lambda$.
+\end{exercise}
+
+
+\begin{exercise}
+Show that there is an $\omega$-categorical theory that is not complete (the language need to be  uncountable). Hint. Let $\nu$ be an uncountable cardinal. The language contains only the ordinals $i<\nu$ as constants. The theory $T$ says that there are infinitely many elements and either $i=0$ for every $i<\nu$, or $i\neq j$ for every $i<j<\nu$. Prove that $T$ is $\omega$-categorical but incomplete.
+\end{exercise}
+
+
+\begin{exercise}
+Let $N$ be free union of two random graphs $N_1$ and $N_2$. That is, $N=N_1\sqcup N_2$ and $r^N= r^{N_1}\sqcup r^{N_2}$. By $\sqcup$ we denote the disjoint union. Prove that $N$ is not a random graph. Show that $N_1$ is not definable without parameters (assume $|N_1|=|N_2|=\omega$, otherwise the proof is involved). Write a first order sentence $\psi(x,y)$ true if $x$ and $y$ belong to the same connected component of $N$. Axiomatize the class $\K$ of graphs that are free union of two random graphs.
+\end{exercise}
+
+
+\begin{exercise}
+The language contains only the binary relations $<$ and $e$. The theory $T_0$ says that $<$ is a strict linear order and that $e$ is an equivalence relation. Let $\M$ consists of models of $T_0$ and partial isomorphisms. Do rich models exist? Can we axiomatize their theory? If so, does it have elimination of quantifiers? Is it $\lambda$-categorical for some $\lambda$?
+\end{exercise}
+
+
+\begin{exercise}
+Prove that for every infinite graph $M$ the following are equivalent
+\begin{itemize}
+\item[1.] $M$ is either random, empty, or complete;
+\item[2.] if $M_1,M_2\subseteq M$ are such that $M_1\sqcup M_2=M$, then $M_1\simeq M$ or $M_2\simeq M$.
+\end{itemize}
+With $\sqcup$ we denote the disjoint union.
+\end{exercise}
+\end{document} 
