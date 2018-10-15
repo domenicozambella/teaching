@@ -18,6 +18,7 @@
 \def\M{\EuScript M}
 \def\D{\EuScript D}
 \def\U{\EuScript U}
+\def\V{\EuScript V}
 \def\S{\EuScript S}
 \def\sm{\smallsetminus}
 \def\niff{\nleftrightarrow}
@@ -86,9 +87,47 @@
 \clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \rhead{\hfill Moreno Prieobon e Michele Bailetti}\setcounter{ex}{0}
 
+\begin{exercise}\label{pofu2}
+Let $C$ be a finite set. Prove that if $C\cap M\neq\0$ for every model $M$ containing $A$, then $C\cap\acl(A)\neq\0$.
+\end{exercise}
+
+
+\begin{exercise}\label{ex_acl_intersezioe_2_modelli}
+Prove that for every $A\subseteq N$ there is an $M$ such that $\acl A\,=\,M\cap N$.
+\end{exercise}
 
 \clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \rhead{\hfill  Tutti $\sm\{\rm Prieobon, \ Bailetti\}$}\setcounter{ex}{0}
+
+\begin{exercise}
+Let $\phi(x)\in L(\U)$ and fix an arbitrary set $A$. Prove that the following are equivalent
+\begin{itemize}
+\item[1.] there is some model $M$ containing $A$ and such that $M\cap\phi(\U)=\0$;
+\item[2.] there is no consistent formula $\psi(z_1,\dots,z_n)\in L(A)$ such that
+
+ \hfil$\displaystyle\psi(z_1,\dots,z_n)\imp\bigwedge^n_{i=1}\phi(z_i)$.
+\end{itemize}
+\end{exercise}
+
+
+\begin{exercise}
+Let $\phi(z)\in L(A)$ be a consistent formula. Prove that, if $a\in\acl(A,b)$ for every $b\models\phi(z)$, then $a\in\acl(A)$. Prove the same claim with a type $p(z)\subseteq L(A)$ for $\phi(z)$.
+\end{exercise}
+
+
+\begin{exercise}
+Let $a\in\U\sm\acl\0$. Prove that $\U$ is isomorphic to some $\V\preceq \U$ such that $a\notin\V$.
+\end{exercise}
+
+
+\begin{exercise}
+Let $T$ be a complete theory without finite models. Prove that the following are equivalent
+\begin{itemize}
+\item[1.] $M$ is minimal;
+\item[2.] $a\equiv_Mb$ for every $a, b\in \U\sm M$.
+\end{itemize}
+\end{exercise}
+
 
 
 
