@@ -1,0 +1,233 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=24cm,width=13cm]{geometry}
+\usepackage[italian]{babel}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{fourier}
+\usepackage{euscript}
+\usepackage{amsmath,amssymb, amsthm}
+
+\def\lh{\textrm{lh}}
+\def\phi{\varphi}
+\def\P{\EuScript P}
+\def\M{\EuScript M}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\V{\EuScript V}
+\def\S{\EuScript S}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\PP{\mathds P}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\eq{{\rm eq}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+\def\swedge{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\wedge$}}}
+\def\svee{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\vee$}}}
+
+\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+   \end{list}}
+%\def\ssf#1{\textsf{\small #1}}
+\newcounter{ex}
+\newenvironment{exercise}{\clearpage\addtocounter{ex}{1}\textbf{Esercizio \theex.\quad}}{}
+\pagestyle{empty}
+\parindent0ex
+\parskip2ex
+\raggedbottom
+\def\nsR{{}^*\!\RR}
+\def\ssf#1{\textsf{#1}}
+\renewcommand{\baselinestretch}{1.3}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Teoria dei Modelli a.a.~2018/19}
+\rhead{}
+\cfoot{}
+\rfoot{\rput(1.5,-0.5){\small\thepage}}
+
+\begin{document}
+
+\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\hfill Sergio Polese}\setcounter{ex}{0}
+
+\begin{exercise}
+Let $p(x)\subseteq L(B)$ and $p_n(x)\subseteq L(A)$, for $n<\omega$, be consistent types such that\smallskip
+
+\qquad$\displaystyle p(x)\imp\bigvee_{n<\omega}p_n(x)$
+
+\noindent Prove that there is an $n<\omega$ and a formula $\phi(x)\in L(A)$ consistent with $p(x)$ such that \smallskip
+
+\qquad$\displaystyle p(x)\wedge\phi(x)\imp p_n(x).$
+\end{exercise}
+
+
+\begin{exercise}
+Prove that a strongly minimal theory has always a prime model.
+\end{exercise}
+
+
+
+\begin{exercise} 
+Assume $L$ is countable and let $T$ be strongly minimal.
+Prove that the following are equivalent
+\begin{itemize}
+\item[1.] $T$ is $\omega$-categorical;
+\item[2.] the algebraic closure of a finite set is finite.
+\end{itemize}
+\end{exercise}
+
+
+\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\hfill Salvatore Scamperti}\setcounter{ex}{0}
+
+
+\begin{exercise}
+Let $M$ be a second countable topological space (i.e.\@ the topology has a countable base).
+We say that $A\subseteq M$ is meager if it is the countable union of nowhere dense sets.
+
+Use Lemma~12.1 to prove the Kuratowski-Ulam Theorem, i.e.\@ that for $A\subseteq M^2$ the following are equivalent
+\begin{itemize}
+\item[1.] $A$ is meager in $M^2$  with the product topology;
+\item[2.] $\Big\{x\in M : A\cap \{x\}{\times}M \ \textrm{is not meager}\Big\}$ is meager in $M$.
+\end{itemize}
+\end{exercise}
+
+
+
+\begin{exercise}\label{ex_omega_cat_sat=atomic}
+Prove that the following are equivalent
+\begin{itemize}   
+\item[1.] $T$ is $\omega$-categorical;
+\item[2.] there is countable model that is both saturated and atomic.
+\end{itemize}
+\end{exercise}
+
+
+\begin{exercise} 
+Assume $L$ is countable and that $T$ is complete.
+Suppose that for every finite tuple $x$ there is a model $M$ that realizes only finitely many types in $S_x(T)$.
+Prove that $T$ is $\omega$-categorical.
+\end{exercise}
+
+
+\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\hfill Michele  Bailetti}\setcounter{ex}{0}
+
+
+\begin{exercise}
+Let $M$ be a second countable topological space (i.e.\@ the topology has a countable base).
+We say that $A\subseteq M$ is meager if it is the countable union of nowhere dense sets.
+
+Use Lemma~12.1 to prove the Kuratowski-Ulam Theorem, i.e.\@ that for $A\subseteq M^2$ the following are equivalent
+\begin{itemize}
+\item[1.] $A$ is meager in $M^2$  with the product topology;
+\item[2.] $\Big\{x\in M : A\cap \{x\}{\times}M \ \textrm{is not meager}\Big\}$ is meager in $M$.
+\end{itemize}
+\end{exercise}
+
+
+
+\begin{exercise}
+Let $|x|=1$.
+Prove that if $S_x(A)$ is countable for every finite set $A$, then $T$ is small.
+\end{exercise}
+
+
+
+\begin{exercise} 
+Assume $L$ is countable and let $T$ be strongly minimal.
+Prove that the following are equivalent
+\begin{itemize}
+\item[1.] $T$ is $\omega$-categorical;
+\item[2.] the algebraic closure of a finite set is finite.
+\end{itemize}
+\end{exercise}
+
+
+\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\hfill Moreno Pierobon}\setcounter{ex}{0}
+
+
+\begin{exercise}
+Suppose $L(A)$ is countable.
+Prove that if $T$ is small over $A$, then there exists a countable saturated model containing $A$
+
+Si cerchi di trovare una dimostrazione diretta.
+\end{exercise}
+
+
+\begin{exercise} 
+Assume $L$ is countable and that $T$ is complete.
+Suppose that for every finite tuple $x$ there is a model $M$ that realizes only finitely many types in $S_x(T)$.
+Prove that $T$ is $\omega$-categorical.
+\end{exercise}
+
+
+
+\begin{exercise}\label{ex_omega_cat_sat=atomic}
+Prove that the following are equivalent
+\begin{itemize}   
+\item[1.] $T$ is $\omega$-categorical;
+\item[2.] there is countable model that is both saturated and atomic.
+\end{itemize}
+\end{exercise}
+
+\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\hfill Giampiero Lonoce}\setcounter{ex}{0}
+
+
+\begin{exercise}
+Prove that no theory is $\omega$-categorical over an infinite set $A$.
+\end{exercise}
+
+
+\begin{exercise}
+Prove that the following are equivalent for every finite set $A$
+\begin{itemize}   
+\item[1.] $T$ is $\omega$-categorical;
+\item[2.] $T$ is $\omega$-categorical over $A$.
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+Prove that a strongly minimal theory that has a model of finite dimension is not $\omega$-categorical.
+\end{exercise}
+
+\end{document}
