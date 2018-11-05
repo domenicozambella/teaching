@@ -91,37 +91,40 @@ Hint: construct two chains of countable models such that $K_i\cap M\subseteq M_i
 \end{exercise} 
 
 \begin{exercise}
+Let $N$ be a countable random graph. Prove that if we erase from $N$ finitely many vertices and all their direct neighbours we obtain a graph isomorphic to $N$.
+\end{exercise}
+
+\begin{exercise}
 Let $N$ be free union of two countable random graphs $N_1$ and $N_2$. That is, $N=N_1\sqcup N_2$ and $r^N= r^{N_1}\sqcup r^{N_2}$. By $\sqcup$ we denote the disjoint union. Prove that $N$ is not a random graph. 
 Write a first-order sentence $\psi(x,y)\in L$ true if $x$ and $y$ belong both to $N_1$ or both to $N_2$.
 \end{exercise}
-
 
 \begin{exercise}\label{ex4}
 Let $T_{\rm lo}$ be the theory of linear orders in the language $L=\{<\}$. Prove that for every $b\in M\models T_{\rm lo}$, every $N\models T_{\rm dlo}$, every finite partial isomorphism $k:M\to N$ has an extension to a  partial isomorphism defined in $b$.
 \end{exercise}
 
-
 \begin{exercise}\label{ex5}
-Let $T_{\rm grph}$ be the theory  of graphs that is, the theory that says that $r(x,y)$ is a irreflexive, symmetric relation. Let $T_{\rm rg}$ be the theory of random graphs. Prove the claim in Exercise~\ref{ex4} with $T_{\rm grph}$ and $T_{\rm rg}$ for 
-$T_{\rm lo}$, respectively $T_{\rm dlo}$.
+Let $T_{\rm grph}$ be the theory  of graphs that is, the theory that says that $r(x,y)$ is a irreflexive, symmetric relation. Assume $N\models T_{\rm grph}$ is such that for every $b\in M\models T_{\rm grph}$, every finite partial isomorphism $k:M\to N$ has an extension to a  partial isomorphism defined in $b$. Prove that $N$ is a random graph.
 \end{exercise}
-
-
-\begin{exercise}\label{ex6}
-Prove the converse of Exercises~\ref{ex4} and~\ref{ex5}. E.g., $N\models T_{\rm grph}$ is a random graph whenever the following holds: for every $b\in M\models T_{\rm grph}$,  every finite partial isomorphism $k:M\to N$ has an extension to a  partial isomorphism defined in $b\in M$.
-\end{exercise}
-
 
 \begin{exercise}\label{ex7}
-The language contains only the binary relations $<$ and $e$. The theory $T_0$ says that $<$ is a strict linear order and that $e$ is an equivalence relation. Axiomatize a theory $T_1$ such that what claimed in Exercise~\ref{ex4} holds for $T_0$ and $T_1$.
+The language contains only two binary relations: $<$ and $e$. Let $T_0$ be the theory that says that $<$ is a strict linear order and that $e$ is an equivalence relation. Axiomatize a theory $T_1\supseteq T_0$ such that every $N\models T_1$ has the following property: for every $b\in M\models T_0$, every finite partial isomorphism $k:M\to N$ has an extension to a  partial isomorphism defined in $b$.
 
 Proof the claim for yourself, hand in only the axiomatization.
 \end{exercise}
 
 
 \begin{exercise}\label{ex8}
-Prove that the theory $T_1$ in Exercise~\ref{ex5} is $\omega$-categorical. Try to write a proof that works simultaneously for $T_1$, $T_{\rm rg}$, and $T_{\rm dlo}$.   
+Prove that the theory $T_1$ in Exercise~\ref{ex7} is $\omega$-categorical.
 \end{exercise}
 
+
+\begin{exercise} 
+Let $\phi(x\,;y)\in L(\U)$. Prove that the following are equivalent
+\begin{itemize}
+\item[1.] there is a sequence $\<a_i\,:\,i\in\omega\>$ such that $\phi(\U\,;a_i)\subset\phi(\U\,;a_{i+1})$ for every $i<\omega$;
+\item[2.] there is a sequence $\<a_i\,:\,i\in\omega\>$ such that $\phi(\U\,;a_{i+1})\subset\phi(\U\,;a_i)$ for every $i<\omega$.
+\end{itemize}
+\end{exercise}
 
 \end{document} 
