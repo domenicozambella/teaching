@@ -99,9 +99,6 @@ Let $N$ be free union of two countable random graphs $N_1$ and $N_2$. That is, $
 Write a first-order sentence $\psi(x,y)\in L$ true if $x$ and $y$ belong both to $N_1$ or both to $N_2$.
 \end{exercise}
 
-\begin{exercise}\label{ex4}
-Let $T_{\rm lo}$ be the theory of linear orders in the language $L=\{<\}$. Prove that for every $b\in M\models T_{\rm lo}$, every $N\models T_{\rm dlo}$, every finite partial isomorphism $k:M\to N$ has an extension to a  partial isomorphism defined in $b$.
-\end{exercise}
 
 \begin{exercise}\label{ex5}
 Let $T_{\rm grph}$ be the theory  of graphs that is, the theory that says that $r(x,y)$ is a irreflexive, symmetric relation. Assume $N\models T_{\rm grph}$ is such that for every $b\in M\models T_{\rm grph}$, every finite partial isomorphism $k:M\to N$ has an extension to a  partial isomorphism defined in $b$. Prove that $N$ is a random graph.
@@ -119,12 +116,28 @@ Prove that the theory $T_1$ in Exercise~\ref{ex7} is $\omega$-categorical.
 \end{exercise}
 
 
-\begin{exercise} 
-Let $\phi(x\,;y)\in L(\U)$. Prove that the following are equivalent
+\begin{exercise}  Let $N$ be a saturated model and let $\phi(x\,;y)\in L(N)$. Prove that the following are equivalent
 \begin{itemize}
-\item[1.] there is a sequence $\<a_i\,:\,i\in\omega\>$ such that $\phi(\U\,;a_i)\subset\phi(\U\,;a_{i+1})$ for every $i<\omega$;
-\item[2.] there is a sequence $\<a_i\,:\,i\in\omega\>$ such that $\phi(\U\,;a_{i+1})\subset\phi(\U\,;a_i)$ for every $i<\omega$.
+\item[1.] there is a sequence $\<a_i\,:\,i\in\omega\>$ such that $\phi(N\,;a_i)\subset\phi(N\,;a_{i+1})$ for every $i<\omega$;
+\item[2.] there is a sequence $\<a_i\,:\,i\in\omega\>$ such that $\phi(N\,;a_{i+1})\subset\phi(N\,;a_i)$ for every $i<\omega$.
 \end{itemize}
 \end{exercise}
+
+
+\begin{exercise}  Let $N$ be a saturated model and let $\phi(x)\in L(N)$. Prove that the following are equivalent
+\begin{itemize}
+\item[1.] $\phi(N)$ is infinite;
+\item[2.] $\phi(N)$ has the cardinality of $N$.
+\end{itemize}
+\end{exercise}
+
+
+\begin{exercise}  Let $N$ be a saturated model and let $p(x)\subseteq L(A)$, for some $A\subseteq N$ of cardinality $<|N|$, be a type closed under conjunction (for simplicity). Prove that the following are equivalent
+\begin{itemize}
+\item[1.] $p(x)$ has finitely many solution;
+\item[2.] $p(x)$ contains a formula with finitely many solutions.
+\end{itemize}
+\end{exercise}
+
 
 \end{document} 
