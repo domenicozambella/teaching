@@ -106,8 +106,15 @@ Let $T_{\rm grph}$ be the theory  of graphs that is, the theory that says that $
 
 \begin{exercise}\label{ex7}
 The language contains only two binary relations: $<$ and $e$. Let $T_0$ be the theory that says that $<$ is a strict linear order and that $e$ is an equivalence relation. Axiomatize a theory $T_1\supseteq T_0$ such that every $N\models T_1$ has the following property: for every $b\in M\models T_0$, every finite partial isomorphism $k:M\to N$ has an extension to a  partial isomorphism defined in $b$.
+Solution: 
 
-Proof the claim for yourself, hand in only the axiomatization.
+Axioms of linear orders without endpoints
+
+Axioms of equivalence relations
+
+There are infinitely many equivalence classes
+
+$\A x,y,v\ \Big[x<y\ \imp\ \E z\, \big[x<z<y\ \wedge\  e(v,z)\big]\Big]$
 \end{exercise}
 
 
@@ -145,7 +152,12 @@ Prove that the theory $T_1$ in Exercise~\ref{ex7} is $\omega$-categorical.
 \item[1.] there is a sequence $\<a_i\,:\,i<\omega\>$ such that $a_i<a_{i+1}$ for every $i<\omega$;
 \item[2.] there is a sequence $\<a_i\,:\,i<\omega\>$ such that $a_i>a_{i+1}$ for every $i<\omega$.
 \end{itemize}
-\end{exercise}
+Solution: 
 
+2$\IMP$1 
+
+Let $p(\bar x)\ =\ \big\{x_i<x_{i+1}\ :\ i<\omega\big\}$. Any solution of $p(\bar x)$ is as required by 1. It suffices to show that $p(\bar x)$ is finitely consistent. Any finite subset of $p(\bar x)$ is contained in the type $p_n(x_0,\dots,x_{n-1})=\big\{x_i<x_{i+1}\ :\ i<n\big\}$. Let $a_i$ be as in 2. Then $a_{n-1},\dots,a_0\models p_n(x_0,\dots,x_{n-1})$.
+
+\end{exercise}
 
 \end{document} 
