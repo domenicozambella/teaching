@@ -81,41 +81,16 @@
 \begin{document}
 
 
-\begin{exercise}
-Let $p(x)\subseteq L(B)$ and $p_n(x)\subseteq L(A)$, for $n<\omega$, be consistent types such that\smallskip
-
-\noindent\kern15ex$\displaystyle p(x)\ \ \imp\ \ \bigvee_{n<\omega}p_n(x)$
-
-Prove that there is an $n<\omega$ and a formula $\phi(x)\in L(A)$ consistent with $p(x)$ such that \smallskip
-
-\noindent\kern15ex$p(x)\wedge\phi(x)\ \ \imp\ \ p_n(x)$.
-\end{exercise}
 
 \begin{exercise}
-Let $M$ be a second countable topological space (i.e.\@ the topology has a countable base).
-We say that $A\subseteq M$ is meager if it is the countable union of nowhere dense sets.
-Use Lemma~12.1 to prove the Kuratowski-Ulam Theorem, i.e.\@ that for $A\subseteq M^2$ the following are equivalent  (w.r.t.\@ the product topology)
-\begin{itemize}
-\item[1.] $A$ is meager in $M^2$;
-\item[2.] $\Big\{x\in M : A\cap \{x\}{\times}M \ \textrm{is not meager}\Big\}$ is meager in $M$.
-\end{itemize}
-Hint: Use the base of the topology as predicates of a first-order language.
-\end{exercise}
-
-\begin{exercise}
-Let $p(x)\subseteq L(A)$ and let $\phi(x\,;y)\in L(A)$ be a formula that defines, when restricted to $p(\U)$, an equivalence relation with finitely many classes. Prove that there is a finite equivalence relation definable over $A$ that coincides with $\phi(x\,;y)$ on $p(\U)$.
-\end{exercise}
-
-
-\begin{exercise}
-Let $p(x)\subseteq L(A)$ and let $\phi(x\,;y)\in L(A)$ be a formula that defines, when restricted to $p(\U)$, an equivalence relation with finitely many classes. Prove that there is a finite equivalence relation definable over $A$ that coincides with $\phi(x\,;y)$ on $p(\U)$.
+Let $p(x)\subseteq L(A)$ and let $\phi(x\,;y)\in L(A)$ be a formula that defines, when restricted to $p(\U)$, an equivalence relation with finitely many classes (a \textit{finite equivalence relation\/}). Prove that there is a finite equivalence relation definable over $A$ that coincides with $\phi(x\,;y)$ on $p(\U)$.
 \end{exercise}
 
 
 
 \begin{exercise}
 Let $T$ be a consistent theory. Suppose that all completions of $T$ are of the form 
-$T\cup S$ for some set $S$ of quantifier-free sentences (as, for example, $T_{\rm acf}$). Prove that, if all completion of $T$ have elimination of quantifiers, so does $T$.
+$T\cup S$ for some set $S$ of quantifier-free sentences (for example, $T=T_{\rm acf}$). Prove that, if all completion of $T$ have elimination of quantifiers, so does $T$.
 
 Hint: prove that for every formula $\phi(x)$ there are some quantifier-free sentences $\sigma_i$ and quantifier-free formulas $\psi_i(x)$ such that
 
@@ -131,6 +106,52 @@ For a counter example consider the empty theory in the language with a single un
 Show that the claim in the exercise above fails when the theories $S$ have arbitrary complexity. 
 
 Hint: let $T$ be the empty theory in the language with a single unary predicate.
+\end{exercise}
+
+\begin{exercise}
+Let $\phi(z)\in L(A)$ be a consistent formula. Prove that, if $a\in\acl(A,b)$ for every $b\models\phi(z)$, then $a\in\acl(A)$. Prove the same claim with a type $p(z)\subseteq L(A)$ for $\phi(z)$.
+\end{exercise}
+
+
+\begin{exercise}
+Let $a\in\U\sm\acl A$. Prove that $\U$ is $A$-isomorphic to some $\V\preceq \U$ such that $a\notin\V$.
+\end{exercise}
+
+
+
+
+\begin{exercise}\label{pofu2}
+Let $C$ be a finite set. Prove that if $C\cap M\neq\0$ for every model $M$ containing $A$, then $C\cap\acl(A)\neq\0$.
+
+Hint: by induction on the cardinality of $C$. Suppose there is a $c\in C\sm\acl(A)$, then there is $\V\simeq\U$ such that $A\subseteq\V\preceq\U$ and $c\notin\V$. Apply the induction hypothesis to $C'=C\cap\V$ with $\V$ for $\U$.
+\end{exercise}
+
+
+\begin{exercise}\label{ex_acl_intersezioe_2_modelli}
+Prove that for every $A\subseteq N$ there is an $M$ such that $\acl A\,=\,M\cap N$.
+
+Hint: let $\bar c$ be an enumeration of $N$. Let $p(\bar x)=\tp(\bar c/A)$. Consider the type
+
+\hfil$p(x)\ \cup\ \Big\{\neg\big[\psi(b,\bar x)\wedge\E^{\le n}y\,\psi(y,\bar x)\big]\ :\ b\in N\sm\acl(A),\ \ \psi(y,x)\in L(A),\ \ n<\omega\Big\}$
+\end{exercise}
+
+\begin{exercise}
+Let $\phi(x)\in L(\U)$ and fix an arbitrary set $A$. Prove that the following are equivalent
+\begin{itemize}
+\item[1.] there is some model $M$ containing $A$ and such that $M\cap\phi(\U)=\0$;
+\item[2.] there is no consistent formula $\psi(z_1,\dots,z_n)\in L(A)$ such that
+
+ \hfil$\displaystyle\psi(z_1,\dots,z_n)\imp\bigvee^n_{i=1}\phi(z_i)$.
+\end{itemize}
+\end{exercise}
+
+
+\begin{exercise}
+Prove that a in  strongly minima theory every infinite algebraically closed set is a model.
+\end{exercise}
+
+\begin{exercise}
+Prove that a countable strongly minima theory is either $\omega$-categorical or has infinitely many countable models.
 \end{exercise}
 
 \end{document} 
