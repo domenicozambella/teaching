@@ -1,0 +1,358 @@
+\documentclass[10pt,openany]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,hmargin={4cm,4cm},vmargin={3.5cm,3.5cm}]{geometry}
+\usepackage[colorlinks=true,bookmarksopen=false,linkcolor=blue,citecolor=red]{hyperref}
+\usepackage[italian]{babel} 
+\usepackage{subfiles}
+\usepackage{calc} 
+\usepackage{datetime}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsrefs}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{dsfont}
+\usepackage{euscript}
+\usepackage{fourier-orns}
+%\usepackage{pxfonts}
+%\usepackage{newpxtext}
+%\usepackage{tgpagella}
+\usepackage{palatino}
+\usepackage[sc]{mathpazo} % add possibly `sc` and `osf` options
+%\usepackage{eulervm}
+%\usepackage[adobe-utopia]{mathdesign}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+% \usepackage{tikz}
+% \usetikzlibrary{tikzmark}
+\usepackage{tikz-cd}
+\tikzcdset{
+arrow style=tikz,
+diagrams={>=latex}
+}
+
+
+\linespread{1.3}
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{.4\baselineskip}
+\definecolor{blue}{rgb}{0, 0.1, 0.6}
+
+\DeclareFontFamily{OT1}{pzc}{}
+\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+
+\newcommand{\mylabel}[1]{{\ssf{#1}}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-\parskip}}
+
+%\def\emph#1{\textcolor{blue}{\boldmath\textbf{#1}}}
+
+% \setlength{\fboxsep}{0.3mm}
+% \def\emph#1{\fcolorbox{white}{gray!50}{\vphantom{Iq}#1}}
+\def\emph#1{\textcolor{blue}{\textbf{\boldmath #1}}}
+
+\def\jj{\mbox{-}}
+\def\E{\exists}
+\def\A{\forall}
+\def\mdot{\mathord\cdot}
+\def\models{\vDash}
+\def\pmodels{\mathrel{\models\kern-1.5ex\raisebox{.5ex}{*}}}
+\def\notmodels{\nvDash}
+\def\proves{\vdash}
+\def\notproves{\nvdash}
+\def\proves{\vdash}
+\def\provesT{\mathrel{\mathord{\vdash}\hskip-1.13ex\raisebox{-.5ex}{\tiny$T$}}}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\BB{\mathds B}
+\def\CC{\mathds C}
+\def\PP{\mathds P}
+\def\Ar{{\rm Ar}}
+\def\dom{\mathop{\rm dom}}
+\def\supp{\mathop{\rm supp}}
+\def\range{\mathop{\rm img}}
+\def\rank{\mathop{\rm rank}}
+\def\dcl{\mathop{\rm dcl}}
+\def\acl{\mathop{\rm acl}}
+\def\fp{{\rm fp}}
+\def\cf{\mathop{\rm cf}}
+\def\rad{\mathop{\rm rad}}
+\def\eq{{{\rm eq}}}
+\def\ccl{{\rm ccl}}
+\def\Th{\textrm{Th}}
+\def\Diag{{\rm Diag}}
+\def\atpmTh{\textrm{Th}_\atpm}
+\def\Mod{\mathop{\rm Mod}}
+\def\Rmod{{\mbox{\scriptsize $R$-mod}}}
+\def\Aut{\textrm{Aut\kern.15ex}}
+\def\Autf{\mathord{\rm Aut\kern.15ex{f}\kern.15ex}}
+\def\Cb{\textrm{Cb\kern.15ex}}
+\def\orbit{\O}
+\def\oorbit{\mathpzc{o}}
+\def\oorbitf{\mathpzc{of\!}}
+\def\id{\textrm{id}}
+\def\tp{{\rm tp}}
+\def\atpm{{\tiny\rm at^\pm}}
+\def\qftp{\textrm{qf\mbox{-}tp}}
+\def\attp{\textrm{at\mbox{-}tp}}
+\def\atpmtp{\atpm\mbox{-}\textrm{tp}}
+\def\Deltatp{\Delta\mbox{-}\textrm{tp}}
+\def\pmDelta{\Delta\hskip-.3ex\raisebox{1ex}{\tiny$\pm$}}
+\def\pmDeltatp{\noindent\pmDelta\hskip-.3ex\textrm{-tp}}
+\def\EMtp{\textrm{{\small EM}\mbox{-}tp}}
+
+\def\nonfork{\mathop{\raise0.2ex\hbox{\ooalign{\hidewidth$\vert$\hidewidth\cr\raise-0.9ex\hbox{$\smile$}}}}}
+
+%\def\nonforkc{\mathbin{\raise1.2ex\rlap{\kern1.3ex$\cdot$}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
+%\def\cnonfork{\mathbin{\raise1.3ex\rlap{\kern0.4ex$\cdot$}\raise0.6ex\rlap{\kern0.85ex$\vert$}\raise-0.3ex\hbox{$\smile$}} }
+
+\def\cnonfork{\mathbin{\raise1.8ex\rlap{\kern0.6ex\rule{0.6ex}{0.1ex}}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
+
+\def\nonforkc{\mathbin{\raise1.8ex\rlap{\kern1.1ex\rule{0.6ex}{0.1ex}}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
+
+\def\rela{\mathrel{\ooalign{\kern0.9ex\rule[0.2ex]{0.1ex}{0.7ex}\hidewidth\cr$<$}}}
+
+\def\rela{\mathbin{\ooalign{\kern0.0ex\rule[0.5ex]{0.9ex}{0.1ex}\hidewidth\cr$<$}}}
+
+\def\rela{\mathbin{\ooalign{\kern-0.4ex$-$\hidewidth\cr$<$}}}
+
+\def\sm{\smallsetminus}
+\def\atpmL{L_{\atpm}\hskip-.3ex}
+\def\qfL{L_{\rm qf}}
+\def\atL{L_{\tiny\rm at}\hskip-.3ex}
+\def\simdiff{\triangle}
+\def\IMP{\Rightarrow}
+\def\PMI{\Leftarrow}
+\def\IFF{\Leftrightarrow}
+\def\NIFF{\nLeftrightarrow}
+\def\imp{\rightarrow}
+\def\pmi{\leftarrow}
+\def\iff{\leftrightarrow}
+\def\niff{\mathrel{{\leftrightarrow}\llap{\raisebox{-.1ex}{{\small$/$}}\hskip.5ex}}}
+\def\nequiv{\mathrel{\mbox{$\equiv$\llap{{\small$/$}\hskip.3ex}}}}
+\def\equivEM{\stackrel{\smash{\scalebox{.5}{\rm EM}}}{\equiv}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+\def\equivKP{\stackrel{\smash{\scalebox{.5}{\rm KP}}}{\equiv}}
+\def\equivSh{\stackrel{\smash{\scalebox{.5}{\rm Sh}}}{\equiv}}
+\def\dIFF{\IFF\hskip-2.2ex\smash{\raisebox{1.3ex}{\tiny def}}}
+\def\deq{\mathrel{=\hskip-1.9ex\smash{\raisebox{1.2ex}{\tiny def}}}}
+\def\swedge{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\wedge$}}}
+\def\svee{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\vee$}}}
+
+\def\bigsum{\mathop{\mbox{\large$\displaystyle\sum$}}}
+\def\bigint{\mathop{\mbox{\large$\displaystyle\int$}}}
+
+
+%\def\hookdoubleheadrightarrow{\hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow}
+
+\def\isomap{\rlap{\kern0.8ex\raisebox{1ex}{\scriptsize$\sim$}}\rightarrow}
+
+\def\P{\EuScript P}
+\def\D{\EuScript D}
+\def\Aa{\EuScript A}
+\def\Ee{\EuScript E}
+\def\X{\EuScript X}
+\def\Y{\EuScript Y}
+\def\Z{\EuScript Z}
+\def\C{\EuScript C}
+\def\U{\EuScript U}
+\def\W{\EuScript W}
+\def\Hh{\EuScript H}
+\def\I{\EuScript I}
+\def\V{\EuScript V}
+\def\R{\EuScript R}
+\def\F{\EuScript F}
+\def\G{\EuScript G}
+\def\B{\EuScript B}
+\def\M{\EuScript M}
+\def\N{\EuScript N}
+\def\Ll{\EuScript L}
+\def\K{\EuScript K}
+\def\O{\EuScript O}
+\def\J{\EuScript J}
+\def\S{\EuScript S}
+\def\T{\EuScript T}
+\def\<{\langle}
+\def\>{\rangle}
+\def\0{\varnothing}
+\def\theta{\vartheta}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+\def\ssf#1{\textsf{\small #1}}
+
+\titlecontents{section}
+[3.8em] % ie, 1.5em (chapter) + 2.3em
+{\vskip-1ex}
+{\contentslabel{1.5em}}
+{\hspace*{-2.3em}}
+{\titlerule*[1pc]{}\contentspage}
+
+
+% \titleformat
+% {\chapter} % command
+% [display] % shape
+% {\bfseries\LARGE} % format
+% {Chapter \ \thechapter} % label
+% {0.5ex} % sep
+% {} % before-code
+% [] % after-code
+\titleformat{\section}[block]{\Large\bfseries}{\makebox[5ex][r]{\textbf{\thesection}}}{1.5ex}{}
+\titlespacing*{\chapter}{0em}{.5ex plus .2ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\section}{-9.7ex}{3ex plus .5ex minus .5ex}{1ex plus .2ex minus .2ex}
+
+%\renewcommand\thesection{\arabic{section}}
+
+\newtheoremstyle{mio}% name
+     {2\parskip}%      Space above
+     {\parskip}%      Space below
+     {\sl}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {\bfseries}% Thm head font
+     {}%        Punctuation after thm head
+     {1ex}%     Space after thm head: " " = normal interword space;
+           %   \newline = linebreak
+     {\llap{\thmnumber{#2}\hskip2mm}\thmname{#1}\thmnote{\bfseries{} #3}}% Thm head spec (can be left empty, meaning `normal')
+
+\newtheoremstyle{liscio}% name
+     {2\parskip}%      Space above
+     {0mm}%      Space below
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {\bfseries}% Thm head font
+     {}%        Punctuation after thm head
+     {1.5ex}%     Space after thm head: " " = normal interword space;
+           %   \newline = linebreak
+     {\llap{\thmnumber{#2}\hskip2mm}\thmname{#1}\thmnote{\bfseries{} #3}}% Thm head spec (can be left empty, meaning `normal')
+
+
+
+\newcounter{thm}[section]
+
+\renewcommand{\thethm}{\thesection.\arabic{thm}}
+
+\theoremstyle{mio}
+\newtheorem{theorem}[thm]{Theorem}
+\newtheorem{corollary}[thm]{Corollary}
+\newtheorem{proposition}[thm]{Proposition}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{assumption}[thm]{Assumption}
+\newtheorem{void_thm}[thm]{}
+\theoremstyle{liscio}
+\newtheorem{void_def}[thm]{}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{note}[thm]{Note}
+\newtheorem{exercise}[thm]{Exercise}
+\newtheorem{example}[thm]{Example}
+\setlength{\partopsep}{0mm}
+\setlength{\topsep}{0mm}
+
+\def\QED{\noindent\nolinebreak[4]\hspace{\stretch{1}}\rlap{\ \ $\Box$}\medskip}
+\renewenvironment{proof}[1][Proof]%
+{\begin{trivlist}\item[\hskip\labelsep {\bf #1}]}
+{\QED\end{trivlist}}
+
+\newenvironment{void}[1][]%
+{\begin{trivlist}\item[\hskip\labelsep {\bf #1}]}
+{\QED\end{trivlist}}
+
+
+
+\pagestyle{plain}
+
+\definecolor{violet}{RGB}{115, 0, 205}
+\definecolor{brown}{RGB}{150, 50, 10}
+\definecolor{green}{RGB}{5,110, 35}
+\definecolor{emphcolor}{rgb}{.98,.98,.70}
+
+\def\mr{\color{brown}}
+\def\gr{\color{green}}
+\def\vl{\color{violet}}
+
+\def\mrA{{\mr\Aa}}
+\def\mrB{{\mr\B}}
+\def\mrC{{\mr\C}}
+\def\mrD{{\mr\D}}
+\def\mrE{{\mr\Ee}}
+\def\mrG{{\mr\G}}
+\def\mrU{{\mr\U}}
+\def\mrV{{\mr\V}}
+\def\mrS{{\mr\S}}
+\def\mrP{{\mr\P}}
+\def\mrW{{\mr\W}}
+\def\grB{{\gr\B}}
+\def\grC{{\gr\C}}
+\def\grD{{\gr\D}}
+\def\grV{{\gr\V}}
+
+
+\renewcommand*{\emph}[1]{%
+\smash{\tikz[baseline]\node[rectangle, fill=emphcolor, rounded corners, inner xsep=.5ex, inner ysep=.2ex, anchor=base, minimum height = 3ex]{#1};}}
+
+\def\reladot{\ooalign{$\kern1.2ex\cdot$\cr$\rela$\cr}}
+
+\begin{document}
+
+\textbf{\large Considerazioni sul corso Basi di Informatica.}
+
+\bigskip
+$\bullet$\ \textbf{Cosa dev'essere (in breve)}
+Per \textbf{una parte degli studenti\/} del primo anno il corso Basi di Informatica è il primo ed ultimo contatto con un esperto della materia. Per loro il corso deve servire come \textbf{alfabetizzazione e orientamento} su strumenti di produttività tecnica e scentifica. Lo spettro dev'essere molto ampio privilegiando la capacità di orientarsi, se necessario a scapito dell'approfondimento.
+
+$\bullet$\ \textbf{Cosa NON dev'essere (in breve)}
+Progettare algoritmi solidi ed efficienti è relativamente facile per un buon matematico. Ma non è con un corso di programmazione che si diventa buoni matematici. Quindi il corso di informatica \textbf{non dev'essere una introduzione alla programmazione}. Eventualmente, per questo c'è un corso al secondo anno. Inoltre \textbf{non deve aveve come obbiettivo il calcolo scentifico\/} perché interessa solo la parte degli studenti che seguirà il corso del secondo anno.
+
+
+$\bullet$\ \textbf{Cosa intendo per alfabetizzazione} Purtroppo, il matematico medio è informaticamente meno competente non solo del fisico medio ma spesso persino di biologi, geologi, ecc. 
+
+Il matematico medio usa strumenti di produttività più adatti ad ambienti di ``amministrativi'' che ad ambienti ``scentifici/tecnici''. Per esempio, l'unico linguaggio a marcatori che conosce è \texttt{LaTeX}. Spesso non distingue bene i confini tra IDE e linguaggio. Non conosce gli strumenti per lo sviluppo e collaborativo e distribuito di progetti (\texttt{Dropbox} è il massimo che riesce a concepire). Non conosce i paradigmi e gli strumenti \textit{reproducible research (RR)\/} che, anche se non lo riguardano nell'immediato, è comunque formativo.
+
+Il corso del primo anno deve aprire gli orizzonti. E rompere il circolo vizioso che porta a riprodurre l'ignoranza delle generazioni precedenti. Il corso dovrebbe assicurare che lo studente
+\begin{itemize}
+
+\item[1.] conosca la struttura del file system di \texttt{Unix}
+
+\item[2.] sappia interagire con la linea di comando della shell (\texttt{Bash} è la scelta ovvia)
+
+\item[3.] sappia cosa sono i linguaggi a marcatori (avere una vaga idea della struttura di e filosofia di \texttt{LaTeX}, \texttt{Html5}, \texttt{MarkDown})
+
+\item[4.] conosca le problematiche che i \textit{control version systems} provano a risolvere (per esempio conosca i concetti di base di \texttt{git})
+
+\item[5.] conosca le problematiche relative alla RR e quali sono gli strumenti a disposizione per la pubblicazione di RR (io suggerirei \texttt{Jupyter}, più cenni ad altri)
+
+\item[6.] Il linguaggio di programmazione da introdurre deve avere qualche utilità anche a chi non avrà né occasione né incentivi ad imaparne un altro. Sono quindi da \textbf{evitare linguaggi di nicchia\/}  per quanto interessanti. Sarebbe una perdita di tempo per gli studenti meno motivati.
+
+\smallskip
+I linguaggi interpretati hanno grossi vantaggi di fruibilità. Suggerirei per esempio \texttt{Python}. È uno dei due linguaggi più usati nelle \textit{Data Sciences} e forse il più usato nell'\textit{Artificial Intelligence/Machine Learning}. Ma il vero argomento a favore è che facilmente spendibile anche per applicazioni di basso profilo (applicazioni alla didattica, amministrazione, gestione di un piccolo sito web). Questo è un aspetto essenziale per gli studenti per cui questo è l'unico corso di informatica.
+
+\smallskip
+Altri linguaggi più adatti al calcolo scientifico (\texttt{C++}, \texttt{MatLab/Octave}, ecc.) possono essere presi in considerazione per il corso del secondo anno. (\texttt{Julia} potrebbe essere un ottimo compromesso, ma è ancora troppo di nicchia.)
+\end{itemize}
+
+$\bullet$\ \textbf{Fattibilità} Mi rendo conto della difficoltà di progettare un corso (e soprattutto l'esame) con un programma di così ampio respiro. Ma è importante non riprodurre una generazione di matematici restii all'uso di tecnologie evolute.
+
+
+
+
+\end{document}
+ 
