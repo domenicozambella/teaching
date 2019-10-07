@@ -1,0 +1,132 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=24cm,width=14cm]{geometry}
+\usepackage[italian]{babel}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{fourier}
+\usepackage{euscript}
+\usepackage{amsmath,amssymb, amsthm}
+
+\def\lh{\textrm{lh}}
+\def\phi{\varphi}
+\def\P{\EuScript P}
+\def\M{\EuScript M}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\S{\EuScript S}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\proves{\vdash}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\eq{{\rm eq}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+
+\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+   \end{list}}
+%\def\ssf#1{\textsf{\small #1}}
+\newcounter{ex}
+\newenvironment{exercise}{\bigskip\addtocounter{ex}{1}\textbf{Esercizio \theex.\quad}}{}
+\pagestyle{empty}
+\parindent0ex
+\parskip2ex
+\raggedbottom
+\def\nsR{{}^*\!\RR}
+\def\ssf#1{\textsf{#1}}
+\renewcommand{\baselinestretch}{1.3}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Logica Matematica a.a.~2018/19}
+\rhead{}
+\cfoot{}
+\rfoot{\rput(1.5,-0.5){\small\thepage}}
+
+\begin{document}
+
+
+\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{Marco Mombelli, Simone Ramello, Davide Manca}\setcounter{ex}{0}
+
+
+\begin{exercise}
+Si consideri $\RR$ come una struttura nel linguaggio degli anelli orinati e con un simbolo per ogni $X\subseteq\RR$. Sia ${}^*\!X$ l'interpretazione di $X$ in ${}^*\!\RR$ una estensione elementare propria di $\RR$. Si dimostri che le seguenti affermazioni sono equivalenti per ogni $X\subseteq\RR$:\nobreak
+\begin{itemize}
+\item[1.]  $X$ is un aperto nell'usuale topologia di $\RR$;
+\item[2.]  $b\approx a\in{}^*\!X \ \ \IMP\ \ b\in{}^*\!X$ for every $a$ standard e $b$ arbitrario.
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+Con la stessa notazione dell'esercizio precedente. Si dimostri che le seguenti affermazioni sono equivalenti per ogni $X\subseteq\RR$\nobreak
+\begin{itemize}
+\item[1.]  $X$ is un chiuso nell'usuale topologia di $\RR$;
+\item[2.]  $a\in{}^*\!X \ \ \IMP\ \ {\rm st}(a)\in{}^*\!X$ for every finito $a$.
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+Let $N\models T_{\rm rg}$ prove that for every $b\in N$ the set $r(b,N)$ is a random graph.
+Is every random graph $M\subseteq N$ of the form $\phi(N)$ for some $\phi(x)\in L(N)$~?
+\end{exercise}
+
+\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{Cristian Alaimo, Beatrice Pitton}\setcounter{ex}{0}
+
+\begin{exercise}
+Si consideri $\RR$ come una struttura nel linguaggio degli anelli orinati e con un simbolo per ogni $X\subseteq\RR$. Sia ${}^*\!X$ l'interpretazione di $X$ in ${}^*\!\RR$ una estensione elementare propria di $\RR$. Si dimostri che $\RR$ and $\0$ sono gli unici due sottoinsiemi $X\subseteq\RR$ tali che\nobreak
+\begin{itemize}
+\item[]  $b\approx a\in{}^*\!X \ \ \IMP\ \ b\in{}^*\!X$ for every coppia di iperreali $a, b$.
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+Let $L$ be the language of strict orders expanded with countably many constants $\big\{c_i: i\in\omega\big\}$.
+Let $T$ be the theory that extends $T_{\rm dlo}$ by the axioms $c_i<c_{i+1}$ for all $i$.
+Prove that $T$ is complete.
+\end{exercise} 
+
+\begin{exercise}
+Find 3 non isomorphic models of the theory $T$ in the exercise above.
+\end{exercise}
+
+\end{document}
+
+
