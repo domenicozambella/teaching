@@ -41,6 +41,7 @@
 \def\Aut{\textrm{Aut}}
 \def\Th{\textrm{Th}}
 \def\acl{\textrm{acl}}
+\def\dcl{\textrm{dcl}}
 \def\eq{{\rm eq}}
 \def\tp{\textrm{tp}}
 \def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
@@ -105,12 +106,13 @@ For arbitrary $ b\in\U^{| z|}$, prove that if the orbit of $\phi(\U\,;  b)$ over
 \end{exercise}
 
 \begin{exercise}
-  Let $T$ have weak elimination of imaginaries.
-  Prove that for every $A\subseteq\U$ the following are equivalent
+  Assume that $\acl^\eq A=\dcl^\eq\big(\acl A\big)$ for every $A\subseteq\U$.
+  Prove that, for every $A\subseteq\U$ and $a,b\in\U^{<\omega}$, the following are equivalent\smallskip
   \begin{itemize}
   \item[1.]  $a\ \equivSh_A\, b$;
   \item[2.]  $a\,\equiv_{\acl A}b$.
   \end{itemize} 
+  Prove that the assumption above holds when $T$ has weak elimination of imaginaries.
 \end{exercise}
 \end{document}
 
