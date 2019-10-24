@@ -44,6 +44,7 @@
 \def\eq{{\rm eq}}
 \def\tp{\textrm{tp}}
 \def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+\def\equivSh{\stackrel{\smash{\scalebox{.5}{\rm Sh}}}{\equiv}}
 \def\swedge{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\wedge$}}}
 \def\svee{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\vee$}}}
 
@@ -104,8 +105,12 @@ For arbitrary $ b\in\U^{| z|}$, prove that if the orbit of $\phi(\U\,;  b)$ over
 \end{exercise}
 
 \begin{exercise}
-Let $T$ have elimination of imaginaries and $\phi(x\,;z)\in L(A)$.
-For arbitrary $c\in\U^{|z|}$, prove that if the orbit of $\phi(\U\,; c)$ over $A$ is finite, then $\phi(\U\,; c)$ is definable over $\acl A$.
+  Let $T$ have weak elimination of imaginaries.
+  Prove that for every $A\subseteq\U$ the following are equivalent
+  \begin{itemize}
+  \item[1.]  $a\ \equivSh_A\, b$;
+  \item[2.]  $a\,\equiv_{\acl A}b$.
+  \end{itemize} 
 \end{exercise}
 \end{document}
 
