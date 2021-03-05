@@ -69,28 +69,63 @@
 \parindent0ex
 \parskip2ex
 \raggedbottom
-\def\nsR{{}^*\!\RR}
+\def\nsR{{}^*\kern-.2ex\RR}
+\def\nsN{{}^*\kern-.2ex\NN}
+\def\nsQ{{}^*\kern-.2ex\QQ}
+\def\ns{{}^*\kern-.2ex}
+\def\st{{\rm st}}
 \def\ssf#1{\textsf{#1}}
 \renewcommand{\baselinestretch}{1.3}
 
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lhead{Teoria dei Modelli a.a.~2020/21}
+\lfoot{Teoria dei Modelli a.a.~2020/21}
 \rhead{}
-\cfoot{}
 \rfoot{\rput(1.5,-0.5){\small\thepage}}
+\cfoot{}
 
+%
+% INDICARE NOME E COGNOME DI TUTTI GLI AUTORI
+%
+\lhead{Nome/i Cognome/i\quad +\quad Nome/i Cognome/i}
+%
 \begin{document}
 
 \begin{exercise}
   Assume $L$ is countable and let $M\preceq N$ have arbitrary (large) cardinality.
   Let $A\subseteq N$ be countable.
   Prove there is a countable model $K$ such that $A\subseteq K\preceq N$ and $K\cap M\preceq N$ (in particular, $K\cap M$ is a model).
-  Hint: adapt the construction used to prove the downward L\"owenheim-Skolem Theorem.
-  \end{exercise}
+  Hint: adapt the \textit{construction\/} used to prove the downward L\"owenheim-Skolem Theorem.
+\end{exercise}
   
 
+\begin{exercise}
+  Prove (for the pair of statements of your choice) that that the following are equivalent for every $X\subseteq\RR$.
+
+  \begin{minipage}{.5\textwidth}
+    \begin{itemize}
+    \item[1a.] $X$ is open;
+    \item[2a.] $b\approx a\in X \ \IMP\ b\in\ns X$ for every $b\in\nsR$.
+    \end{itemize}
+  \end{minipage}
+  \begin{minipage}{.5\textwidth}
+    \begin{itemize}
+    \item[1b.] $X$ is closed;
+    \item[2b.] $a\in\ns X \ \IMP\ \st\, a\in X$ for every finite $a\in\nsR$.
+    \end{itemize}
+  \end{minipage}
+  
+  Open and closed are understood w.r.t.\@ the usual tolopology on $\RR$.
+\end{exercise}
+
+
+\begin{exercise}\kern-1ex\textbf{(Bonus question)}\kern1ex
+\end{exercise}
+  For what sets $X\subseteq\RR$ the following holds?
+  \begin{itemize}
+  \item[2.] $b\approx a\in\ns X \ \IMP\ b\in\ns X$ for every $a,b\in\nsR$.
+  \end{itemize}
 \end{document}
 
 
