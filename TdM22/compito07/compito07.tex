@@ -1,5 +1,5 @@
 \documentclass[10pt]{article}
-\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc}
 \usepackage[a4paper,height=24cm,width=13cm]{geometry}
 \usepackage{babel}
 \usepackage{amssymb}
@@ -7,9 +7,9 @@
 \usepackage{calc}
 \usepackage{graphicx}
 \usepackage{pst-node}
-\usepackage{fourier}
+\usepackage{fourier-otf}
 \usepackage{euscript}
-\usepackage{amsmath,amssymb, amsthm}
+\usepackage{amsmath,amsthm}
 
 \def\lh{\textrm{lh}}
 \def\phi{\varphi}
@@ -96,33 +96,30 @@
 \begin{document}
 
  
-\begin{exercise}
-  Prove that the following are equivalent for every $p(x)\in S(\U)$
-  \begin{itemize}
-  \item[1.] $\phi(x\,;a)\in p\ \ \IFF\ \ \phi(x\,;fa)\in p$ for every $a\in\U^{|z|}$ and every $f\in\Aut(\U/A)$
-  \item[2.] $a\equiv_Ab\ \ \IMP\ \ a\equiv_{A,\,c}b$ for all $a,b\in\U^{|z|}$ and for all $c\models p_{\restriction A,a,b}$.
-  \end{itemize}
-\end{exercise}
-
 
 \begin{exercise}
-  Prove that every type $p(x)\subseteq L(\U)$ that is strongly quasi invariant over $M$ extends to a global type that is quasi invariant over $M$.
+  Prove that every type $p(x)\subseteq L(\U)$ that is strongly quasi-invariant over $M$ extends to a global type that is quasi-invariant over $M$.
 \end{exercise}
 
 
 \begin{exercise}
   Let  $p(x)\in S(\U)$ be a global type invariant over $A$.
   Let $a, b\models p_{\restriction A}(x)$.
-  Prove that there is a sequence $\bar c=\<c_i:i<\omega\>$ such that $a,\bar c$ and $b,\bar c$ are both sequences of $A$-indiscernibles. Hint: use Morley sequences.
+  Prove that there is a sequence $\bar c=\<c_i:i<\omega\>$ such that $a,\bar c$ and $b,\bar c$ are both sequences of $A$-indiscernibles.
   \end{exercise}
 
   
 \begin{exercise}
    For every $\D\subseteq\U^{|z|}$ the following are equivalent
    \begin{itemize}
-   \item[1.] $\D$ is approximated by $\phi(x\,;z)$;
-   \item[2.] $\D$ is externally definable by $\phi(x\,;z)$.
+   \item[1.] $\D$ is approximated by $\varphi(x\,;z)$;
+   \item[2.] $\D$ is externally definable by $\varphi(x\,;z)$.
    \end{itemize}
 \end{exercise}
   
+
+
+\begin{exercise}
+  Prove that the equivalence relation $a\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}_Ab$ is the transitive closure of the relation: there is a sequence $\<c_i:i<\omega\>$ indiscernible over $A$ such that $c_0=a$ and $c_1=b$.
+\end{exercise}
 \end{document}
