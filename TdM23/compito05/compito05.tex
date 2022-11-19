@@ -1,24 +1,19 @@
 \documentclass[10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[a4paper,height=24cm,width=13cm]{geometry}
-\usepackage[italian]{babel}
 \usepackage{amssymb}
 \usepackage{dsfont}
 \usepackage{calc}
 \usepackage{graphicx}
-\usepackage{pstricks}
-\usepackage{pst-node}
-\usepackage{fourier}
+% \usepackage{pst-node}
+\usepackage{fourier-otf}
 \usepackage{euscript}
-\usepackage{amsmath,amssymb, amsthm}
-
+\usepackage{amsmath,amsthm}
 \def\lh{\textrm{lh}}
-\def\phi{\varphi}
 \def\P{\EuScript P}
 \def\M{\EuScript M}
 \def\D{\EuScript D}
 \def\U{\EuScript U}
-\def\V{\EuScript V}
 \def\S{\EuScript S}
 \def\sm{\smallsetminus}
 \def\niff{\nleftrightarrow}
@@ -36,8 +31,7 @@
 \def\iff{\leftrightarrow}
 \def\IMP{\Rightarrow}
 \def\IFF{\Leftrightarrow}
-\def\dom{\textrm{dom}}
-\def\range{\textrm{rang}}
+\def\range{\textrm{im}}
 \def\Mod{\textrm{Mod}}
 \def\Aut{\textrm{Aut}}
 \def\Th{\textrm{Th}}
@@ -45,8 +39,6 @@
 \def\eq{{\rm eq}}
 \def\tp{\textrm{tp}}
 \def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
-\def\swedge{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\wedge$}}}
-\def\svee{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\vee$}}}
 
 \newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
 \renewenvironment{itemize}
@@ -63,7 +55,7 @@
    \setlength{\labelsep}{1ex}
    \setlength{\leftmargin}{\labelwidth+\labelsep}
    \let\makelabel\labella}}{%
-   \end{list}}
+   \vspace*{-.5\baselineskip}\end{list}}
 %\def\ssf#1{\textsf{\small #1}}
 \newcounter{ex}
 \newenvironment{exercise}{\addtocounter{ex}{1}\textbf{Esercizio \theex.\quad}}{}
@@ -78,14 +70,10 @@
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lfoot{Teoria dei Modelli a.a.~2021/22}
+\lfoot{Teoria dei Modelli a.a.~2022/23}
 \rhead{}
-\rfoot{\rput(1.5,-0.5){\small\thepage}}
+\rfoot{{\small\thepage}}
 \cfoot{}
-
-
-
-
 
 
 
@@ -94,12 +82,13 @@
 %
 \lhead{Nome/i Cognome/i}
 %
+
 \begin{document}
 
 \begin{exercise}
-Let $\phi(z)\in L(A)$ be a consistent formula.
-Prove that, if $a\in\acl(A,b)$ for every $b\models\phi(z)$, then $a\in\acl(A)$.
-Prove the same claim with a type $p(z)\subseteq L(A)$ for $\phi(z)$.
+Let $\varphi(z)\in L(A)$ be a consistent formula.
+Prove that, if $a\in\acl(A,b)$ for every $b\models\varphi(z)$, then $a\in\acl(A)$.
+Prove the same claim with a type $p(z)\subseteq L(A)$ for $\varphi(z)$.
 \end{exercise}
 
 
