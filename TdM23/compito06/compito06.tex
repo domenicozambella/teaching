@@ -1,0 +1,128 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=24cm,width=13cm]{geometry}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{graphicx}
+% \usepackage{pst-node}
+\usepackage{fourier-otf}
+\usepackage{euscript}
+\usepackage{amsmath,amsthm}
+\def\lh{\textrm{lh}}
+\def\P{\EuScript P}
+\def\M{\EuScript M}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\S{\EuScript S}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\PP{\mathds P}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\eq{{\rm eq}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+
+\def\cnonfork{\mathbin{\raise1.8ex\rlap{\kern0.6ex\rule{0.6ex}{0.1ex}}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
+
+\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+   \vspace*{-.5\baselineskip}\end{list}}
+%\def\ssf#1{\textsf{\small #1}}
+\newcounter{ex}
+\newenvironment{exercise}{\addtocounter{ex}{1}\textbf{Esercizio \theex.\quad}}{}
+\pagestyle{empty}
+\parindent0ex
+\parskip2ex
+\raggedbottom
+\def\nsR{{}^*\!\RR}
+\def\ssf#1{\textsf{#1}}
+\renewcommand{\baselinestretch}{1.3}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{Teoria dei Modelli a.a.~2022/23}
+\rhead{}
+\rfoot{{\small\thepage}}
+\cfoot{}
+
+
+
+%
+% INDICARE NOME E COGNOME DI TUTTI GLI AUTORI
+%
+\lhead{Nome/i Cognome/i}
+%
+
+\begin{document}
+
+\begin{exercise}
+Identifichiamo una formula $\varphi(x;z)$ con una funzione $\U^{|x|}\times\U^{|z|}\to\{0,1\}$. 
+Si dimostri che le seguenti affermazioni sono equivalenti
+\begin{itemize}
+  \item[1.] $\varphi(x;z)$ è stabile;
+  \item[2.] per ogni coppia di sequenze $\<a_i:i\in\omega\>$ e  $\<b_i:i\in\omega\>$
+  
+   $$\lim_{i\to\infty}\ \lim_{j\to\infty}\varphi(a_i;b_j)
+   \ =\ 
+   \lim_{j\to\infty}\ \lim_{i\to\infty}\varphi(a_i;b_j)$$
+
+   non appena i due limiti esistono.
+\end{itemize}
+{\it In analisi funzionale la proprietà dello scambio dei limiti è un fenomeno simile alla stabilità ha in teoria dei modelli. Le conseguenze in analisi funzionale della proprietà dello scambio dei limiti sono state scoperte da Alexander Grothendieck negli anni '50 (circa 20 anni prima del lavoro di Shelah).
+Il parallelo con la teoria dei modelli è stato osservato solo una decina di anni fa.}
+\end{exercise}
+
+
+
+
+\begin{exercise}
+  Let $M$ be a graph with the property that for every finite $A\subseteq M$ there is a $c\in M$ such that $A\subseteq r(c,\U)$. 
+  (This holds in particular when $M$ is a random graph.)
+  %
+  A star in $M$ is a subgraph whose edges all share a common vertex. We say that a coloring of the edges of $M$ is locally finite if there is a $k$ such that every star has at most $k$ colors.
+  Prove that for every locally finite coloring of the edges of $M$, there is an infinite monochromatic complete subgraph.
+\end{exercise}
+
+
+\begin{exercise}
+ Assume $T$ is stable (that is, in every model of $T$ every formula is stable). 
+ Prove that $a\cnonfork_M b$ then  $b\cnonfork_M a$.
+
+ \textit{Questo potrebbe essere troppo difficile.}
+\end{exercise}
+
+\end{document}
+
+
