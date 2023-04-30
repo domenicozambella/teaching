@@ -18,6 +18,7 @@
 \def\M{\EuScript M}
 \def\D{\EuScript D}
 \def\U{\EuScript U}
+\def\V{\EuScript V}
 \def\S{\EuScript S}
 \def\sm{\smallsetminus}
 \def\niff{\nleftrightarrow}
@@ -95,33 +96,22 @@
 %
 \begin{document}
 
-
 \begin{exercise}
-  Let $M$ be a random graph. Prove that if $M_1,M_2\subseteq M$ are such that $M_1\sqcup M_2=M$, then $M_1$ or $M_2$ is a random graph.
+Let $\phi(z)\in L(A)$ be a consistent formula.
+Prove that, if $a\in\acl(A,b)$ for every $b\models\phi(z)$, then $a\in\acl(A)$.
+Prove the same claim with a type $p(z)\subseteq L(A)$ for $\phi(z)$.
 \end{exercise}
-  
 
 \begin{exercise}
-  Let $N$ be free union of two random graphs $N_1$ and $N_2$.
-  That is, $N=N_1\sqcup N_2$ and $r^N= r^{N_1}\sqcup r^{N_2}$,
-  where by $\sqcup$ we denote the disjoint union.
-  \begin{itemize}
-    \item[1.] Prove that $N_1$ is not definable without parameters.
-    \item[2.] Prove that $N_1$ is definable (with parameters).
-    \item[3.] Axiomatize (in words) $\Th(N)$.
-  \end{itemize}
-  \end{exercise}
-
-\begin{exercise}
-  A (countable) back-and-forth system between to models $M$ and $N$ is a set $\P$ of functions $k$ such that
-  \begin{itemize}
-      \item[0.] $k:M\to N$ is a finite partial embedding;
-      \item[1a.] for every $b\in M$ there is $h\in\P$ such that $k\subseteq h$ and $b\in\dom h$;
-      \item[1b.] for every $c\in N$ there is $h\in\P$ such that $k\subseteq h$ and $c\in\range h$.
-  \end{itemize}
-  Prove (briefly) that if $L$ is countable and there is a back-and-forth system between $M$ and $N$ then $M\equiv N$.
+Let $a\in\U\sm\acl\0$.
+Prove that $\U$ is isomorphic to some elementary substructure $\V\preceq \U$ such that $a\notin\V$.
 \end{exercise}
-  
+
+\begin{exercise}
+Let $C$ be a finite set.
+Prove that if $C\cap M\neq\0$ for every model $M$ containing $A$, then $C\cap\acl(A)\neq\0$.
+\end{exercise}
+
 
 \end{document}
 

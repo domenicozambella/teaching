@@ -35,8 +35,7 @@
 \def\iff{\leftrightarrow}
 \def\IMP{\Rightarrow}
 \def\IFF{\Leftrightarrow}
-\def\dom{\textrm{dom}}
-\def\range{\textrm{rang}}
+\def\range{\textrm{im}}
 \def\Mod{\textrm{Mod}}
 \def\Aut{\textrm{Aut}}
 \def\Th{\textrm{Th}}
@@ -65,63 +64,55 @@
    \end{list}}
 %\def\ssf#1{\textsf{\small #1}}
 \newcounter{ex}
-\newenvironment{exercise}{\addtocounter{ex}{1}\textbf{Esercizio \theex.\quad}}{}
+\newenvironment{exercise}{\clearpage\addtocounter{ex}{1}\textbf{Esercizio \theex.\quad}}{}
 \pagestyle{empty}
 \parindent0ex
 \parskip2ex
 \raggedbottom
-\def\nsR{{}^*\!\RR}
+\def\nsR{{}^*\kern-.2ex\RR}
+\def\nsN{{}^*\kern-.2ex\NN}
+\def\nsQ{{}^*\kern-.2ex\QQ}
+\def\ns{{}^*\kern-.2ex}
+\def\st{{\rm st}}
 \def\ssf#1{\textsf{#1}}
 \renewcommand{\baselinestretch}{1.3}
 
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lfoot{Teoria dei Modelli a.a.~2021/22}
+\lfoot{Teoria dei Modelli a.a.~2020/21}
 \rhead{}
 \rfoot{\rput(1.5,-0.5){\small\thepage}}
 \cfoot{}
 
-
-
-
-
-
-
 %
 % INDICARE NOME E COGNOME DI TUTTI GLI AUTORI
 %
-\lhead{Nome/i Cognome/i}
+\lhead{Nome/i Cognome/i\quad +\quad Nome/i Cognome/i}
 %
 \begin{document}
+   
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{exercise}
-  Let $M$ be a random graph. Prove that if $M_1,M_2\subseteq M$ are such that $M_1\sqcup M_2=M$, then $M_1$ or $M_2$ is a random graph.
+  Let $M$ be a graph with the property that for every finite $A\subseteq M$ there is a $c\in M$ such that $A\subseteq r(c,M)$.
+  %
+  This holds in particular when $M$ is a random graph.
+  %
+  Prove that for every finite coloring of the edges of $M$, there is an infinite monochromatic complete subgraph.
 \end{exercise}
-  
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{exercise}
-  Let $N$ be free union of two random graphs $N_1$ and $N_2$.
-  That is, $N=N_1\sqcup N_2$ and $r^N= r^{N_1}\sqcup r^{N_2}$,
-  where by $\sqcup$ we denote the disjoint union.
-  \begin{itemize}
-    \item[1.] Prove that $N_1$ is not definable without parameters.
-    \item[2.] Prove that $N_1$ is definable (with parameters).
-    \item[3.] Axiomatize (in words) $\Th(N)$.
-  \end{itemize}
-  \end{exercise}
+  Chi vuole, in alternativa, pu\`o provare la seguente versione pi\`u generale dell'esercizio~1.
 
-\begin{exercise}
-  A (countable) back-and-forth system between to models $M$ and $N$ is a set $\P$ of functions $k$ such that
-  \begin{itemize}
-      \item[0.] $k:M\to N$ is a finite partial embedding;
-      \item[1a.] for every $b\in M$ there is $h\in\P$ such that $k\subseteq h$ and $b\in\dom h$;
-      \item[1b.] for every $c\in N$ there is $h\in\P$ such that $k\subseteq h$ and $c\in\range h$.
-  \end{itemize}
-  Prove (briefly) that if $L$ is countable and there is a back-and-forth system between $M$ and $N$ then $M\equiv N$.
+  Let $M$ be as in the exercise above.
+  %
+  A star in $M$ is a subgraph whose edges all share a common vertex. We say that a coloring of the edges of $M$ is locally finite if there is a $k$ such that every star has at most $k$ colors.
+
+  Prove that for every locally finite coloring of the edges of $M$, there is an infinite monochromatic complete subgraph.
 \end{exercise}
-  
 
 \end{document}
 
