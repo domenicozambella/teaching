@@ -1,0 +1,138 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=20cm,width=13cm]{geometry}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{euscript}
+\usepackage{calc}
+\usepackage{graphicx}
+% \usepackage{pst-node}
+\usepackage{fourier}
+% \usepackage{euscript}
+\usepackage{amsmath,amsthm}
+\def\phi{\varphi}
+\def\P{\EuScript P}
+\def\M{\EuScript M}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\S{\EuScript S}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\PP{\mathds P}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\dom{\textrm{dom}}
+\def\eq{{\rm eq}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+
+\def\cnonfork{\mathbin{\raise1.8ex\rlap{\kern0.6ex\rule{0.6ex}{0.1ex}}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
+
+\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+  %  \vspace*{-.5\baselineskip}
+  \end{list}}
+%\def\ssf#1{\textsf{\small #1}}
+\newcounter{ex}
+\newenvironment{exercise}{\bigskip\addtocounter{ex}{1}\textbf{Esercizio \theex.\ }}{}
+\pagestyle{empty}
+\parindent0ex
+\parskip2ex
+\raggedbottom
+\def\nsR{{}^*\!\RR}
+\def\ssf#1{\textsf{#1}}
+\renewcommand{\baselinestretch}{1.3}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{Teoria dei Modelli a.a.~2024/25}
+\rhead{}
+\rfoot{{\small\thepage}}
+\cfoot{}
+
+
+
+%
+% INDICARE NOME E COGNOME DI TUTTI GLI AUTORI
+%
+\lhead{Nome/i Cognome/i}
+%
+\begin{document}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  Let $L$ be a countable language containing $L_{\rm gr}$ and assume $\U$ is a group.
+  Let $p(x)\subseteq L$ define a subgroup of $\U$.
+  Prove that there are some formulas $\phi_n(x)\in L$ such that 
+  \begin{itemize}
+  \item[1.] $p(x)\ \iff\ \{\phi_n(x):n<\omega\}$
+  \item[2.] $\phi_{n+1}(x)\wedge\phi_{n+1}(y)\ \imp\ \phi_n(x\cdot y)$.
+  \end{itemize}
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  Let $\phi(x\,;z)\in L$ and $a\in\U^z$.
+  Prove that the following are equivalent
+  \begin{itemize}
+  \item[1.] the type $\{\phi(x\,;fa)\,:\,f\in\Aut(\U)\}$ is realized (in $\U$)
+  \item[2.] there is a formula $\psi(z)\in L$ such that $\psi(a)$ and $\E x\A z\,[\psi(z)\imp\phi(x\,;z)]$.
+  \end{itemize}  
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  Let $\phi(x,y)\in L(\U)$. Prove that if the set $\big\{\phi(a,\U)\, :\, a\in\U^x\big\}$ is infinite then it has cardinality $\kappa$.
+  Does the claim remain true with a type $p(x,y)\subseteq L(A)$ for $\phi(x,y)$?
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  Let $\phi(z)\in L(A)$ be a consistent formula.
+  Prove that, if $a\in\acl(A,b)$ for every $b\models\phi(z)$, then $a\in\acl A$.
+  Prove the same claim with a type $p(z)\subseteq L(A)$ for $\phi(z)$.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+Let $C$ be a finite set.
+Prove that if $C\cap M\neq\varnothing$ for every model $M$ containing $A$, then $C\cap\acl A\neq\varnothing$.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+Prove that for every $A\subseteq N$ there is an $M$ such that $\acl A\,=\,M\cap N$.
+\end{exercise} 
+\end{document}
+
+
