@@ -1,0 +1,158 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=21cm,width=13cm]{geometry}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{euscript}
+\usepackage{calc}
+\usepackage{graphicx}
+% \usepackage{pst-node}
+\usepackage{fourier}
+% \usepackage{euscript}
+\usepackage{amsmath,amsthm}
+\def\phi{\varphi}
+\def\P{\EuScript P}
+\def\M{\EuScript M}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\S{\EuScript S}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\PP{\mathds P}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\dom{\textrm{dom}}
+\def\eq{{\rm eq}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+
+\def\cnonfork{\mathbin{\raise1.8ex\rlap{\kern0.6ex\rule{0.6ex}{0.1ex}}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
+
+\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+  %  \vspace*{-.5\baselineskip}
+  \end{list}}
+%\def\ssf#1{\textsf{\small #1}}
+\newcounter{ex}
+\newenvironment{exercise}{\medskip\addtocounter{ex}{1}\textbf{Esercizio \theex.\ }}{}
+\pagestyle{empty}
+\parindent0ex
+\parskip2ex
+\raggedbottom
+\def\nsR{{}^*\!\RR}
+\def\ssf#1{\textsf{#1}}
+\renewcommand{\baselinestretch}{1.3}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{Teoria dei Modelli a.a.~2024/25}
+\rhead{}
+\rfoot{{\small\thepage}}
+\cfoot{}
+
+
+
+%
+% INDICARE NOME E COGNOME DI TUTTI GLI AUTORI
+%
+\lhead{Nome/i Cognome/i}
+%
+\begin{document}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  Suppose that every formula $\phi(x)\in L$ is equivalent to a some quantifier-free formula $\psi(x)\in L(\U)$.
+  Prove that $T$ has positive $\Delta$-elimination of quantifiers for $\Delta$ the set of formulas of the form $\E y\,\A z\,\theta(x,y,z)$ with $\theta(x,y,z)\in L_{\rm qf}$.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise} 
+  Let $A\subseteq B$ and $p(x)\subseteq L(A)$. 
+  Suppose that $\tp(a/B)$ is isolated over $B$ for every $a\models p(x)$.
+  Prove that $p(x)$ is isolated over $A$.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  A countable structure $M$ is \textit{set-ultrahomogeneous\/} if for every finite partial embedding $k:M\to M$ there is an $h\in\Aut(M)$ such that $\dom k=\dom h$ and $\range k=\range h$.
+  Prove that if $L$ contains only a finite number of relational symbols, then set-homogeneous models have an $\omega$-categorical theory.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  Let $M$ be set-homogeneous set-homogeneous in a language $L$ that contains only a finite number of relational symbols.
+  Prove that $\Th(M)$ is model-complete\footnote{Potrebbe essere meno semplice.}.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise} 
+  Assume $L$ is countable and that $T$ is complete.
+  Suppose that for every finite tuple $x$ there is a model $M$ that realizes only finitely many types in $S_x(T)$.
+  Prove that $T$ is $\omega$-categorical.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  Let $|x|=1$.
+  Prove that if $S_{x}(A)$ is countable for every finite set $A$, then $T$ is small.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  Let $T$ be a complete theory without finite models in a language that consists only of unary predicates. Prove that $T$ has elimination of quantifiers.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  Let $T$ be a complete theory without finite models.
+  Prove that the following are equivalent
+  \begin{itemize}
+  \item[1.] $M$ is minimal
+  \item[2.] $a\equiv_M b$ for every $a, b\in \U\sm M$.
+  \end{itemize}
+\end{exercise}
+  
+%%%%%%%%%%%%%%%%
+\begin{exercise}
+  Let $\phi(x)\in L_{\rm qf}(\U)$.
+  Find a simple theory that disproves the equivalence of the following
+  \begin{itemize}
+   \item[1.] $\phi(x)$ is equivalent to some formula $\psi(x)\in L_{\rm qf}(A)$
+   \item[2.] $\phi(x)$ is invariant over $A$.
+  \end{itemize}
+\end{exercise}
+
+\vfill
+\end{document}
+
+
