@@ -14,6 +14,7 @@
 \def\M{\EuScript M}
 \def\D{\EuScript D}
 \def\U{\EuScript U}
+\def\V{\EuScript V}
 \def\S{\EuScript S}
 \def\sm{\smallsetminus}
 \def\niff{\nleftrightarrow}
@@ -41,6 +42,7 @@
 \def\tp{\textrm{tp}}
 \def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
 \def\equivSh{\stackrel{\smash{\scalebox{.5}{\rm Sh}}}{\equiv}}
+\def\cnonfork{\mathbin{\raise1.8ex\rlap{\kern0.6ex\rule{0.6ex}{0.1ex}}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
 
 
 \def\cnonfork{\mathbin{\raise1.8ex\rlap{\kern0.6ex\rule{0.6ex}{0.1ex}}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
@@ -91,6 +93,40 @@
 
 \begin{document}
 
+\begin{exercise}\label{ex_heir_type}
+  Show that for every $b\in\U^z$ there is a type $p(x\,;z)\subseteq L(M)$ such that  for every  $a\in\U^x$ and every $b'\in\U^z$
+
+  \hfil$a\cnonfork_M b'\equiv_M b\ \ \IFF\ \ a,b'\models p(x\,;z).$
+\end{exercise}
+
+\begin{exercise}
+  Let $T$ be strongly minimal.
+  Let $a\in\U$ and $b\in\U^z$.
+  Prove that $a\cnonfork_Mb$ if and only if $a\in M$, $b\in M^z$ or $a\notin\acl(M,b)$.
+  % When $a\in\U^x$ is a tuple, this generalizes to $\dim(M,a)<\dim(M,a,b)$.
+\end{exercise}
+
+\begin{exercise}
+  Let $a\cnonfork_M b$ then there is $\V\preceq\U$ that is isomorphic to $\U$ over $M,a$ and such that $\V\cnonfork_Mb$.
+\end{exercise}
+
+\begin{exercise}
+  Let $a\cnonfork_M b$. 
+  Prove that for every $c$ there is $b'\equiv_{M,a} b$ such that $a,c\cnonfork_M b'$. 
+\end{exercise}
+
+\begin{exercise}
+Let  $p(x)\in S(\U)$ be a global type invariant over $A$.
+Let $a,b\models p_{\restriction A}(x)$.
+Prove that there is a sequence $\bar c=\<c_i:i<\omega\>$ such that $a,\bar c$ and $b,\bar c$ are both sequences of $A$-indiscernibles.
+\end{exercise}
+
+  
+\begin{exercise}\label{ex_symmetry_ind}
+  Let $\<c_i:i<\omega\>$ be an indiscernible sequence.
+  Prove that there is an indiscernible sequence $\<d_i:i<\omega\>$ such that $d_0,d_1 = c_1,c_0$.
+\end{exercise}
+  
 \end{document}
 
 
