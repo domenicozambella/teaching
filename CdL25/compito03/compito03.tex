@@ -35,6 +35,7 @@
 \def\range{\textrm{im}}
 \def\Mod{\textrm{Mod}}
 \def\Aut{\textrm{Aut}}
+\def\Autf{\textrm{Aut}^{\rm f}}
 \def\Th{\textrm{Th}}
 \def\acl{\textrm{acl}}
 \def\dcl{\textrm{dcl}}
@@ -91,40 +92,33 @@
 
 \begin{document}
 
-\begin{exercise}\label{ex_heir_type}
-  Show that for every $b\in\U^z$ there is a type $p(x\,;z)\subseteq L(M)$ such that  for every  $a\in\U^x$ and every $b'\in\U^z$
-  \newline\hbox{~}\hfil
-  %
-  $a\cnonfork_M b'\equiv_M b\quad \IFF\quad a,b'\models p(x\,;z).$
+\begin{exercise}
+  Let $M$ be a group.
+  Given a 2-coloring of $M^{(2)}$ prove that there is a sequence $\langle a_i:i<\omega\rangle$ such that the set of pairs $\big\{{\scriptstyle\prod} a{\restriction} I,\ {\scriptstyle\prod}\,a{\restriction} J\big\}$ for any $I<J$ subsets of $\omega$ is monocromatic.
+  By ${\scriptstyle\prod}\langle a_1,\dots,a_n\rangle$ we denote the product $a_1\cdot\dots\cdot a_n$.
 \end{exercise}
 
 \begin{exercise}
-  Let $T$ be strongly minimal.
-  Let $a\in\U$ and $b\in\U^z$.
-  Prove that $a\cnonfork_Mb$ if and only if $a\in M$, $b\in M^z$ or $a\notin\acl(M,b)$.
-  % When $a\in\U^x$ is a tuple, this generalizes to $\dim(M,a)<\dim(M,a,b)$.
+  Let $A$ be a coheir extension base.
+  Prove that for every $b\in\U^z$ there is a structure $\V\preceq\U$ isomorphic to $\U$ over $A$ such that $\V\cnonfork_Mb$ for every $A\subseteq M\preceq\V$.
 \end{exercise}
 
 \begin{exercise}
-  Let $a\cnonfork_M b$ then there is $\V\preceq\U$ that is isomorphic to $\U$ over $M,a$ and such that $\V\cnonfork_Mb$.
+  Let $\phi(x\,;z)\in L$.
+  Let $p(x)\in S(\U)$ be finitely satisfied in every $M\supseteq A$.
+  Prove that if $\D_{p,\phi}$ is saturated.
+  We say that $\D\subseteq\U^x$ is saturated when the model $\U$ expanded with a predicate for $\D$ is saturated (in the expanded language).
 \end{exercise}
 
 \begin{exercise}
-  Let $a\cnonfork_M b$. 
-  Prove that for every $c$ there is $b'\equiv_{M,a} b$ such that $a,c\cnonfork_M b'$. 
+  Prove that the equivalence relation $a\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}_Ab$ is the transitive closure of the relation: there is a sequence $\langle c_i:i<\omega\rangle$ indiscernible over $A$ such that $c_0=a$ and $c_1=b$.
 \end{exercise}
+
 
 \begin{exercise}
-Let  $p(x)\in S(\U)$ be a global type invariant over $A$.
-Let $a,b\models p_{\restriction A}(x)$.
-Prove that there is a sequence $\bar c=\<c_i:i<\omega\>$ such that $a,\bar c$ and $b,\bar c$ are both sequences of $A$-indiscernibles.
+  Let $G=\{f\in\Aut(\U/A) : f\D=\D \textrm{ for every }\D \textrm{ with }o(\D/A)\textrm{ bounded}\}$. 
+  Prove that $G=\Autf(\U/A)$.
 \end{exercise}
-
-\begin{exercise}\label{ex_symmetry_ind}
-  Let $\<c_i:i<\omega\>$ be an indiscernible sequence.
-  Prove that there is an indiscernible sequence $\<d_i:i<\omega\>$ such that $d_0,d_1 = c_1,c_0$.
-\end{exercise}
-  
 \end{document}
 
 
