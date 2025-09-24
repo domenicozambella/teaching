@@ -1,0 +1,178 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=20cm,width=13cm]{geometry}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{graphicx}
+% \usepackage{pst-node}
+\usepackage{fourier}
+\usepackage{euscript}
+\usepackage{amsmath,amsthm}
+\def\phi{\varphi}
+\def\P{\EuScript P}
+\def\M{\EuScript M}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\S{\EuScript S}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\PP{\mathds P}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\dom{{\rm dom}}
+\def\eq{{\rm eq}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+
+\def\cnonfork{\mathbin{\raise1.8ex\rlap{\kern0.6ex\rule{0.6ex}{0.1ex}}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
+
+\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+   \vspace*{-.3\baselineskip}
+  \end{list}}
+%\def\ssf#1{\textsf{\small #1}}
+\newcounter{ex}
+\newenvironment{exercise}{\bigskip\addtocounter{ex}{1}\textbf{Esercizio \theex.\ }}{}
+\pagestyle{empty}
+\parindent0ex
+\parskip1ex
+\raggedbottom
+\def\nsR{{}^*\!\RR}
+\def\ssf#1{\textsf{#1}}
+\renewcommand{\baselinestretch}{1.3}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{Teoria dei Modelli a.a.~2025/26}
+\rhead{}
+\rfoot{{\small\thepage}}
+\cfoot{}
+
+
+
+%
+% INDICARE NOME E COGNOME DI TUTTI GLI AUTORI
+%
+\lhead{Nome/i Cognome/i}
+%
+
+\begin{document}
+
+\begin{exercise}
+  (Angela Dosio)
+  Let $M$ and $N$ be elementarily homogeneous structures of the same cardinality $\lambda$. 
+  Suppose that $M\models\E x\, p(x)\,\IFF\,N\models\E x\, p(x)$ for every $p(x)\subseteq L$ such that $|x|<\lambda$
+  Prove that the two structures are isomorphic. 
+\end{exercise}
+
+\begin{exercise}
+  (Davide Peccioli)
+  Let $|L|\le\lambda$. 
+  Prove that the following are equivalent\nobreak
+  \begin{itemize}
+  \item[1.] $N$ is $\lambda$-saturated
+  \item[2.] $N$ is weakly $\lambda$-saturated and weakly $\lambda$-homogeneous.
+  \end{itemize}\smallskip
+\end{exercise}
+
+\begin{exercise}
+  (Costanza Furone)
+  Let $\phi(x)\in L$.
+  Prove that the following are equivalent
+  \begin{itemize}
+   \item[1.] $\phi(x)$ is equivalent (in $\U$) to some $\psi(x)\in L_{\rm qf}$
+   \item[2.] $\phi(a)\iff\phi(fa)$ for every partial embedding $f:\U\to\U$ and $a\in(\dom f)^x$.
+  \end{itemize}
+  Can we use this result to infer that if all partial embeddings between models of $T$ (any $T$, non necessarily complete) are elementary then $T$ has elimination of quantifiers?
+\end{exercise}
+
+\begin{exercise}
+  (Alessandro Martina)
+  Let $M$ be $\omega$-saturated and let $k:M\imp N$ be a finite $\Delta$-morphism. 
+  Prove that the following are equivalent
+  \begin{itemize}
+  \item[1.] $k:M\imp N$ is a $\{\A\vee\}\Delta$-morphism
+  \item[2.] for every $c\in N^{<\omega}$ there is $b\in M^{<\omega}$ such that $k\cup\{\<b,c\>\}:M\imp N$ is a $\Delta$-morphism.
+  \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+  (Matteo Bisi)
+  Let $T$ be a complete theory without finite models in a language that consists only of unary predicates. 
+  Prove that $T$ has elimination of quantifiers.
+  Is the claim true if $T$ is not complete?
+\end{exercise}
+
+
+\begin{exercise}
+  (Roberto Carnevale)
+  Let $T$ be the theory of \emph{discrete linear orders}, that is, $T$ extends the theory of linear orders $T_{\rm lo}$ with the following two of axioms
+  \begin{itemize}
+  \item[dis$\uparrow$.] $\E z\ \big[x<z\ \wedge\ \neg\E y\ x<y<z\big]$
+  \item[dis$\downarrow$.] $\E z\ \big[ z<x\ \wedge\ \neg\E y\ z<y<x\big]$.
+  \end{itemize}
+  Let $\Delta$ be the set of formulas that contains (all alphabetic variants of) the formulas 
+
+  \hfil $x<_ny\ \ :=\ \ \E^{\ge n}z\ (x\mathord<z\mathord< y)$ 
+
+  and their negations, for every $n>0$.
+
+  Prove that the theory of discrete linear orders has $\Delta$-elimination of quantifiers.
+  Prove that the structure $\QQ\times\ZZ$ ordered with the lexicographic order is a saturated model of $T$.
+\end{exercise}
+
+\begin{exercise}
+  (Leonardo Centazzo)
+  Work in a monster model $\U$.
+  Suppose that every formula $\phi(x)\in L$ is equivalent to a some quantifier-free formula $\psi(x)\in L(\U)$.
+  Prove that $T$ has positive $\Delta$-elimination of quantifiers for $\Delta$ the set of formulas of the form $\E y\,\A z\,\theta(x,y,z)$ with $\theta(x,y,z)\in L_{\rm at^\pm}$.
+\end{exercise}
+
+% \begin{exercise}
+% Let $T$ be a consistent theory without finite models.
+% Suppose that all completions of $T$ are of the form $T\cup S$ for some set $S$ of quantifier-free sentences.
+% Apply Corollary 10.12 to prove that if all completions of $T$ have elimination of quantifiers, so does $T$.
+% Show that this fails when the completions of $T$ have arbitrary complexity.
+% \end{exercise}
+
+% \begin{exercise}
+% Let $T$ be a consistent theory without finite models.
+% Suppose that all completions of $T$ are of the form $T\cup S$ for some set $S$ of quantifier-free sentences.
+% Apply the compactness theorem prove that if all completions of $T$ have elimination of quantifiers, so does $T$.
+% Show that this fails when the completions of $T$ have arbitrary complexity.
+% \end{exercise}
+
+\end{document}
+
+
