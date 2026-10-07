@@ -13,6 +13,8 @@
 \def\theta{\vartheta}
 \def\P{\EuScript P}
 \def\M{\EuScript M}
+\def\B{\EuScript B}
+\def\C{\EuScript C}
 \def\D{\EuScript D}
 \def\U{\EuScript U}
 \def\S{\EuScript S}
@@ -90,6 +92,77 @@
 
 \begin{document}
 
+\begin{exercise}(Martina Apicella)
+  Let $\phi(x\,;z)\in L$ and $a\in\U^z$.
+  Prove that the following are equivalent
+  \begin{itemize}
+  \item[1.] the type $\{\phi(x\,;fa)\,:\,f\in\Aut(\U)\}$ is realized (in $\U$)
+  \item[2.] there is a formula $\psi(z)\in L$ such that  $\psi(a)$ and $\E x\A z\,[\psi(z)\imp\phi(x\,;z)]$.
+  \end{itemize}  
+\end{exercise}
+
+\begin{exercise}(Beatrice Calderaro)
+  Let $L$ be a countable language containing the language of groups and assume $\U$ is a group.
+  Let $p(x)\subseteq L$ define a subgroup of $\U$.
+  Prove that there are some formulas $\phi_n(x)\in L$ such that 
+  \begin{itemize}
+  \item[1.] $p(x)\ \iff\ \{\phi_n(x):n<\omega\}$
+  \item[2.] $\phi_{n+1}(x)\wedge\phi_{n+1}(y)\ \imp\ \phi_n(x\cdot y)$.
+  \end{itemize}
+\end{exercise}
+
+\begin{exercise}(Francesco Dam)
+  Let $L$ be a countable language containing the language of groups and assume $\U$ is a group.
+  Prove that the following are equivalent
+  \begin{itemize}
+    \item[1.] every model $M$ is a normal subgroup of $\U$
+    \item[2.] some $\omega$-saturated model $M$ is a normal subgroup of $\U$
+    \item[3.] $\U$ is a {\sc bfc} group.
+  \end{itemize}
+  A group $G$ is {\sc bfc} (has boundedly finite conjugacy classes) if for some $n$ the sets $\{g\,a\,g^{-1}:g\in G\}$, as $a$ ranges over $G$, have at most $n$ elements. 
+\end{exercise}
+
+\begin{exercise}(Filippo Giugie)
+  Let $A\subseteq B$ and $p(x)\subseteq L(A)$. 
+  Suppose that $\tp(a/B)$ is isolated over $B$ for every $a\models p(x)$.
+  Prove that $p(x)$ is isolated over $A$.
+\end{exercise}
+
+\begin{exercise}(Mattia Lo Mele)
+   Let $\D\subseteq\U$ be invariant over $A$.
+   We say that $\D$ is quasi-definable from below if for every $a\in\D$ and every $\phi(x)\in\tp(a/A)$ there is formula $\psi(x)\in L(A)$ such that $\psi(x)\imp\phi(x)$ and $\psi(\U^x)\subseteq\D$.
+   We say that $\D$ is quasi-definable from above if $\neg\D$ is quasi-definable from below.
+   Finally $\D$ is quasi-definable if it is both quasi-definable from below and from above.
+
+   Let $L(A)$ be countable. 
+   Prove that if $\D$ is quasi-definable then there is a type-definable set $\C$ and a model $M\supseteq A$ such that $M\cap\C=M\cap\D$.
+\end{exercise}
+
+
+\begin{exercise}(Andrea Morello)
+Let $p(x)\subseteq L(B)$ and $p_n(x)\subseteq L(A)$, for $n<\omega$, be such that
+
+\hfil$p(x)\imp\bigvee_{i<\omega}p_i(x)$
+
+Prove that 
+
+\hfil$p(x)\wedge\phi(x)\imp p_n(x)$
+
+for some $n<\omega$ and some formula $\phi(x)\in L(A)$ consistent with $p(x)$.
+\end{exercise}
+
+\begin{exercise}(Gabriele Maiolino)
+  Let $x$ be a finite tuple.
+  A set $\B\subseteq\U^x$ is \textit{nowhere dense\/} in the topology induced by $A$ if for every consistent formula $\phi(x)\in L(A)$ there is some consistent $\psi(x)\in L(A)$ such that $\psi(x)\imp\phi(x)$ and $\psi(\B)=\varnothing$.
+  A set $\C\subseteq\U^x$ is \textit{meager\/} if it is union of countably many nowhere dense sets.
+  
+  Assume $L(A)$ is countable.
+  Prove that for every countable model $M$ the following are equivalent
+  \begin{itemize}
+    \item [1.] $\C$ is meager in the topology topology induced by $A$
+    \item [2.] there is a model $M$ disjoint of $\C$
+  \end{itemize}
+\end{exercise}
 
 \end{document}
 
