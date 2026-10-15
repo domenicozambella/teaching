@@ -1,0 +1,144 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=20cm,width=13cm]{geometry}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{graphicx}
+% \usepackage{pst-node}
+\usepackage{fourier}
+\usepackage{euscript}
+\usepackage{amsmath,amsthm}
+\def\phi{\varphi}
+\def\theta{\vartheta}
+\def\P{\EuScript P}
+\def\M{\EuScript M}
+\def\B{\EuScript B}
+\def\C{\EuScript C}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\V{\EuScript V}
+\def\S{\EuScript S}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\PP{\mathds P}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\dom{{\rm dom}}
+\def\eq{{\rm eq}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+
+\def\cnonfork{\mathbin{\raise1.8ex\rlap{\kern0.6ex\rule{0.6ex}{0.1ex}}\rlap{\kern1.1ex\rule{0.1ex}{1.9ex}}\raise-0.3ex\hbox{$\smile$} } }
+
+\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+   \vspace*{-.3\baselineskip}
+  \end{list}}
+%\def\ssf#1{\textsf{\small #1}}
+\newcounter{ex}
+\newenvironment{exercise}{\bigskip\addtocounter{ex}{1}\textbf{Esercizio \theex.\ }}{}
+\pagestyle{empty}
+\parindent0ex
+\parskip1ex
+\raggedbottom
+\def\nsR{{}^*\!\RR}
+\def\ssf#1{\textsf{#1}}
+\renewcommand{\baselinestretch}{1.3}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{Teoria dei Modelli a.a.~2026/27}
+\rhead{}
+\rfoot{{\small\thepage}}
+\cfoot{}
+
+%
+% INDICARE NOME E COGNOME DI TUTTI GLI AUTORI
+%
+\lhead{Nome/i Cognome/i}
+%
+
+\begin{document}
+
+\begin{exercise}(Martina Apicella)
+Prove that the following are equivalent
+\begin{itemize}   
+\item[1.] $T$ is $\omega$-categorical
+\item[2.] $T$ is $\omega$-categorical over $A$ (for some/any) set $A$.
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}(Beatrice Calderaro)
+Let $C$ be a finite set.
+Prove that if $C\cap M\neq\varnothing$ for every model $M$ containing $A$, then $C\cap\acl A\neq\varnothing$.
+\end{exercise}
+
+\begin{exercise}(Francesco Dam)
+Prove that the following are equivalent
+\begin{itemize}   
+\item[1.] $T$ is $\omega$-categorical
+\item[2.] there is a countable model that is both saturated and atomic. 
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}(Filippo Giugie)
+  Let $\phi(z)\in L(A)$ be a consistent formula.
+  Prove that, if $a\in\acl(A,b)$ for every $b\models\phi(z)$, then $a\in\acl A$.
+  Prove the same claim with a type $p(z)\subseteq L(A)$ for $\phi(z)$.
+\end{exercise}
+
+\begin{exercise}(Daniele Lanciotti)
+  Let $M$ be $\omega$-saturated and $A\subseteq M$ finite.
+  Suppose that every automorphism of $\U$ that fixes $M$ setwise fixes also $\acl A$ setwise.
+  Prove that $\acl A\subseteq \acl\varnothing$.
+  (The interesting case is when $M$ is countable.)
+\end{exercise}
+
+\begin{exercise}(Mattia Lo Mele \& Gabriele Maiolino)
+  Let $\D\subseteq\U^x\times\U^y$. For any $a\in\U^x$ and $b\in\U^y$ we define $\D_{(a,y)}=\{y\,:\,(a,y)\in\D\}$ and $\D_{(x,b)}=\{x\,:\,(x,b)\in\D\}$.
+
+  Assume $L(A)$ is countable.
+  Let $\D\subseteq\U^x\times\U^y$ be such that for every $a\in\U^x$ and $b\in\U^y$ the sets $\D_{(a,y)}$ and $\D_{(x,b)}$ are definable over $A$.
+  Prove that there is a model $M\supseteq A$ and a type $q(x,y)\subseteq L(A)$ such such that $q(M^x,M^y)=\D\cap \big(M^x\times M^y\big)$.
+
+  Nota. Se non ci sono errori, questo dovrebbe essere un possibile analogo del teorema di Namioka. Forse non è esattamente giusto, o forse vale qualcose di più forte. Forse è connesso con la nozione di quasi-definibilità, ma non vedo come.
+\end{exercise}
+
+\begin{exercise}(Andrea Morello)
+Let $a\in\U\sm\acl\varnothing$.
+Prove that $\U$ is isomorphic to some $\V\preceq \U$ such that $a\notin\V$.
+\end{exercise}
+\end{document}
+
+
