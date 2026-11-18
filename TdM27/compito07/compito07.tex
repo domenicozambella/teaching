@@ -1,0 +1,126 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,height=20cm,width=13cm]{geometry}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{graphicx}
+% \usepackage{pst-node}
+\usepackage{fourier}
+\usepackage{euscript}
+\usepackage{amsmath,amsthm}
+\def\phi{\varphi}
+\def\theta{\vartheta}
+\def\P{\EuScript P}
+\def\M{\EuScript M}
+\def\B{\EuScript B}
+\def\C{\EuScript C}
+\def\D{\EuScript D}
+\def\U{\EuScript U}
+\def\V{\EuScript V}
+\def\S{\EuScript S}
+\def\sm{\smallsetminus}
+\def\niff{\nleftrightarrow}
+\def\ZZ{\mathds Z}
+\def\NN{\mathds N}
+\def\PP{\mathds P}
+\def\QQ{\mathds Q}
+\def\RR{\mathds R}
+\def\<{\langle}
+\def\>{\rangle}
+\def\E{\exists}
+\def\A{\forall}
+\def\0{\varnothing}
+\def\imp{\rightarrow}
+\def\iff{\leftrightarrow}
+\def\IMP{\Rightarrow}
+\def\IFF{\Leftrightarrow}
+\def\range{\textrm{im}}
+\def\Mod{\textrm{Mod}}
+\def\Aut{\textrm{Aut}}
+\def\Th{\textrm{Th}}
+\def\acl{\textrm{acl}}
+\def\dcl{\textrm{dcl}}
+\def\dom{{\rm dom}}
+\def\eq{{\rm eq}}
+\def\fp{{\rm fp}}
+\def\tp{\textrm{tp}}
+\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
+
+
+\def\nonfork{\mathop{\raise0.2ex\hbox{\ooalign{\hidewidth$\vert$\hidewidth\cr\raise-0.9ex\hbox{$\smile$}}}}}
+
+\newcommand{\labella}[1]{{\sf\footnotesize #1}\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{0mm}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{3ex}
+   \setlength{\itemsep}{0mm}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\labella}}{%
+   \vspace*{-.3\baselineskip}
+  \end{list}}
+%\def\ssf#1{\textsf{\small #1}}
+\newcounter{ex}
+\newenvironment{exercise}{\bigskip\addtocounter{ex}{1}\textbf{Esercizio \theex.\ }}{}
+\pagestyle{empty}
+\parindent0ex
+\parskip1ex
+\raggedbottom
+\def\nsR{{}^*\!\RR}
+\def\ssf#1{\textsf{#1}}
+\renewcommand{\baselinestretch}{1.3}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{Teoria dei Modelli a.a.~2026/27}
+\rhead{}
+\rfoot{{\small\thepage}}
+\cfoot{}
+
+%
+% INDICARE NOME E COGNOME DI TUTTI GLI AUTORI
+%
+\lhead{Nome/i Cognome/i}
+\begin{document}
+
+
+\begin{exercise}(Beatrice Calderaro \& Filippo Giugie)
+ For any model $M$ and any $b\in\U^z$ prove that the following are equivalent
+  \begin{itemize}
+    \item [1.] for every $a$, if $a\nonfork_Mb$ then $b\nonfork_Ma$
+    \item [2.] for every $\phi(x\,;z)\in L(M)$ there are some $b_1,\dots,b_n\in M^z$ such that \smallskip
+    
+     \hfil $\phi(M^x;b)\ \ \subseteq\ \ \phi(M^x;b_1)\cup\dots\cup\phi(M^x;b_n).$
+  \end{itemize}
+\end{exercise}
+
+\begin{exercise}(Martina Apicella \& Andrea Morello)
+  The following claim is too strong to be true.
+  For every finite coloring of $\NN^{(2)}$ there is an infinite sequence $\bar a=\langle a_i:i<\omega\rangle$ in $\NN$ such that $\fp(\bar a)^{(2)}$ is monochromatic.
+  Replace $\fp(\bar a)^{(2)}$ with a (slightly) smaller set that makes the claim true.
+\end{exercise}
+
+\begin{exercise}(Mattia Lo Mele \& Daniele Lanciotti)
+  Let $M$ be a semigroup $M$ with the property that $a\cdot M$ is infinite for every $a\in M$.
+  Prove that for every finite coloring of $M$ 
+  there is a sequence $\bar a=\langle a_i:i<\omega\rangle$ with an infinite range such that $\fp\,\bar a$ is monochromatic.
+\end{exercise}
+
+\begin{exercise}(Francesco Dam\&	Gabriele Maiolino)
+  For every finite coloring of $\NN$ and every $k<\omega$, 
+  there is an infinite sequence $\bar a=\<a_i(x):i<\omega\>$ of nonconstant univariate polynomials with coefficients in $\NN$ such that $\big\{a(i): a(x)\in\fp(\bar a),\ i<k\big\}$ is monochromatic.
+  Can we require that the $a_i(x)$ have increasing degrees?
+\end{exercise}
+
+\end{document}
+
+
